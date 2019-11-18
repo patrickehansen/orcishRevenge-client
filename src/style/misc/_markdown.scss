@@ -1,0 +1,329 @@
+// ///Main Editor Styling///
+// .rdw-editor-wrapper:focus {
+//   outline-offset: -2px;
+// }
+
+// .rdw-editor-wrapper {
+//   box-sizing: content-box;
+//   width: 100%;
+//   height: 100%;
+//   line-height: 1.4em;
+// }
+
+// .rdw-editor-main {
+//   overflow: auto;
+//   box-sizing: content-box;
+//   height: 100%;
+//   max-height: calc(100% - 27px);
+//   padding: 2px;
+// }
+// .rdw-editor-main blockquote {
+//   border-left: 5px solid $darkestGray;
+//   padding-left: 5px;
+// }
+// .rdw-editor-main pre {
+//   background: $darkestGray;
+//   border-radius: $cornerRadius;
+//   padding: 1px 10px;
+// }
+
+// ///Toolbar Option Styling///
+// .rdw-editor-toolbar {
+//   z-index: 9999;
+//   height: 25px;
+//   left: 0px;
+//   padding: 1px;
+//   border-radius: 0px;
+//   display: flex;
+//   //justify-content: flex-start;
+//   //background: $lighterGray;
+//   // flex-wrap: wrap;
+//   // font-size: 15px;
+//   // user-select: none;
+// }
+
+// .rdw-option-wrapper {
+//   border: 1px solid $darkGray;
+//   padding: 4px;
+//   min-width: 25px;
+//   height: 18px;
+//   border-radius: $cornerRadius;
+//   margin: 2px 3px;
+//   //display: flex;
+//   //justify-content: center;
+//   align-items: center;
+//   cursor: pointer;
+//   //background: $darkestGray;
+//   text-transform: capitalize;
+// }
+
+// .rdw-option-wrapper:hover {
+//   box-shadow: $stdShadow;
+// }
+// .rdw-option-wrapper:active {
+//   box-shadow: $stdShadow inset;
+// }
+// .rdw-option-active {
+//   box-shadow: $stdShadow inset;
+// }
+// .rdw-option-disabled {
+//   opacity: 0.3;
+//   cursor: default;
+// }
+
+// .rdw-inline-wrapper {
+//   display: flex;
+//   align-items: center;
+//   flex-wrap: wrap
+// }
+// .rdw-list-wrapper {
+//   display: flex;
+//   align-items: center;
+//   flex-wrap: wrap
+// }
+// .rdw-remove-wrapper {
+//   display: flex;
+//   align-items: center;
+//   position: relative;
+//   flex-wrap: wrap
+// }
+// .rdw-history-wrapper {
+//   display: flex;
+//   align-items: center;
+//   flex-wrap: wrap
+// }
+// @-webkit-keyframes sk-bouncedelay {
+//   0%, 80%, 100% { -webkit-transform: scale(0) }
+//   40% { -webkit-transform: scale(1.0) }
+// }
+// @keyframes sk-bouncedelay {
+//   0%, 80%, 100% {
+//     -webkit-transform: scale(0);
+//     transform: scale(0);
+//   } 40% {
+//     -webkit-transform: scale(1.0);
+//     transform: scale(1.0);
+//   }
+// }
+
+// ///DraftEditor & Content Styling///
+// .DraftEditor-editorContainer,.DraftEditor-root,.public-DraftEditor-content{
+//   text-align: initial;
+// }
+
+// .public-DraftStyleDefault-block {
+//   margin: 0;
+// }
+
+// .public-DraftEditor-content[contenteditable=true]{
+//   -webkit-user-modify: read-write-plaintext-only;
+// }
+
+// .DraftEditor-root{
+//   min-width: 100%;
+//   height: 100%;
+//   display: inline-block;
+//   position: relative;
+// }
+
+// .DraftEditor-editorContainer{
+//   border-left: .1px solid transparent;
+//   position: relative;
+//   z-index: 1;
+// }
+
+// .public-DraftEditor-block{
+//   position: relative;
+// }
+
+// .DraftEditor-alignLeft .public-DraftStyleDefault-block{
+//   text-align: left;
+// }
+
+// .DraftEditor-alignLeft .public-DraftEditorPlaceholder-root{
+//   left: 0;
+//   text-align: left;
+// }
+
+// .public-DraftEditorPlaceholder-root{
+//   color: $offWhite_40;
+//   position: absolute;
+//   z-index: 0;
+// }
+
+// .public-DraftEditorPlaceholder-hasFocus{
+//   color: $offWhite_70;
+// }
+
+// .public-DraftStyleDefault-block{
+//   position: relative;
+//   white-space: pre-wrap;
+// }
+
+// .public-DraftStyleDefault-ltr{
+//   direction: ltr;
+//   text-align: left;
+// }
+
+// .public-DraftStyleDefault-listLTR{
+//   direction: ltr;
+// }
+
+// .public-DraftStyleDefault-ol,.public-DraftStyleDefault-ul{
+//   margin: 0 0;
+//   padding: 0;
+//   width: auto;
+//   right: auto;
+// }
+
+// .public-DraftStyleDefault-depth0.public-DraftStyleDefault-listLTR{
+//   margin-left: 1.5em;
+// }
+
+// .public-DraftStyleDefault-depth1.public-DraftStyleDefault-listLTR{
+//   margin-left: 3em;
+// }
+
+// .public-DraftStyleDefault-depth2.public-DraftStyleDefault-listLTR{
+//   margin-left: 4.5em;
+// }
+
+// .public-DraftStyleDefault-depth3.public-DraftStyleDefault-listLTR{
+//   margin-left: 6em;
+// }
+
+// .public-DraftStyleDefault-depth4.public-DraftStyleDefault-listLTR{
+//   margin-left: 7.5em;
+// }
+
+// .public-DraftStyleDefault-unorderedListItem{
+//   list-style-type: square;
+//   position: relative;
+// }
+
+// .public-DraftStyleDefault-unorderedListItem.public-DraftStyleDefault-depth0{
+//   list-style-type: disc;
+// }
+
+// .public-DraftStyleDefault-unorderedListItem.public-DraftStyleDefault-depth1{
+//   list-style-type: circle;
+// }
+
+// .public-DraftStyleDefault-orderedListItem{
+//   list-style-type: none;
+//   position: relative;
+// }
+
+// .public-DraftStyleDefault-orderedListItem.public-DraftStyleDefault-listLTR:before{
+//   left: -36px;
+//   position: absolute;
+//   text-align: right;
+//   width: 30px;
+// }
+
+// .public-DraftStyleDefault-orderedListItem:before{
+//   content:counter(ol0) ". ";
+//   counter-increment: ol0;
+// }
+
+// .public-DraftStyleDefault-orderedListItem.public-DraftStyleDefault-depth1:before{
+//   content:counter(ol1) ". ";
+//   counter-increment: ol1;
+// }
+
+// .public-DraftStyleDefault-orderedListItem.public-DraftStyleDefault-depth2:before{
+//   content:counter(ol2) ". ";
+//   counter-increment: ol2;
+// }
+
+// .public-DraftStyleDefault-orderedListItem.public-DraftStyleDefault-depth3:before{
+//   content:counter(ol3) ". ";
+//   counter-increment: ol3;
+// }
+
+// .public-DraftStyleDefault-orderedListItem.public-DraftStyleDefault-depth4:before{
+//   content:counter(ol4) ". ";
+//   counter-increment: ol4;
+// }
+
+// .public-DraftStyleDefault-depth0.public-DraftStyleDefault-reset{
+//   counter-reset: ol0;
+// }
+
+// .public-DraftStyleDefault-depth1.public-DraftStyleDefault-reset{
+//   counter-reset: ol1;
+// }
+
+// .public-DraftStyleDefault-depth2.public-DraftStyleDefault-reset{
+//   counter-reset: ol2;
+// }
+
+// .public-DraftStyleDefault-depth3.public-DraftStyleDefault-reset{
+//   counter-reset: ol3;
+// }
+
+// .public-DraftStyleDefault-depth4.public-DraftStyleDefault-reset{
+//   counter-reset: ol4;
+// }
+
+// ///View Specific Designs///
+// .noteBox {
+//   height: 100%;
+//   border: solid 0.1rem $offWhite_70;
+//   display: flex;
+//   flex-direction: column;
+//   justify-content: space-between;
+
+//   .noteInputArea {
+//     border-top: solid 0.1rem $offWhite_70;
+//     position: relative;
+//     flex-shrink: 1;
+
+//     .rdw-editor-wrapper {
+//       display: inline-block;
+//       width: 86%;
+//       min-height: 6rem;
+//       flex-grow: 1;
+//       flex-shrink: 2;
+//       color: $offWhite;
+//       font-size: 1.3rem;
+
+//       .rdw-editor-toolbar {
+//         border-style: solid;
+//         border-color: $offWhite_70;
+//         border-width: 0 0 1px 0;
+//       }
+
+//       .rdw-editor-main {
+//         cursor: text;
+//         min-height: 2.7rem;
+//         max-height: 13.6rem;
+//       }
+//     }
+
+//     button {
+//       flex-grow: 0;
+//       position: absolute;
+//       height: calc(100% - 25px - 0.8rem);
+//       width: calc(14% - 0.8rem);
+//       top: 25px;
+//       right: 0px;
+//       margin: 0.4rem;
+//     }
+
+//     select {
+//       position: relative;
+//       height: 25px;
+//       width: 14%;
+//       vertical-align: top;
+//       border-style: solid;
+//       border-color: $offWhite_70;
+//       border-width: 0 0 1px 0;
+//       background: $darkestGray;
+//     }
+
+//     select:disabled {  
+//       -webkit-appearance: none;
+//     }
+//   }
+// }

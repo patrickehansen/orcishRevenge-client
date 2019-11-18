@@ -1,0 +1,63 @@
+@import url('https://fonts.googleapis.com/css?family=Francois+One');
+
+$bgGray_75: rgba(50,57,61, 0.75);
+$errRed: rgb(68,14,14);
+$errRedBright: rgb(172, 79, 79);
+$primary: rgb(0,59,94);
+$primary_bright: rgb(5, 120, 187);
+$secondary: rgb(12,48,12);
+$bright: rgb(145,145,165);
+$bright_50: rgba(90,110,120, 0.5);
+$dark: rgb(50,57,61);
+$lightGray: rgb(189, 189, 189);
+$lightGray_50: rgba(189,189,189,0.5);
+
+//// Colors ////
+$black_20: rgba(0,0,0,0.2);
+$black_50: rgba(0,0,0,0.5);
+$black_90: rgba(0,0,0,0.9);
+$black: rgba(0,0,0,1);
+
+$darkGray_40: rgba(49,53,55,0.4);
+$darkGray_70: rgba(49,53,55,0.7);
+$darkGray_90: rgba(49,53,55,0.9);
+$darkGray_98: rgba(49,53,55,0.98);
+$darkGray: rgb(49,53,55);
+
+$darkestGray: rgb(36, 39, 41);
+$contextMenuSep : 0.1rem;
+$contextMenuWidth : 18rem;
+
+$lightGray_50: rgba(133,133,133, 0.5);
+$lightGray_75: rgba(133,133,133, 0.75);
+$lightGray: rgba(133,133,133, 1);
+$lighterGray: rgba(170,170,170, 1);
+
+$steel: rgba(67,74,82, 1);
+$steel_60: rgba(67,74,82, 0.6);
+
+$lightBlue: #007bff;
+$medBlue : #214a80;
+$darkBlue: #1e2833;
+
+$deepRed: #700000;
+$deeperRed: #3f0000;
+$errorRed: #FF0000;
+
+$offWhite: rgb(227,227,245);
+$offWhite_40: rgba(207,207,255,0.4);
+$offWhite_70: rgba(207,207,255,0.7);
+
+
+$claimedYellow: rgba(166, 168, 45, 0.8);
+$newGreen: rgba(29, 79, 52, 0.8);
+$completedOrange: rgba(155, 81, 38, 0.8);
+$deletedRed: rgba(91, 0, 21, 0.8);
+
+$claimedYellowFocus: rgb(198, 201, 48);
+$newGreenFocus: rgb(46, 124, 82);
+$deletedRedFocus: rgb(132, 0, 30);
+
+// Borders & Shadows
+$cornerRadius: 0.4rem;
+$stdShadow: 1px 1px 1px #000, 2px 2px 2px $lightGray_50;
