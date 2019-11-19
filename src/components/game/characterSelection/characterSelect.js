@@ -114,7 +114,7 @@ class CharacterSelect extends Component {
             
           </VerticalFlex>
           
-          <div className='createBtn'>
+          <div className={`${classes.centered} `}>
             <Button 
               onClick={this.createCharacter}
               id='createNewBtn'

@@ -37,6 +37,7 @@ class Theme extends Component {
       shadow: {
         boxShadow: '2px 2px 2px black',
         textShadow: '1px 1px 2px black',
+        whiteText: '1px 1px 2px white',
       }
     });
   }

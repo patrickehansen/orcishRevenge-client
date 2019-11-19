@@ -27,8 +27,8 @@ export default withStyles(styles)(class Select extends Component {
         color={this.props.color || 'secondary'}
       >
         {this.props.options.map(option => (
-          <MenuItem key={i++} value={option.value}>
-            {option.label}
+          <MenuItem key={i++} value={option.value || option}>
+            {option.label || option}
           </MenuItem>
         ))}
       </TextField>
@@ -59,8 +59,8 @@ export const OutlinedSelect = withStyles(styles)(class OutlinedSelect extends Co
         color={this.props.color || 'secondary'}
       >
         {this.props.options.map(option => (
-          <MenuItem key={i++} value={option.value}>
-            {option.label}
+          <MenuItem key={i++} value={option.value || option}>
+            {option.label || option}
           </MenuItem>
         ))}
       </TextField>
@@ -91,8 +91,8 @@ export const FilledSelect = withStyles(styles)(class FilledSelect extends Compon
         color={this.props.color || 'secondary'}
       >
         {props.options.map(option => (
-          <MenuItem key={i++} value={option.value}>
-            {option.label}
+          <MenuItem key={i++} value={option.value || option}>
+            {option.label || option}
           </MenuItem>
         ))}
       </TextField>
@@ -108,7 +108,7 @@ export const NumberSelect = withStyles(styles)(function NumberSelect(props) {
       id={props.id}
       type='number'
       label={props.label}
-      className={classes.numberSelect}
+      className={`${props.className} ${classes.numberSelect} ${classes.select}`}
       InputLabelProps={{
         shrink: true,
       }}

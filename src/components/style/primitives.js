@@ -13,7 +13,9 @@ export default (theme) => ({
 
   // // Selects
 
-  // select: {},
+  select: {
+    backgroundColor: theme.palette.background.transparentGray,
+  },
   // outlinedSelect: {},
   // filledSelect: {},
 

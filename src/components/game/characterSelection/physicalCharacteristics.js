@@ -98,57 +98,69 @@ class PhysicalCharacteristics extends Component {
     const {classes} = this.props;
 
     return (
-      <Container className={`physicalCharacteristics`}>
-        
+      <Container className={`${classes.physicalCharacteristics}`}>
         <NumberSelect
           id='Age'
           label='Age'
+          className={classes.characteristicSelect}
           value={this.props.stats.Age}
+          fullWidth
           onChange={this.change}
-        />
-        <Select
-          id='Height'
-          label='Height'
-          value={this.props.stats.Height}
-          onChange={this.change}
-          options={heights}
         />
         <NumberSelect
           id='Weight'
           label='Weight'
+          className={classes.characteristicSelect}
           value={this.props.stats.Weight}
           onChange={this.change}
+          fullWidth
           step={5}
+        />
+        <Select
+          id='Height'
+          label='Height'
+          className={classes.characteristicSelect}
+          value={this.props.stats.Height}
+          onChange={this.change}
+          fullWidth
+          options={heights}
         />
         <Select
           id='Build'
           label='Build'
+          className={classes.characteristicSelect}
           value={this.props.stats.Build}
           onChange={this.change}
+          fullWidth
           options={builds}
         />
         <Select
           id='EyeColor'
           label='Eye Color'
+          className={classes.characteristicSelect}
           value={this.props.stats.EyeColor}
           onChange={this.change}
+          fullWidth
           options={eyeColors}
         />
         <Select
           id='SkinColor'
           label='Skin Color'
+          className={classes.characteristicSelect}
           value={this.props.stats.SkinColor}
           onChange={this.change}
+          fullWidth
           options={skinColors}
         />
         <Select
           id='HairColor'
           label='Hair Color'
+          className={classes.characteristicSelect}
           value={this.props.stats.HairColor}
           onChange={this.change}
+          fullWidth
           options={hairColors}
         />
-
       </Container>
     )
   }

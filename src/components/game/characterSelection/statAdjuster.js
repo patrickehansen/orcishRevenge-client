@@ -99,42 +99,50 @@ class Character extends Component {
         {
           this.props.canAdjust && (
             <CardActions className={`${classes.horizontalFlex} ${classes.noPadding}`} disableSpacing={true}>
-              <VerticalFlex>
-                <Button
-                  size='small'
-                  className={classes.statModifier}
-                  disabled={!this.props.canIncrement || this.props.name === 'MagicAffinity'}
-                  onClick={() => this.props.increment(this.props.name)}
-                >
-                  <FaAngleDoubleUp style={iconStyle} />
-                </Button>
-                <Button
-                  size='small'
-                  className={classes.statModifier}
-                  disabled={this.props.value <= 6 || this.props.name === 'MagicAffinity'}
-                  onClick={() => this.props.decrement(this.props.name)}
-                >
-                  <FaAngleDoubleDown style={iconStyle}/>
-                </Button>
-              </VerticalFlex>
-              <VerticalFlex>
-                <Button
-                  size='small'
-                  className={classes.statModifier}
-                  disabled={!this.props.canIncrement || this.props.name === 'MagicAffinity'}
-                  onClick={() => this.props.increment(this.props.name)}
-                >
-                  <FaAngleUp style={iconStyle}/>
-                </Button>
-                <Button
-                  size='small'
-                  className={classes.statModifier}
-                  disabled={this.props.value <= 6 || this.props.name === 'MagicAffinity'}
-                  onClick={() => this.props.decrement(this.props.name)}
-                >
-                  <FaAngleDown style={iconStyle}/>
-                </Button>
-              </VerticalFlex>
+              { this.props.canIncrementByWhole && (
+                  <VerticalFlex>
+                    <Button
+                      size='small'
+                      className={classes.statModifier}
+                      disabled={!this.props.canIncrement || this.props.name === 'MagicAffinity'}
+                      onClick={() => this.props.increment(this.props.name)}
+                    >
+                      <FaAngleDoubleUp style={iconStyle} />
+                    </Button>
+                    <Button
+                      size='small'
+                      className={classes.statModifier}
+                      disabled={this.props.value <= 6 || this.props.name === 'MagicAffinity'}
+                      onClick={() => this.props.decrement(this.props.name)}
+                    >
+                      <FaAngleDoubleDown style={iconStyle}/>
+                    </Button>
+                  </VerticalFlex>
+                )
+              }
+              {
+                this.props.canIncrementByTenths && (
+                  <VerticalFlex>
+                    <Button
+                      size='small'
+                      className={classes.statModifier}
+                      disabled={!this.props.canIncrement || this.props.name === 'MagicAffinity'}
+                      onClick={() => this.props.increment(this.props.name)}
+                    >
+                      <FaAngleUp style={iconStyle}/>
+                    </Button>
+                    <Button
+                      size='small'
+                      className={classes.statModifier}
+                      disabled={this.props.value <= 6 || this.props.name === 'MagicAffinity'}
+                      onClick={() => this.props.decrement(this.props.name)}
+                    >
+                      <FaAngleDown style={iconStyle}/>
+                    </Button>
+                  </VerticalFlex>
+                )
+              }
+              
             </CardActions>
           )
         }

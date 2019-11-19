@@ -1,5 +1,3 @@
-import { throwStatement } from "@babel/types";
-
 export default (theme) => ({
   gameRoot: {
     backgroundColor: theme.palette.background.default,
@@ -12,6 +10,7 @@ export default (theme) => ({
     height: '85%',
     margin: 'auto',
     marginTop: '5%',
+    
     backgroundColor: '$lightGray',
     borderRadius: '4px',
   },
@@ -22,6 +21,7 @@ export default (theme) => ({
     order: 0,
 
     margin: theme.spacing(8),
+    marginBottom: 0,
     borderRadius: theme.spacing(1),
     boxShadow: theme.shadow.boxShadow,
     padding: theme.spacing(8),

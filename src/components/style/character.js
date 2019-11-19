@@ -74,6 +74,7 @@ export default (theme) => ({
     marginTop: theme.spacing(1.5),
     lineHeight: theme.spacing(11),
     textShadow: theme.shadow.textShadow,
+    userSelect: 'none',
   },
 
   statValue: {
@@ -84,6 +85,9 @@ export default (theme) => ({
     border: 'solid 2px black',
     minWidth: theme.spacing(10),
     marginRight: theme.spacing(1),
+    userSelect: 'none',
+    textShadow: theme.shadow.whiteText,
+    fontWeight: 600,
   },
 
   statFooter: {
@@ -99,6 +103,61 @@ export default (theme) => ({
     height: theme.spacing(4),
     minHeight: theme.spacing(5),
     minWidth: 0,
+  },
+
+  remainingPoints: {
+    fontSize: '1.5rem',
+    padding: theme.spacing(2),
+    color: theme.palette.common.black,
+    border: 'solid 1px black',
+    boxShadow: 'inset 2px 2px 2px black',
+    backgroundColor: theme.palette.background.transparentGray,
+    width: theme.spacing(4),
+    height: theme.spacing(4),
+    textAlign: 'center',
+    margin:'auto',
+    userSelect: 'none',
+    fontWeight: 600,
+    textShadow: theme.shadow.whiteText,
+  },
+
+  physicalCharacteristics: {
+    backgroundColor: theme.palette.background.transparentGray,
+    color: theme.palette.common.white,
+    minWidth: '13rem',
+    maxWidth: '13rem',
+    paddingLeft: theme.spacing(4),
+  },
+
+  characteristicSelect: {
+    color: theme.palette.common.black,
+    boxShadow: theme.shadow.boxShadow,
+    textShadow: theme.shadow.whiteText,
+    fontSize: '1.8rem',
+    userSelect: 'none',
+    
+    '& label' : {
+      color: theme.palette.primary.main,
+      textShadow: theme.shadow.whiteText,
+      paddingLeft: theme.spacing(2),
+      fontSize: '1.2rem',
+    },
+
+    '& div' : {
+      fontWeight: 600,
+      color: theme.palette.common.black,
+      paddingLeft: theme.spacing(3),
+      fontSize: '1.2rem',
+    },
+
+    '& input' : {
+      fontWeight: 600,
+      color: theme.palette.common.black,
+      textShadow: theme.shadow.whiteText,
+      paddingLeft: theme.spacing(3),
+      fontSize: '1.2rem',
+      userSelect: 'none',
+    }
   },
 
   characterSheet: {
