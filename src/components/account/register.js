@@ -1,7 +1,7 @@
 'use strict';
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
-import Button from '@material-ui/core/Button';
+import Button from '../primitives/button';
 import TextField from '@material-ui/core/TextField';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Grid from '@material-ui/core/Grid';
@@ -145,9 +145,7 @@ class Register extends Component {
                 <Grid item xs={12}>
                   <Button 
                     className={classes.submit}
-                    variant='contained'
                     fullWidth
-                    color='primary'
                     type="submit"
                     >
                     Submit

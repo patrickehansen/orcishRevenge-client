@@ -3,6 +3,8 @@ import React, { Component } from 'react';
 import {connect} from 'react-redux';
 import Container from '@material-ui/core/Container';
 
+import Button from '../primitives/button';
+
 import ChatList from './chat/chatList';
 import ErrorComponent from '../util/error';
 
@@ -64,7 +66,7 @@ class ChatRoll extends Component {
               name='chatMessage'
               onKeyDown={this.onKeyDown}
             />
-            <button>Send</button>
+            <Button>Send</Button>
           </div>
          
         </form>

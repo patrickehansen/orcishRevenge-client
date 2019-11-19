@@ -19,6 +19,24 @@ export default (theme) => ({
 
   // option: {},
 
+  button : {
+    cursor: 'pointer',
+    textAlign: 'center',
+    boxShadow: theme.shadow.boxShadow,
+    margin: theme.spacing(1),
+  },
+
+  smallButton : {
+    minWidth: theme.spacing(4),
+    width: theme.spacing(4),
+    boxShadow: theme.shadow.textShadow,
+    marginBottom: theme.spacing(1),
+  },
+
+  submit: {
+    margin: theme.spacing(3, 0, 2),
+  },
+
 
   paper: {
     marginTop: theme.spacing(4),
@@ -46,12 +64,7 @@ export default (theme) => ({
       boxShadow: '2px 2px 2px black'
     }
   },
-  smallButton : {
-    minWidth: '2rem',
-    width: '2rem',
-    boxShadow: '1px 1px 3px black',
-    marginBottom: '0.2rem',
-  },
+
   form: {
     width: '100%', // Fix IE 11 issue.
     marginTop: theme.spacing(3),

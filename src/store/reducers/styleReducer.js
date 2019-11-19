@@ -27,7 +27,7 @@ const defaultAuthenticationState = {
     background: {
       card: '#708090',
       default: '#fff',
-      menu: '#2A129F',
+      menu: '#c7cad1',
       transparentGray: 'rgba(189,189,189,0.5)',
     },
   },

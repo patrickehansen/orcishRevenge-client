@@ -21,14 +21,7 @@ div#characterSelectModal {
   background-image: url('../../assets/mountains.jpg') ; 
   background-size: cover;
   background-position: center;
-  width: 85%;
-  height: 85%;
-  margin: auto;
-  margin-top: 5%;
-  border-radius: 5px;
-  padding: 2rem;
-
-
+  
   #creatorContainer {
     background-color: $lightGray_50;
     border-radius: 5px;
@@ -67,25 +60,9 @@ div#characterSelectModal {
       
     }
 
-    
-
     #statsAssignment {
-      background-color: slategray;
-      width: 16rem;
-      border-radius: 3px;
-
-      #statsTable {
-        padding-top: 0.2rem;
-        border-radius: 3px;
-        text-shadow: 2px 2px 2px black;
-      }
 
       #statsFooter {
-        margin-top: 1rem;
-        color: white;
-        text-align: right;
-        margin-right: 1rem;
-        padding-bottom: 0.8rem;
 
         #remainingLabel {
           font-size: 1.3rem;

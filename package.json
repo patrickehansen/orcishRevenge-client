@@ -41,6 +41,7 @@
     "react-color": "^2.17.3",
     "react-dom": "^16.8.6",
     "react-draft-wysiwyg": "^1.13.2",
+    "react-icons": "^3.8.0",
     "react-konva": "^16.8.7-3",
     "react-meta-tags": "^0.7.4",
     "react-redux": "^7.1.0",

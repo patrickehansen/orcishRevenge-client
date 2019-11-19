@@ -4,11 +4,13 @@ import { Redirect } from 'react-router-dom';
 import Grid from '@material-ui/core/Grid';
 import Container from '@material-ui/core/Container';
 import Typography from '@material-ui/core/Typography';
-import Button from '@material-ui/core/Button';
+
 import TextField from '@material-ui/core/TextField';
 import {styles} from '../style/styles';
 import Fingerprint from '@material-ui/icons/Fingerprint';
 import { withStyles} from '@material-ui/styles';
+
+import Button from '../primitives/button';
 
 import ErrorComponent from '../util/error';
 import auth from '../../requests/account/login';
@@ -98,8 +100,6 @@ class Login extends Component {
               <Grid item xs={12}>
                   <Button 
                     className={classes.submit}
-                    variant='contained'
-                    color='primary'
                     type="submit"
                     >
                     Submit

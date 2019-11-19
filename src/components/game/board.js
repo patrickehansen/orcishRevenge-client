@@ -4,7 +4,7 @@ import Container from '@material-ui/core/Container';
 import Badge from '@material-ui/core/Badge';
 import IconButton from '@material-ui/core/IconButton';
 import AssignIcon from '@material-ui/icons/Assignment'
-
+import Button from '../primitives/button';
 import {withStyles} from '@material-ui/styles';
 
 import CharacterSheet from './characterSheet/characterSheet';
@@ -42,9 +42,9 @@ class Board extends Component {
       return (
         <Container component='div' className='board-root'>
           <Container className={`${classes.horizontalFlex} ${classes.spaceBetween}`}>
-            <button className='logoutBtn' onClick={this.logout}>
+            <Button className='logoutBtn' onClick={this.logout}>
               Logout
-            </button>
+            </Button>
             <IconButton onClick={this.openCharacterSheet}>
               <Badge badgeContent={0} color='primary'>
                 <AssignIcon />

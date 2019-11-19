@@ -4,7 +4,8 @@ import {connect} from 'react-redux';
 
 import Modal from '@material-ui/core/Modal';
 import Container from '@material-ui/core/Container';
-import Button from '@material-ui/core/Button';
+//import Button from '../primitives/button';
+
 
 import {SketchPicker} from 'react-color';
 

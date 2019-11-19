@@ -4,9 +4,10 @@ import {connect} from 'react-redux';
 
 import Modal from '@material-ui/core/Modal';
 import Container from '@material-ui/core/Container';
-import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 import {withStyles} from '@material-ui/styles';
+
+import Button from '../../primitives/button';
 
 import GetAvailableCharacters from '../../../requests/character/availableCharacters';
 import PossessCharacter from '../../../requests/character/possessCharacter';
@@ -103,8 +104,6 @@ class CharacterSelect extends Component {
             {
               this.state.selected && <div className={`${classes.fixed} ${classes.centered}`}>
               <Button
-                variant='contained'
-                color='primary'
                 id='createNewBtn'
                 onClick={this.play}
               >
@@ -118,8 +117,6 @@ class CharacterSelect extends Component {
           <div className='createBtn'>
             <Button 
               onClick={this.createCharacter}
-              variant='contained'
-              color='primary'
               id='createNewBtn'
             >Create New</Button>
           </div>

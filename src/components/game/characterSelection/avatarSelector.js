@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Container from '@material-ui/core/Container';
-import Button from '@material-ui/core/Button';
+import Button from '../../primitives/button';
 import Slide from '@material-ui/core/Slide';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
@@ -51,10 +51,10 @@ class StatsAssigner extends Component {
           />
           </DialogContent>
           <DialogActions>
-            <Button onClick={this.props.hideAvatar} color="primary">
+            <Button onClick={this.props.hideAvatar}>
               Cancel
             </Button>
-            <Button type='submit' color="primary">
+            <Button type='submit'>
               Submit
             </Button>
           </DialogActions>

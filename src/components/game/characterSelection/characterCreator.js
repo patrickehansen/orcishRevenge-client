@@ -6,12 +6,16 @@ import Container from '@material-ui/core/Container';
 import Avatar from '@material-ui/core/Avatar';
 
 import {withStyles, mergeClasses} from '@material-ui/styles';
+
+import {HorizontalFlex} from '../../primitives/layout';
+
 import {styles} from '../../style/styles';
 import StatsAssigner from './statsAssigner';
 import AvatarSelector from './avatarSelector';
 import PhysicalCharacteristics from './physicalCharacteristics';
-import { Grid, Button } from '@material-ui/core';
 
+
+import Button from '../../primitives/button';
 import CreateCharacter from '../../../requests/character/createCharacter';
 import RPlikes from './RPlikes';
 
@@ -25,7 +29,7 @@ class CharacterCreator extends Component {
         Strength: 8,
         Agility: 8,
         Endurance: 8,
-        Skill: 8,
+        Reasoning: 8,
         Speed: 8,
         MagicAffinity: 8,
         Alertness: 8,
@@ -136,13 +140,11 @@ class CharacterCreator extends Component {
 
     return (
       <Modal 
-        aria-labelledby="simple-modal-title"
-        aria-describedby="simple-modal-description"
         open={this.props.open}
         onClose={this.cancel} 
         className='board-root'
-        >
-        <div className='characterCreator'>
+      >
+        <Container className={`characterCreator ${classes.characterCreator}`}>
           <form id='creatorContainer' onSubmit={this.submit}>
             <Container className='characterHeader'>
               <Container className='characterBasicInfo'>
@@ -167,28 +169,20 @@ class CharacterCreator extends Component {
               </Container>
               <Container style={{float: 'right', width: '20rem'}}>
                 <Button
-                  variant='contained'
-                  color='primary'
-                  type='button'
                   className={'cancelBtn'}
-                  fullWidth={false}
                   onClick={this.cancel}
-                  style={{marginRight: '0.2rem'}}
                   >
                   Cancel
                 </Button>
                 <Button
-                  variant='contained'
-                  color='primary'
                   type='submit'
                   className={'submitBtn'}
-                  fullWidth={false}
                 >
                   Submit
                 </Button>
               </Container>
             </Container>
-            <Container className={`${classes.horizontalTextContainer}`} style={{margin: 0}}>
+            <HorizontalFlex className={classes.noMargin}>
               <Container className={classes.fixed} style={{margin: 0, padding: 0, order: 0, width: '20rem'}}>
                 <StatsAssigner 
                   increment={this.increment}
@@ -208,14 +202,14 @@ class CharacterCreator extends Component {
                 <RPlikes />
               </Container>
               
-            </Container>
+            </HorizontalFlex>
           </form>
           <AvatarSelector 
             open={this.state.avatarSelecting}
             hideAvatar={this.closeAvatarChooser}
             submit={this.setAvatar}
           />
-        </div>
+        </Container>
       </Modal>
     )
   }

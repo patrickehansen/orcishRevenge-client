@@ -7,7 +7,7 @@ import {styles} from '../style/styles';
 export default withStyles(styles)(class Select extends Component {
   render() {
     const {classes} = this.props;
-
+    let i = 0;
     return (
       <TextField
         id={this.props.id || 'select'}
@@ -27,7 +27,7 @@ export default withStyles(styles)(class Select extends Component {
         color={this.props.color || 'secondary'}
       >
         {this.props.options.map(option => (
-          <MenuItem key={option.value} value={option.value}>
+          <MenuItem key={i++} value={option.value}>
             {option.label}
           </MenuItem>
         ))}
@@ -38,6 +38,7 @@ export default withStyles(styles)(class Select extends Component {
 
 export const OutlinedSelect = withStyles(styles)(class OutlinedSelect extends Component {
   render() {
+    let i = 0;
     return (
       <TextField
         id={this.props.id || 'outlined-select'}
@@ -58,7 +59,7 @@ export const OutlinedSelect = withStyles(styles)(class OutlinedSelect extends Co
         color={this.props.color || 'secondary'}
       >
         {this.props.options.map(option => (
-          <MenuItem key={option.value} value={option.value}>
+          <MenuItem key={i++} value={option.value}>
             {option.label}
           </MenuItem>
         ))}
@@ -69,6 +70,7 @@ export const OutlinedSelect = withStyles(styles)(class OutlinedSelect extends Co
 
 export const FilledSelect = withStyles(styles)(class FilledSelect extends Component {
   render() {
+    let i = 0;
     return (
       <TextField
         id={this.props.id || 'filled-select'}
@@ -89,7 +91,7 @@ export const FilledSelect = withStyles(styles)(class FilledSelect extends Compon
         color={this.props.color || 'secondary'}
       >
         {props.options.map(option => (
-          <MenuItem key={option.value} value={option.value}>
+          <MenuItem key={i++} value={option.value}>
             {option.label}
           </MenuItem>
         ))}
@@ -100,7 +102,7 @@ export const FilledSelect = withStyles(styles)(class FilledSelect extends Compon
 
 export const NumberSelect = withStyles(styles)(function NumberSelect(props) {
   const {classes} = props;
-
+  let i = 0;
   return (
     <TextField
       id={props.id}

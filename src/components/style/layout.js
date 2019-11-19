@@ -17,5 +17,8 @@ export default (theme) => ({
   },
   spaceBetween: {
     justifyContent: 'space-between'
+  },
+  noMargin: {
+    margin: 0,
   }
 });
