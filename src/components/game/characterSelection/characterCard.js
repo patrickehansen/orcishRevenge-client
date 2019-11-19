@@ -25,12 +25,11 @@ class CharacterCard extends Component {
     const {character, classes} = this.props;
 
     return (
-      <Card className={`character-root ${this.props.active ? 'active' : ''}`} key={this.props.key} style={{cursor: 'pointer'}} onClick={this.onClick}>
+      <Card className={`${classes.characterCard} ${this.props.active ? classes.cardActive : classes.cardInactive}`} key={this.props.key} onClick={this.onClick}>
         <CardContent className={classes.verticalFlex} raised="true">
           <CardMedia className={classes.grow}>
-            <img className='characterAvatar' src={character.Avatar} />
+            <img className={classes.characterAvatar} src={character.Avatar} />
           </CardMedia>
-          
           <Typography component="h1" variant="h5" style={{textAlign: 'center'}} className={classes.fixed}>
           {character.Name}
           </Typography>

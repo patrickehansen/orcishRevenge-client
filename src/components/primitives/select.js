@@ -4,7 +4,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import {withStyles} from '@material-ui/styles';
 import {styles} from '../style/styles';
 
-export default Select = withStyles(styles)(class Select extends Component {
+export default withStyles(styles)(class Select extends Component {
   render() {
     const {classes} = this.props;
 
@@ -96,4 +96,28 @@ export const FilledSelect = withStyles(styles)(class FilledSelect extends Compon
       </TextField>
     )
   }
+})
+
+export const NumberSelect = withStyles(styles)(function NumberSelect(props) {
+  const {classes} = props;
+
+  return (
+    <TextField
+      id={props.id}
+      type='number'
+      label={props.label}
+      className={classes.numberSelect}
+      InputLabelProps={{
+        shrink: true,
+      }}
+      value={props.value}
+      inputProps={{
+        step: props.step || 1,
+      }}
+      onChange={(e) => {props.onChange(props.id, e)}}
+      helperText={props.helperText}
+      margin='normal'
+      variant='outlined'
+    />
+  )
 })

@@ -86,7 +86,7 @@ class CharacterSelect extends Component {
       >
         <VerticalFlex className={classes.characterSelect} id='characterSelectModal'>
           <VerticalFlex className={`${classes.characterContainer} ${classes.grow} characterContainer`}>
-            <Grid container spacing={1} justify='center' className={classes.grow}>
+            <Grid container spacing={2} justify='center' className={classes.grow}>
             {
               characters.map((v,i) => {
                 const active = this.state.selected ? this.state.selected.name === v.Name : false;
@@ -101,7 +101,7 @@ class CharacterSelect extends Component {
             }
             </Grid>
             {
-              this.state.selected && <div className={`${classes.fixed} playBtn`}>
+              this.state.selected && <div className={`${classes.fixed} ${classes.centered}`}>
               <Button
                 variant='contained'
                 color='primary'

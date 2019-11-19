@@ -25,8 +25,10 @@ const defaultAuthenticationState = {
       main: '#eb4034',
     },
     background: {
+      card: '#708090',
       default: '#fff',
       menu: '#2A129F',
+      transparentGray: 'rgba(189,189,189,0.5)',
     },
   },
 }

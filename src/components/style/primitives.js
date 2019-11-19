@@ -59,4 +59,8 @@ export default (theme) => ({
   error: {
     color: theme.palette.error.main,
   },
+
+  centered: {
+    margin: 'auto',
+  }
 });

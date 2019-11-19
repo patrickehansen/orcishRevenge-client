@@ -1,3 +1,5 @@
+import { throwStatement } from "@babel/types";
+
 export default (theme) => ({
   gameRoot: {
     backgroundColor: theme.palette.background.default,
@@ -23,12 +25,19 @@ export default (theme) => ({
     borderRadius: theme.spacing(1),
     boxShadow: theme.shadow.boxShadow,
     padding: theme.spacing(8),
-
+    backgroundColor: theme.palette.background.transparentGray,
   },
   styleUpdater: {
     width: '80%',
     height: '80%',
     margin: 'auto',
     backgroundColor: theme.palette.background.menu
-  }
+  },
+
+  cardActive: {
+    backgroundColor : theme.palette.secondary.main
+  },
+  cardInactive: {
+    backgroundColor: theme.palette.background.card,
+  },
 });

@@ -4,8 +4,7 @@ import Container from '@material-ui/core/Container';
 
 import {withStyles} from '@material-ui/styles';
 import {styles} from '../../style/styles';
-import Select from '../../misc/select';
-import NumberSelect from '../../misc/numberSelect';
+import Select, {NumberSelect} from '../../primitives/select';
 
 const eyeColors = [
   'Brown',
