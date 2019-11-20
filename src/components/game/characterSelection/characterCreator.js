@@ -145,18 +145,18 @@ class CharacterCreator extends Component {
         className='board-root'
       >
         <Container className={`characterCreator ${classes.characterCreator}`}>
-          <form id='creatorContainer' onSubmit={this.submit}>
-            <Container className='characterHeader'>
-              <Container className='characterBasicInfo'>
+          <form className={classes.characterCreationForm} id='creatorContainer' onSubmit={this.submit}>
+            <Container className={classes.characterHeader}>
+              <Container className={classes.characterBasicInfo}>
                 <Avatar 
-                  className='avatarplaceholder' 
+                  className={classes.avatarPlaceholder}
                   src={this.state.avatarURL} 
                   onClick={this.openAvatarChooser}
                 />
                 <TextField 
                   id='characterName'
                   label='Name'
-                  className={`${classes.textField} ${classes.invertColors}`}
+                  className={`${classes.textField} ${classes.characterName}`}
                   style={{marginTop: '0.5rem', width: '75%'}}
                   inputProps={{style: {fontSize: '1.8rem'}}}
                   margin='none'

@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import {withStyles} from '@material-ui/styles';
 import Container from '@material-ui/core/Container';
 import TextField from '@material-ui/core/TextField';
+import {VerticalFlex} from '../../primitives/layout'
 import {styles} from '../../style/styles';
 
 let titleClass;
@@ -11,11 +12,9 @@ let descriptionClass;
 const descProps = {
   multiline: true,
   rowsMax: '3',
-  style: {paddingLeft: '0.2rem'},
 }
 
 const titleProps = {
-  style: {marginRight: '0.2rem', paddingLeft: '0.2rem', fontSize: '1.3rem', maxWidth: '9rem'},
   inputProps:{
     style: {
       fontSize: '1.3rem'
@@ -30,7 +29,7 @@ function Title(props) {
       id={`${type}${index}`}
       name={`${type}${index}`}
       placeholder={type}
-      defaultValue={character ? character[`${type}s`][index-1].Title : type}
+      //defaultValue={character ? character[`${type}s`][index-1].Title : type}
       className={titleClass}
       {...titleProps}
     />
@@ -45,7 +44,7 @@ function Description(props) {
       id={`${type}Desc${index}`}
       name={`${type}Desc${index}`}
       placeholder={`${type} Description`}
-      defaultValue={character ? character[`${type}s`][index-1].Description : `${type} Description`}
+     // defaultValue={character ? character[`${type}s`][index-1].Description : `${type} Description`}
       className={descriptionClass}
       {...descProps}
     />
@@ -78,20 +77,19 @@ class RPLikes extends Component {
   render() {
     const {classes} = this.props;
 
-
-    titleClass = `${classes.textField} ${classes.invertColors} ${classes.grow}`
-    descriptionClass = `${classes.textField} ${classes.invertColors}`
+    titleClass = `${classes.textField} ${classes.grow} ${classes.RPTitle}`
+    descriptionClass = `${classes.textField} ${classes.RPDescription}`
 
     let {character} = this.props;
     let k = 0;
 
     return (
-      <Container className={classes.verticalButtonContainer} style={{minWidth: '55%', backgroundColor: 'slategray'}}>
+      <VerticalFlex className={classes.RPLikes} >
         {
           ['Like', 'Dislike', 'Vice'].map((type, typeIndex) => {
             return (
               <div key={typeIndex}>
-                <span>{type + 's'}</span>
+                <span className={classes.labelText}>{type + 's'}</span>
               {
                 [1,2,3].map((index, i) => {
                   return (
@@ -121,9 +119,9 @@ class RPLikes extends Component {
           multiline
           rowsMax='6'
           style={{paddingLeft: '0.2rem'}}
-          className={`${classes.textField} ${classes.invertColors}`}
+          className={`${classes.textField}`}
         />
-      </Container>
+      </VerticalFlex>
     )
   }
 }

@@ -3,8 +3,25 @@ export default (theme) => ({
   textField: {
     marginLeft: theme.spacing(0),
     marginRight: theme.spacing(0),
-    backgroundColor: theme.palette.common.white,
+    backgroundColor: theme.palette.background.transparentGray,
+    color: theme.palette.common.black,
+    textShadow: theme.shadow.whiteText,
     fontSize: theme.sizing.medium,
+
+    '& input' : {
+      fontWeight: 600,
+      color: theme.palette.common.black,
+      textShadow: theme.shadow.whiteText,
+      paddingLeft: theme.spacing(3),
+      fontSize: '1.2rem',
+      userSelect: 'none',
+    }
+  },
+
+  labelText: {
+    color: theme.palette.primary.main,
+    textShadow: theme.shadow.whiteText,
+    paddingLeft: theme.spacing(1),
   },
 
   // filledTextField: {},

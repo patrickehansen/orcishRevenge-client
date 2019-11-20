@@ -22,6 +22,64 @@ export default (theme) => ({
     padding:  theme.spacing(4),
   },
 
+  characterBasicInfo: {
+    marginBottom: theme.spacing(1),
+    backgroundColor: theme.palette.background.transparentGray,
+    width: '60%',
+    borderRadius: theme.spacing(1),
+    float: 'left',
+    padding: 0,
+  },
+
+  characterHeader: {
+    width: '100%',
+    height: theme.spacing(20),
+    padding: 0,
+    margin: 0,
+    maxWidth: '100%',
+  },
+
+  characterName: {
+    '& label' : {
+      color: theme.palette.primary.main,
+      textShadow: theme.shadow.whiteText,
+      paddingLeft: theme.spacing(2),
+      fontSize: '1.2rem',
+    },
+
+    '& div' : {
+      fontWeight: 600,
+      color: theme.palette.common.black,
+      paddingLeft: theme.spacing(3),
+      fontSize: '1.2rem',
+    },
+
+    '& input' : {
+      fontWeight: 600,
+      color: theme.palette.common.black,
+      textShadow: theme.shadow.whiteText,
+      paddingLeft: theme.spacing(3),
+      fontSize: '1.2rem',
+      userSelect: 'none',
+    }
+  },
+
+  characterCreationForm: {
+    backgroundColor: theme.palette.background.transparentGray,
+    borderRadius: theme.spacing(1),
+    height: '100%',
+    width: '100%',
+    padding: theme.spacing(2),
+  },
+
+  avatarPlaceholder: {
+    width: theme.spacing(20),
+    height: theme.spacing(20),
+    float: 'left',
+    marginRight: theme.spacing(4),
+    cursor: 'pointer',
+  },
+
   statsAssignment: {
     padding: 0,
     backgroundColor: theme.palette.background.transparentGray,
@@ -158,6 +216,22 @@ export default (theme) => ({
       fontSize: '1.2rem',
       userSelect: 'none',
     }
+  },
+
+  RPLikes: {
+    minWidth: '55%',
+    backgroundColor: theme.palette.background.transparentGray,
+  },
+
+  RPTitle: {
+    marginRight: theme.spacing(1),
+    paddingLeft: theme.spacing(1),
+    maxWidth: '9rem',
+  },
+
+  RPDescription: {
+    paddingLeft: theme.spacing(1),
+    width: '78%',
   },
 
   characterSheet: {
