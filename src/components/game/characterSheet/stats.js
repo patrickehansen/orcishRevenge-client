@@ -2,6 +2,8 @@ import React, {Component} from 'react';
 import Container from '@material-ui/core/Container';
 import Typography from '@material-ui/core/Typography';
 import RPLikes from '../characterSelection/RPlikes';
+import StatAssigner from '../characterSelection/statsAssigner';
+import {HorizontalFlex} from '../../primitives/layout';
 import StatDisplay from './statDisplay';
 import PhysicalTrait from './physicalTrait';
 import {withStyles} from '@material-ui/styles';
@@ -24,35 +26,45 @@ class Stats extends Component {
 
   render() {
     const {index, value, character, classes} = this.props;
-    if (index !== value) return null
+    if (index !== value) return null;
+
+    const stats = {
+      Strength: character.Strength,
+      Agility: character.Agility,
+      Endurance: character.Endurance,
+      Reasoning: character.Reasoning ,
+      Speed: character.Speed,
+      MagicAffinity: character.MagicalAffinity,
+      Alertness: character.Alertness,
+      Melee: character.Melee,
+      Accuracy: character.Accuracy,
+      HitPoints: character.Health,
+      MagicPoints: character.MagicPoints,
+      ActionPoints: character.ActionPoints
+    }
 
     return (
-      <Container 
+      <HorizontalFlex 
         id={`simple-tabpanel-${index}`}
-        aria-labelledby={`simple-tab-${index}`}
-        className={`${classes.horizontalFlex} ${classes.spaceBetween}`}
+        className={`${classes.spaceBetween}`}
       >
-       <div style={{maxWidth: '30%'}}>
-        <Typography
-          variant='h5'
-          style={{borderBottom: 'solid 1px black', maxWidth: '4rem', marginBottom: '0.2rem', textAlign: 'center'}}
-        >
-        Stats
-        </Typography>
-          <StatDisplay label='STR' value={character.Strength} bonus = {2} />
-          <StatDisplay label='AGI' value={character.Agility} bonus = {1} />
-          <StatDisplay label='END' value={character.Endurance} bonus = {2} />
-          <StatDisplay label='RES' value={character.Reasoning} bonus = {2} />
-          <StatDisplay label='SPD' value={character.Speed} bonus = {2} />
-          <StatDisplay label='MAF' value={character.MagicalAffinity} bonus = {-2} />
-          <StatDisplay label='ALT' value={character.Alertness} bonus = {1} />
-          <StatDisplay label='MEL' value={character.Melee} bonus = {0} />
-          <StatDisplay label='ACC' value={character.Alertness} bonus = {2} />
-          <StatDisplay label='HP' value={character.Health} bonus = {0} />
-          <StatDisplay label='MP' value={character.MagicPoints} bonus = {0} />
-          <StatDisplay label='AP' value={character.ActionPoints} bonus = {0} />
+       <div style={{maxWidth: '30%', marginRight: '0.5rem'}}>
+          <Typography
+            variant='h5'
+            style={{borderBottom: 'solid 1px black', maxWidth: '4rem', marginBottom: '0.2rem', textAlign: 'center'}}
+          >
+          Stats
+          </Typography>
+          <StatAssigner
+            increment={this.increment}
+            decrement={this.decrement}
+            stats={stats}
+            remainingPoints={character.assignablePoints || 0}
+            context={'sheet'}
+          />
+
         </div>
-        <div style={{maxWidth: '30%', marginLeft: '0.5rem'}}>
+        <div className={`${classes.grow}`}>
           <Typography
             variant='h5'
             style={{borderBottom: 'solid 1px black', maxWidth: '12rem', marginBottom: '0.2rem', textAlign: 'center'}}
@@ -65,7 +77,7 @@ class Stats extends Component {
           />
           
         </div>
-        <div style={{maxWidth: '30%'}}>
+        <div className={classes.physicalTraits}>
           <img className='characterAvatar' src={character.Avatar} style={{maxWidth: '20rem'}}/>
           <Typography
             variant='h5'
@@ -83,7 +95,7 @@ class Stats extends Component {
         </div>
         
 
-      </Container>  
+      </HorizontalFlex>  
     )
   }
 }

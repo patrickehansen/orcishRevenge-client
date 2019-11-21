@@ -46,19 +46,25 @@ class StatsAssigner extends Component {
                 value={value} 
                 increment={this.props.increment}
                 decrement={this.props.decrement}
-                canAdjust={true}
+                canAdjust={this.props.remainingPoints > 0 || this.props.GM}
                 canIncrement={this.props.remainingPoints > 0 && (value < 20 || key === 'Strength' && value < 25)}
                 canIncrementByWhole={true}
                 canIncrementByTenths={false}
+                compact={this.props.context === 'sheet'}
               />
             )
           })
         }
         </Container>
-        <Container id='statsFooter' className={classes.statFooter}>
-          <span id='remainingLabel'>Remaining: </span>
-          <span className={classes.remainingPoints}>{this.props.remainingPoints}</span>
-        </Container>
+        {
+          this.props.context !== 'sheet' && (
+            <Container id='statsFooter' className={classes.statFooter}>
+              <span id='remainingLabel'>Remaining: </span>
+              <span className={classes.remainingPoints}>{this.props.remainingPoints}</span>
+            </Container>
+          )
+        }
+        
       </Container>
     )
   }

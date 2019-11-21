@@ -189,6 +189,7 @@ class CharacterCreator extends Component {
                   decrement={this.decrement}
                   stats={this.state.stats}
                   remainingPoints={this.state.remainingPoints}
+                  context={'creator'}
                 />
               </Container>
               <Container className={classes.fixed} style={{marginLeft: '1rem', padding: 0, order: 1, width: '18rem'}}>

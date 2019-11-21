@@ -1,15 +1,17 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import Container from '@material-ui/core/Container';
+import TextField from '@material-ui/core/TextField';
+import {TextButton as Button} from '../../primitives/button';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import AppBar from '@material-ui/core/Container';
-// import Typography from '@material-ui/core/Typography';
-// import CloseIcon from '@material-ui/icons/Close';
+
 import {withStyles} from '@material-ui/styles';
 import {styles} from '../../style/styles';
 
-import WordEditor from '../utility/WordEditor';
+import Notepad from '../../util/notepad';
+
 
 
 class Notes extends Component {
@@ -29,7 +31,19 @@ class Notes extends Component {
     })
   }
 
+  onDoubleClickTab = (e) => {
+    const index = e.currentTarget.name;
+
+    this.setState({
+      renaming: index
+    })
+  }
+
   componentDidUpdate(prevProps, prevState, snapshot) {
+
+  }
+
+  selectTab = (e) => {
 
   }
 
@@ -41,6 +55,7 @@ class Notes extends Component {
 
     const currentPadID = this.props.notepads[this.state.selectedIndex];
 
+    console.log('notes render', currentPadID, this.state.selectedIndex);
     return (
       <Container 
         id={`simple-tabpanel-${index}`}
@@ -50,12 +65,7 @@ class Notes extends Component {
           position="static"
           style={{padding: 0}}
         >
-          <Tabs 
-            value={this.state.selectedIndex} 
-            onChange={this.onNoteTabClicked} 
-            aria-label="character sheet"
-            indicatorColor='primary'
-            textColor='inherit'
+          <Container 
             className={classes.characterTabs}
           >
             {
@@ -64,15 +74,35 @@ class Notes extends Component {
 
                 console.log('found pad', pad, v)
                 if (!pad) return null;
-                return <Tab label={pad.Title} id={`note-tab-${i}`} aria-controls={`note-tab-${i}`} className={classes.noteTab} key={i}/>
+
+                if (this.state.renaming == i) {
+                  return (
+                    <TextField />
+                  )
+                }else{
+                  return (
+                    <Button
+                      label={pad.Title} 
+                      id={`note-tab-${i}`} 
+                      key={i} 
+                      className={`${this.state.selectedIndex == i ? classes.tabButtonActive : classes.tabButton} ${this.state.selectedIndex == i ? classes.noteTabActive : classes.noteTab}`} 
+                      name={i} 
+                      onClick={this.selectTab}
+                      onDoubleClick={this.onDoubleClickTab}
+                    >
+                      {pad.Title}
+                    </Button>
+                  )
+                }
+                
               })
             }
-            <Tab label='New' id={`note-tab-825`} aria-controls={`note-tab-825`} className={classes.noteTab} />
-          </Tabs> 
+            <Tab label='New' id={`note-tab-825`} className={classes.noteTab} />
+          </Container> 
         </AppBar>
 
         {
-          currentPadID !== undefined && <WordEditor NotepadID={currentPadID} />
+          currentPadID !== undefined && <Notepad NotepadID={currentPadID} />
         }
         
       </Container>  

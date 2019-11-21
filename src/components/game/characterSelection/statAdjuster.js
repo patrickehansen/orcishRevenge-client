@@ -33,7 +33,7 @@ class Character extends Component {
   }
  
   render() {
-    let {label, modifiers, value, classes} = this.props;
+    let {label, modifiers, value, classes, compact} = this.props;
     const type = typeof value;
 
     let reduced;
@@ -75,9 +75,9 @@ class Character extends Component {
     value = reduced.value;
 
     return (
-      <Card className={classes.statAdjuster}>
+      <Card className={compact ? classes.statAdjusterCompact : classes.statAdjuster}>
         <CardContent className={`${classes.horizontalTextContainer} ${classes.cardContent}`}>
-          <Typography variant='h6' className={classes.statLabel} component='span'>
+          <Typography variant='h6' className={compact ? classes.statLabelCompact : classes.statLabel} component='span'>
             {label}
           </Typography>
           {
@@ -97,7 +97,7 @@ class Character extends Component {
           }
         </CardContent>
         {
-          this.props.canAdjust && (
+          (this.props.canAdjust && type !== 'object') && (
             <CardActions className={`${classes.horizontalFlex} ${classes.noPadding}`} disableSpacing={true}>
               { this.props.canIncrementByWhole && (
                   <VerticalFlex>

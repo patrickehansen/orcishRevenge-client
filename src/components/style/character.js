@@ -112,6 +112,24 @@ export default (theme) => ({
     color: theme.palette.common.white,
   },
 
+  statAdjusterCompact : {
+    display: 'flex',
+    flexDirection: 'row',
+    width: '14rem',
+    textAlign: 'center',
+    paddingTop: theme.spacing(0.25),
+    paddingBottom: theme.spacing(0.25),
+    marginLeft: theme.spacing(4),
+    paddingLeft: theme.spacing(1),
+    paddingRight: theme.spacing(1),
+    marginBottom: 0,
+    backgroundColor: theme.palette.background.transparentGray,
+    border: 'solid 1px black',
+    boxShadow: theme.shadow.textShadow,
+    borderRadius: theme.spacing(0.5),
+    color: theme.palette.common.white,
+  },
+
   statText: {
     margin: 'auto',
     marginLeft: theme.spacing(1),
@@ -135,12 +153,27 @@ export default (theme) => ({
     userSelect: 'none',
   },
 
+  statLabelCompact: {
+    backgroundColor: theme.palette.primary.main, 
+    color: theme.palette.common.white, 
+    fontSize: theme.spacing(5),
+    borderRadius: theme.spacing(1), 
+    width: theme.spacing(13),
+    height: theme.spacing(11),
+    textAlign: 'center', 
+    lineHeight: theme.spacing(11),
+    textShadow: theme.shadow.textShadow,
+    userSelect: 'none',
+  },
+
   statValue: {
     margin: 'auto',
     float: 'right',
     color: theme.palette.common.black, 
     boxShadow: `inset 1px 1px 3px ${theme.palette.common.dark}`,
     border: 'solid 2px black',
+    paddingRight: theme.spacing(1),
+    paddingLeft: theme.spacing(1),
     minWidth: theme.spacing(10),
     marginRight: theme.spacing(1),
     userSelect: 'none',
@@ -235,12 +268,18 @@ export default (theme) => ({
   },
 
   characterSheet: {
-    backgroundColor: theme.palette.background.transparentGray,
+    backgroundColor: theme.palette.background.solidGray,
     width: '80%',
     height: '80%',
     margin: 'auto',
     marginTop: theme.spacing(10),
     padding: theme.spacing(2),
+  },
+
+  physicalTraits: {
+    backgroundColor: theme.palette.background.transparentGray,
+    maxWidth: '30%', 
+    marginLeft: theme.spacing(2),
   },
 
   characterSheetMain: {
