@@ -5,6 +5,7 @@ import Theme from './theme'
 import CssBaseline from '@material-ui/core/CssBaseline';
 import App from './components/app';
 import Store from './store/store';
+import 'react-quill/dist/quill.snow.css';
 
 let root = document.createElement('div');
 root.id = "root";

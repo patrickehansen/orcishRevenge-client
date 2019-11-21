@@ -116,10 +116,14 @@ export const styles = theme => (Object.assign({},
       "&:last-child": {
         paddingBottom: 0
       }
-    }
+    },
     
-    // noteTab: {
+    noteTab: {
 
-    // },
+    },
+
+    noteTabActive: {
+      backgroundColor: theme.palette.common.white,
+    },
   },
 ));

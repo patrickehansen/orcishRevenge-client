@@ -45,6 +45,26 @@ export default (theme) => ({
     margin: theme.spacing(1),
   },
 
+  textButton: {
+
+  },
+
+  tabButton: {
+    borderRadius: 'none',
+    boxShadow: 'none',
+    padding: '6px 16px',
+    color: 'inherit',
+  },
+
+  tabButtonActive: {
+    borderRadius: 0,
+    boxShadow: 'none',
+    padding: '6px 16px',
+    color: 'inherit',
+    borderBottom: 'solid 2px',
+    borderBottomColor: theme.palette.primary.main,
+  },
+
   smallButton : {
     minWidth: theme.spacing(4),
     width: theme.spacing(4),
@@ -90,6 +110,11 @@ export default (theme) => ({
   },
   error: {
     color: theme.palette.error.main,
+  },
+
+  notepad: {
+    backgroundColor: theme.palette.common.white,
+    height: '38rem',
   },
 
   centered: {
