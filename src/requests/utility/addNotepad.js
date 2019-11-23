@@ -1,17 +1,18 @@
 import axios from 'axios';
 import config from '../../../config';
 import store from '../../store/store';
-import {addNotepad} from '../../store/actions/actions';
+import {addNotepad, updateCharacter} from '../../store/actions/actions';
 
 const api = config.server + '/api/notepad';
 
-export default async function updateNotepad (text,title) {
+export default async function  (text,title, character) {
   //console.log(store, store.getState(), store.getState().id_token)
   let response = await axios.post(
     api,
     {
       Text: text,
       Title: title,
+      CharacterID: character,
     },
     {
       headers: {'Authorization': store.getState().account.id_token}
@@ -24,8 +25,10 @@ export default async function updateNotepad (text,title) {
     }
   })
 
+  console.log('addNotepad resposne', response.data);
   if (response && response.data) {
-    addNotepad(response.data)
+    if (response.data.notepad) addNotepad(response.data.notepad)
+    if (response.data.character) updateCharacter(response.data.character)
   }
 
   return !!response.data;

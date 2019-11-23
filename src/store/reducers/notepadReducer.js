@@ -13,6 +13,16 @@ export default (state = defaultAuthenticationState, action) => {
           notepads: notepads
         })
       }
+
+      case 'UPDATE_NOTEPAD' : {
+        const {notepad} = action;
+        const notepads = {...state.notepads};
+        notepads[notepad['_notepadid']] = notepad;
+
+        return Object.assign({}, state, {
+          notepads: notepads
+        })
+      }
        
       // case 'SET_NOTEPADS' :
       //   return Object.assign({}, state, {

@@ -35,6 +35,13 @@ export const setAccountDetails = (details) => {
   })
 }
 
+export const updateCharacter = (character) => {
+  store.dispatch({
+    type: 'UPDATE_CHARACTER',
+    character
+  })
+}
+
 export const setCharacterInfo = (info) => {
   store.dispatch({
     type: 'SET_CHARACTER_INFO',
@@ -80,6 +87,13 @@ export const setNotepads = (notePads) => {
 export const addNotepad = (notepad) => {
   store.dispatch({
     type: 'ADD_NOTEPAD',
+    notepad,
+  })
+}
+
+export const updateNotepad = (notepad) => {
+  store.dispatch({
+    type: 'UPDATE_NOTEPAD',
     notepad,
   })
 }

@@ -7,8 +7,8 @@ import {addNotepad} from '../../store/actions/actions';
 
 const api = config.server + '/api/notepad/';
 
-export default async function updateNotepad (id, text) {
-  console.log(store, store.getState(), store.getState().id_token)
+export default async function getNotepad (id) {
+  //console.log(store, store.getState(), store.getState().id_token)
   let response = await axios.get(
     api + id,
     {

@@ -3,17 +3,16 @@
 import axios from 'axios';
 import config from '../../../config';
 import store from '../../store/store';
-//import {setChatMessages} from '../../store/actions/actions';
+import {updateNotepad} from '../../store/actions/actions';
 
 const api = config.server + '/api/notepad';
 
-export default async function saveNotepad (id, text, title) {
+export default async function renameNotepad (id, title) {
   //console.log(store, store.getState(), store.getState().id_token)
   let response = await axios.patch(
     api,
     {
       NotepadID : id,
-      Text: text,
       Title: title,
     },
     {
@@ -26,6 +25,10 @@ export default async function saveNotepad (id, text, title) {
       throw new Error('Could not connect to server.');
     }
   })
+
+  if (response && response.data) {
+    updateNotepad(response.data);
+  }
 
   return !!response.data;
 }

@@ -16,6 +16,7 @@ export default withStyles(styles)(class Button extends Component {
         type={this.props.type || 'button'}
         fullWidth={this.props.fullWidth}
         onClick={this.props.onClick}
+        onDoubleClick={this.props.onDoubleClick}
         id={this.props.id}
         size={this.props.size}
         width={this.props.width}
@@ -37,6 +38,7 @@ export const TextButton = withStyles(styles)(class TextButton extends Component 
         type={this.props.type || 'button'}
         fullWidth={this.props.fullWidth}
         onClick={this.props.onClick}
+        onDoubleClick={this.props.onDoubleClick}
         id={this.props.id}
         size={this.props.size}
         width={this.props.width}

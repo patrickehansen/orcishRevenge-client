@@ -1,10 +1,8 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import Container from '@material-ui/core/Container';
-import TextField from '@material-ui/core/TextField';
+import TextField from '../../primitives/textField';
 import {TextButton as Button} from '../../primitives/button';
-import Tabs from '@material-ui/core/Tabs';
-import Tab from '@material-ui/core/Tab';
 import AppBar from '@material-ui/core/Container';
 
 import {withStyles} from '@material-ui/styles';
@@ -12,7 +10,8 @@ import {styles} from '../../style/styles';
 
 import Notepad from '../../util/notepad';
 
-
+import renameNotepad from '../../../requests/utility/renameNotepad';
+import addNotepad from '../../../requests/utility/addNotepad';
 
 class Notes extends Component {
   constructor(props) {
@@ -39,12 +38,24 @@ class Notes extends Component {
     })
   }
 
+  newPad = (e) => {
+    addNotepad('', 'Notes', this.props.possessedCharacter._id);
+  }
+
   componentDidUpdate(prevProps, prevState, snapshot) {
 
   }
 
-  selectTab = (e) => {
+  titleChange = (e) => {
+    if (e.key === 'Enter') {
+      const val = e.target.value;
 
+      renameNotepad(this.state.renaming, val);
+
+      this.setState({
+        renaming: null
+      })
+    }
   }
 
   render() {
@@ -52,10 +63,7 @@ class Notes extends Component {
 
     if (index !== value) return null;
 
-
     const currentPadID = this.props.notepads[this.state.selectedIndex];
-
-    console.log('notes render', currentPadID, this.state.selectedIndex);
     return (
       <Container 
         id={`simple-tabpanel-${index}`}
@@ -72,12 +80,16 @@ class Notes extends Component {
               this.props.notepads.map((v,i) => {
                 const pad = this.props.allNotepads[v];
 
-                console.log('found pad', pad, v)
                 if (!pad) return null;
 
                 if (this.state.renaming == i) {
                   return (
-                    <TextField />
+                    <TextField
+                      key={i}
+                      label={'Title'}
+                      defaultValue={pad.Title}
+                      onKeyDown={this.titleChange}
+                    />
                   )
                 }else{
                   return (
@@ -87,22 +99,35 @@ class Notes extends Component {
                       key={i} 
                       className={`${this.state.selectedIndex == i ? classes.tabButtonActive : classes.tabButton} ${this.state.selectedIndex == i ? classes.noteTabActive : classes.noteTab}`} 
                       name={i} 
-                      onClick={this.selectTab}
+                      onClick={(e) => this.onNoteTabClicked(e, i)}
                       onDoubleClick={this.onDoubleClickTab}
                     >
                       {pad.Title}
                     </Button>
                   )
                 }
-                
               })
             }
-            <Tab label='New' id={`note-tab-825`} className={classes.noteTab} />
+            <Button
+              className={`${classes.tabButton} ${classes.noteTab}`} 
+              onClick={this.newPad}
+            >
+              New
+            </Button>
           </Container> 
         </AppBar>
 
         {
-          currentPadID !== undefined && <Notepad NotepadID={currentPadID} />
+          this.props.notepads.map((v,i) => {
+            console.log('hey notepad', i, this.state.selectedIndex)
+            return (
+              <Notepad 
+                key={i}
+                pad={v} 
+                active={i == this.state.selectedIndex}
+              />
+            )
+          }) 
         }
         
       </Container>  
@@ -111,8 +136,8 @@ class Notes extends Component {
 }
 
 const mapStateToProps = (state) => {
-  console.log(state.game.possessedCharacter);
   return {
+    possessedCharacter: state.game.possessedCharacter,
     notepads: state.game.possessedCharacter ? state.game.possessedCharacter.Notepads || [] : [],
     allNotepads : state.notepad.notepads,
   }

@@ -18,6 +18,8 @@ class Notepad extends Component {
   }
 
   render() {
+    if (!this.props.active) return null;
+
     const {classes} = this.props;
 
     return (
@@ -27,6 +29,7 @@ class Notepad extends Component {
         <ReactQuill 
           value={this.state.text}
           onChange={this.handleChange} 
+
         />
       </Container>
       

@@ -11,6 +11,28 @@ export default (state = defaultAuthenticationState, action) => {
         return Object.assign({}, state, {
           characters: action.characters,
         })
+      case 'UPDATE_CHARACTER' : {
+        let updated = {};
+
+        let characters = [...state.characters];
+        characters.some(v => {
+          if (v._id == action.character._id) {
+            v = action.character;
+            return true;
+          }
+          return false;
+        })
+
+        updated.characters = characters;
+
+        console.log('new notepad', action)
+
+        if (state.possessedCharacter && state.possessedCharacter._id === action.character._id) {
+          updated.possessedCharacter = action.character
+        }
+
+        return Object.assign({}, state, updated)
+      }
       case 'SET_PLAYERS' : 
         return Object.assign({}, state, {
           players: action.players,
