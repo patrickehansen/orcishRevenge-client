@@ -4,7 +4,7 @@ import Typography from '@material-ui/core/Typography';
 import {withStyles} from '@material-ui/styles';
 import {styles} from '../../style/styles';
 
-class StatDisplay extends Component {
+class TraitDisplay extends Component {
   constructor(props) {
     super(props)
   }
@@ -27,4 +27,4 @@ class StatDisplay extends Component {
   }
 }
 
-export default withStyles(styles)(StatDisplay);
+export default withStyles(styles)(TraitDisplay);

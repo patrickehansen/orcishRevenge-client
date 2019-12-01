@@ -4,7 +4,6 @@ import Typography from '@material-ui/core/Typography';
 import RPLikes from '../characterSelection/RPlikes';
 import StatAssigner from '../characterSelection/statsAssigner';
 import {HorizontalFlex} from '../../primitives/layout';
-import StatDisplay from './statDisplay';
 import PhysicalTrait from './physicalTrait';
 import {withStyles} from '@material-ui/styles';
 import {styles} from '../../style/styles';
