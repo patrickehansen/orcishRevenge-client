@@ -39,10 +39,15 @@ export default class RollMessage extends Component {
                     return <Die roll={v} size={size} key={i}/>
                   })
                 }
-                <div className='rollOp'>
-                  {operator}
-                  {post}
-                </div>
+                {
+                  post !== 0 && (
+                    <div className='rollOp'>
+                      {operator}
+                      {post}
+                    </div>
+                  )
+                }
+                
               </div>
               
             </div>
