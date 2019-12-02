@@ -31,7 +31,6 @@ export default class Popout extends Component {
   render() {
     const { children } = this.props;
 
-    console.log('popout', this.props.onClosing)
     return (
       <PopoutWindow
         title={this.props.title}

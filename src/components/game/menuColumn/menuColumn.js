@@ -42,18 +42,15 @@ class MenuColumn extends Component {
   };
 
   openCharacterSheet = (e) => {
-    console.log('opening sheet')
     this.setState({openSheet: true})
   } 
 
   closeCharacterSheet = (e) => {
-    console.log('closing sheet');
     this.setState({openSheet: false})
   }
 
   render() {
     const {classes} = this.props;
-    console.log('open?', this.state.openSheet)
 
     return (
       <VerticalFlex
