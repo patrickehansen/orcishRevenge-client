@@ -33,7 +33,15 @@ export default (theme) => ({
     margin: 'auto',
     backgroundColor: theme.palette.background.menu
   },
+  menuColumn: {
+    float: 'right',
+    maxWidth: '10rem',
+    position: 'relative',
+    right: '-70px',
+  },
+  menuColumnContainer: {
 
+  },
   cardActive: {
     backgroundColor : theme.palette.secondary.main
   },

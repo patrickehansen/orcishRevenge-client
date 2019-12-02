@@ -40,34 +40,35 @@ class CharacterSheet extends Component {
   }
   
   render() {
-   
     const {character, classes} = this.props;
-    if (this.props.poppedOut) {
-      console.log('oh hai', classes)
-    }
+    // if (this.props.poppedOut) {
+    //   console.log('oh hai', classes)
+    // }
     return (
       <Container className={classes.characterSheet}>
         <HorizontalFlex >
-          <Typography variant='h2' >
+          <Typography variant='h2' className={classes.grow} >
             {character && character.Name}
           </Typography>
+          
+          <HorizontalFlex className={classes.sheetControls}>
           {
             this.props.poppedOut ? 
-            <Container>
+            <Container className={classes.popoutIcon}>
               <FlipToBack style={{cursor: 'pointer'}} onClick={this.props.onPopout}/>
             </Container> : 
-            <Container>
+            <Container className={classes.popoutIcon}>
               <FlipToFront style={{cursor: 'pointer'}} onClick={this.props.onPopout}/>
             </Container>
           }
           {
             !this.props.poppedOut && (
-              <Button className={classes.characterCloseButton} >  
+              <Button className={`${classes.characterCloseButton} ${classes.right}`} onClick={this.props.onClose}>  
                 <CloseIcon onClick={this.props.onClose}/>
               </Button>
             )
           }
-          
+          </HorizontalFlex>
         </HorizontalFlex>
         
         <Container className={classes.characterSheetMain}>

@@ -13,6 +13,13 @@ export default (theme) => ({
     maxHeight: '20rem',
   },
 
+  sheetControls: {
+    maxWidth: '5rem',
+    position: 'relative',
+    left: '0.5rem',
+    bottom: '0.6rem',
+  },
+
   characterCreator: {
     width: '85%',
     height: '85%',
@@ -251,6 +258,19 @@ export default (theme) => ({
     }
   },
 
+  characterCloseButton : {
+    float: 'right', 
+    borderRadius: theme.spacing(1),
+    backgroundColor: theme.palette.primary.main,
+    color: theme.palette.common.white, 
+    maxHeight: theme.spacing(8),
+    paddingTop: theme.spacing(1),
+    minWidth: theme.spacing(8),
+    padding: theme.spacing(1),
+    cursor: 'pointer', 
+    boxShadow: theme.shadow.textShadow,
+  },
+
   RPLikes: {
     minWidth: '55%',
     backgroundColor: theme.palette.background.transparentGray,
@@ -270,6 +290,8 @@ export default (theme) => ({
   characterSheet: {
     backgroundColor: theme.palette.background.solidGray,
     width: '80%',
+    minWidth: '70rem',
+    minHeight: '46rem',
     height: '80%',
     margin: 'auto',
     marginTop: theme.spacing(10),
@@ -280,6 +302,26 @@ export default (theme) => ({
     backgroundColor: theme.palette.background.transparentGray,
     maxWidth: '30%', 
     marginLeft: theme.spacing(2),
+  },
+
+  physicalTrait: {
+    marginBottom: '0.2rem',
+  },
+
+  traitLabel: {
+    borderBottom: 'solid 2px black', 
+    fontSize: '1.6rem', 
+    minWidth: '6rem', 
+    textShadow: theme.shadow.whiteText,
+  },
+
+  traitValue: {
+    borderBottom: 'solid 2px black', 
+    marginLeft: theme.spacing(2),
+    fontSize: '1.6rem', 
+    minWidth: theme.spacing(32),
+    width: theme.spacing(55),
+    textShadow: theme.shadow.whiteText,
   },
 
   characterSheetMain: {

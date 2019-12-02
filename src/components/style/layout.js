@@ -20,5 +20,14 @@ export default (theme) => ({
   },
   noMargin: {
     margin: 0,
+  },
+  noPadding: {
+    noPadding: 0,
+  },
+  right: {
+    float: 'right',
+  },
+  left: {
+    float: 'left'
   }
 });

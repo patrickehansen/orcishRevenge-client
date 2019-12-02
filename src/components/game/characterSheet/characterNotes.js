@@ -16,9 +16,6 @@ import addNotepad from '../../../requests/utility/addNotepad';
 class Notes extends Component {
   constructor(props) {
     super(props);
-
-    console.log('hey here are the note props at constructor', props)
-
     this.state = {
       selectedIndex : 0,
     }

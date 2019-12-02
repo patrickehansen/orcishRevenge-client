@@ -122,6 +122,15 @@ export const styles = theme => (Object.assign({},
 
     },
 
+    popoutIcon: {
+      padding: 0,
+      maxWidth: '3rem',
+
+      '& svg' : {
+        width: '2.5rem',
+        height: '2.5rem',
+      }
+    },
     noteTabActive: {
       backgroundColor: theme.palette.common.white,
     },

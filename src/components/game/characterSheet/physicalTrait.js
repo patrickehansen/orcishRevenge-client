@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import Container from '@material-ui/core/Container';
+import {HorizontalFlex} from '../../primitives/layout'
 import Typography from '@material-ui/core/Typography';
 import {withStyles} from '@material-ui/styles';
 import {styles} from '../../style/styles';
@@ -13,16 +14,16 @@ class TraitDisplay extends Component {
     const {label, value, classes} = this.props;
 
     return (
-      <Container className={`${classes.horizontalFlex}`} style={{marginBottom: '0.2rem'}}>
-        <div style={{borderBottom: 'solid 2px black', fontSize: '1.6rem', minWidth: '6rem', textShadow: '1px 1px 3px  #787878'}} >
+      <HorizontalFlex className={`${classes.physicalTrait}`} style={{marginBottom: '0.2rem'}}>
+        <Typography className={classes.traitLabel}>
           {label}: 
-        </div>
+        </Typography>
 
-        <div style={{borderBottom: 'solid 2px black', marginLeft: '0.5rem', fontSize: '1.6rem', minWidth: '8rem', textShadow: '1px 1px 3px  #787878'}}>
+        <Typography className={classes.traitValue}>
           {value}
-        </div>
+        </Typography>
 
-      </Container>  
+      </HorizontalFlex>  
     )
   }
 }

@@ -1,27 +1,13 @@
 'use strict';
-
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import Container from '@material-ui/core/Container';
 import Modal from '@material-ui/core/Modal';
 import { DialogContent } from '@material-ui/core';
-import Theme from '../../../theme';
-import {Provider} from 'react-redux';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import { withStyles } from '@material-ui/styles';
-import Badge from '@material-ui/core/Badge';
-import IconButton from '@material-ui/core/IconButton';
-import AssignIcon from '@material-ui/icons/Assignment';
-
-import Store from '../../../store/store';
 
 import Popout from '../../util/popout';
 
 import CharacterSheet from './characterSheet';
-import Button from '../../primitives/button';
-import {VerticalFlex} from '../../primitives/layout';
-import {styles} from '../../style/styles';
-import PoppedOutCharacter from './poppedOutCharacter';
 
 
 class CharacterSheetContainer extends Component {
@@ -49,7 +35,8 @@ class CharacterSheetContainer extends Component {
   }
 
   onPopoutClosing = () => {
-    console.log('popout closing');
+    if (!this.state.poppedOut) return;
+
     this.setState({
       poppedOut: false
     })
@@ -58,7 +45,6 @@ class CharacterSheetContainer extends Component {
   }
   
   render() {
-    console.log('char sheet', this.state.poppedOut)
     return (
       <Container>
         <Modal        
@@ -70,6 +56,7 @@ class CharacterSheetContainer extends Component {
             character={this.props.character}
             poppedOut={this.state.poppedOut}
             onPopout={this.popout}
+            onClose={this.props.onClose}
           />
           </DialogContent>
           
@@ -85,6 +72,7 @@ class CharacterSheetContainer extends Component {
                 character={this.props.character}
                 poppedOut={this.state.poppedOut}
                 onPopout={this.popout}
+                onClose={this.props.onClose}
               />
             </Popout>
           )
