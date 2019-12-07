@@ -1,34 +1,31 @@
-'use strict';
+
 import React, { Component } from 'react';
-import {connect} from 'react-redux';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 
 import Modal from '@material-ui/core/Modal';
 import Container from '@material-ui/core/Container';
-//import Button from '../primitives/button';
+// import Button from '../primitives/button';
 
 
-import {SketchPicker} from 'react-color';
+import { SketchPicker } from 'react-color';
 
-import {setColor} from '../../store/actions/styleActions';
 
-import {withStyles} from '@material-ui/styles';
-import {styles} from './styles';
+import { withStyles } from '@material-ui/styles';
 
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Typography from '@material-ui/core/Typography';
 import { ExpansionPanel, ExpansionPanelSummary, ExpansionPanelDetails } from '@material-ui/core';
+import styles from './styles';
+import { setColor } from '../../store/actions/styleActions';
 
 class StyleUpdater extends Component {
-  constructor(props) {
-    super(props)
-  }
-
   onColorPicked = (color, category, label) => {
     setColor(category, label, color.hex);
   }
 
   render() {
-    let {style, classes} = this.props;
+    const { style, classes } = this.props;
 
     return (
       <Modal
@@ -43,12 +40,11 @@ class StyleUpdater extends Component {
               aria-controls="panel1a-content"
               id="styleupdater"
             >
-              <Typography component={'h1'}>{`Palette`}</Typography>
+              <Typography component={'h1'}>{'Palette'}</Typography>
             </ExpansionPanelSummary>
             <ExpansionPanelDetails>
             {
-              Object.entries(style.palette).map(([category, value]) => {
-                return (
+              Object.entries(style.palette).map(([category, value]) => (
                   <ExpansionPanel key={value}>
                     <ExpansionPanelSummary
                       expandIcon={<ExpandMoreIcon />}
@@ -58,9 +54,8 @@ class StyleUpdater extends Component {
                       <Typography component={'h1'}>{`${category}`}</Typography>
                     </ExpansionPanelSummary>
                     <ExpansionPanelDetails>
-                      { 
-                        Object.entries(value).map(([label, current]) => {
-                          return (
+                      {
+                        Object.entries(value).map(([label, current]) => (
                             <ExpansionPanel key={current}>
                               <ExpansionPanelSummary
                                 expandIcon={<ExpandMoreIcon />}
@@ -70,32 +65,35 @@ class StyleUpdater extends Component {
                                 <Typography component={'h1'}>{`${label}`}</Typography>
                               </ExpansionPanelSummary>
                               <ExpansionPanelDetails>
-                                <SketchPicker 
+                                <SketchPicker
                                   color={current}
                                   onChangeComplete={(color) => setColor(category, label, color.hex)}
                                 />
                               </ExpansionPanelDetails>
                             </ExpansionPanel>
-                          )
-                        })
+                        ))
                       }
                     </ExpansionPanelDetails>
                   </ExpansionPanel>
-                )
-              })
+              ))
             }
             </ExpansionPanelDetails>
           </ExpansionPanel>
         </Container>
       </Modal>
-    )
+    );
   }
 }
 
-const mapStateToProps = (state) => {
-  return {
-    style: state.style
-  }
-}
+StyleUpdater.propTypes = {
+  classes: PropTypes.object.isRequired,
+  style: PropTypes.object.isRequired,
+  onClose: PropTypes.func.isRequired,
+  open: PropTypes.bool.isRequired,
+};
+
+const mapStateToProps = (state) => ({
+  style: state.style,
+});
 
 export default connect(mapStateToProps)(withStyles(styles)(StyleUpdater));

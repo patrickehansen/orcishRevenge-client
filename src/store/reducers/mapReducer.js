@@ -1,5 +1,3 @@
-import config from '../../../config';
-
 // Determines how many columns and rows of tiles to generate
 // const columns = 21;
 // const rows = 20;
@@ -12,7 +10,7 @@ import config from '../../../config';
 //   // Hold a lookup array so we can look up tiles later
 //   const map = [];
 
-//   // Build up our tiles 
+//   // Build up our tiles
 //   for (let i = 0; i < columns; i++) {
 //     const col = [];
 //     for (let j = 0; j < rows; j++) {
@@ -22,7 +20,7 @@ import config from '../../../config';
 //       }
 
 //       col[j] = tile;
-      
+
 //       cells.push(tile);
 //     }
 
@@ -48,7 +46,7 @@ import config from '../../../config';
 
 //       // Always pull the one below
 //       a.push(map[c][y+1])
-      
+
 //       return a;
 //     },[])
 //   })
@@ -57,15 +55,14 @@ import config from '../../../config';
 // }
 
 const defaultAuthenticationState = {
-  tiles : [],//GenerateTiles(),
-}
-  
-const mapReducer = (state = defaultAuthenticationState, action) => {
-    switch (action.type) {
+  tiles: [], // GenerateTiles(),
+};
 
-      default:
-        return state;
+const mapReducer = (state = defaultAuthenticationState, action) => {
+  switch (action.type) {
+    default:
+      return state;
   }
-}
-  
+};
+
 export default mapReducer;

@@ -1,7 +1,6 @@
 const webpack = require('webpack');
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const { spawn } = require('child_process');
 
 // Config directories
 const SRC_DIR = path.resolve(__dirname, 'src');
@@ -11,12 +10,12 @@ const OUTPUT_DIR = path.resolve(__dirname, 'dist');
 const defaultInclude = [SRC_DIR];
 
 module.exports = {
-  entry: ['@babel/polyfill', SRC_DIR + '/index.js'],
+  entry: ['@babel/polyfill', `${SRC_DIR}/index.js`],
   mode: 'development',
   output: {
     path: OUTPUT_DIR,
     publicPath: '/',
-    filename: 'bundle.js'
+    filename: 'bundle.js',
   },
   module: {
     rules: [
@@ -24,39 +23,45 @@ module.exports = {
         test: /\.global\.css$/,
         use: [
           {
-            loader: 'style-loader'
+            loader: 'style-loader',
           },
           {
             loader: 'css-loader',
             options: {
               sourceMap: true,
             },
-          }
-        ]
+          },
+        ],
       },
       {
         test: /\.css$/,
         use: [
           {
-            loader: 'style-loader'
+            loader: 'style-loader',
           },
           {
             loader: 'css-loader',
             options: {
               sourceMap: true,
             },
-          }
-        ]
+          },
+        ],
       },
       {
         test: /\.s?css$/,
-        use: [{ loader: 'style-loader' }, { loader: 'css-loader' }, {loader: 'sass-loader'}],
-        include: defaultInclude
+        use: [{ loader: 'style-loader' }, { loader: 'css-loader' }, { loader: 'sass-loader' }],
+        include: defaultInclude,
       },
       {
         test: /\.jsx?$/,
         use: [{ loader: 'babel-loader' }],
-        include: defaultInclude
+        include: defaultInclude,
+      },
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        use: [{ loader: 'babel-loader' }],
+        include: defaultInclude,
       },
       {
         test: /\.(?:ico|gif|png|jpg|jpeg|webp)$/,
@@ -65,15 +70,15 @@ module.exports = {
       {
         test: /\.(eot|svg|ttf|woff|woff2)$/,
         use: [{ loader: 'file-loader?name=font/[name]__[hash:base64:5].[ext]' }],
-        include: defaultInclude
-      }
-    ]
+        include: defaultInclude,
+      },
+    ],
   },
   plugins: [
     new HtmlWebpackPlugin(),
     new webpack.DefinePlugin({
-      'process.env.NODE_ENV': JSON.stringify('development')
-    })
+      'process.env.NODE_ENV': JSON.stringify('development'),
+    }),
   ],
   devtool: 'cheap-source-map',
   devServer: {
@@ -81,9 +86,9 @@ module.exports = {
     stats: {
       colors: true,
       chunks: false,
-      children: false
+      children: false,
     },
     port: 9000,
     historyApiFallback: true,
-  }
+  },
 };

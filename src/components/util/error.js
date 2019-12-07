@@ -1,8 +1,9 @@
-'use strict';
+
 import React, { Component } from 'react';
-import {styles} from '../style/styles';
-import { withStyles} from '@material-ui/styles';
+import PropTypes from 'prop-types';
+import { withStyles } from '@material-ui/styles';
 import { Collapse, Paper } from '@material-ui/core';
+import styles from '../style/styles';
 
 import config from '../../../config';
 
@@ -16,20 +17,20 @@ class ErrorComponent extends Component {
   }
 
   onError = (error) => {
-    setTimeout(this.clearError, config.errorClearTime)
+    setTimeout(this.clearError, config.errorClearTime);
 
     this.setState({
-      error
-    })
+      error,
+    });
   }
 
   clearError = () => {
     this.setState({
-      error: null
-    })
+      error: null,
+    });
   }
 
-  componentDidUpdate(prevProps, prevState, snapshot){
+  componentDidUpdate(prevProps) {
     if (prevProps.error !== this.props.error) {
       this.onError(this.props.error);
     }
@@ -46,4 +47,8 @@ class ErrorComponent extends Component {
   }
 }
 
+ErrorComponent.propTypes = {
+  error: PropTypes.string,
+  classes: PropTypes.object.isRequired,
+};
 export default withStyles(styles)(ErrorComponent);

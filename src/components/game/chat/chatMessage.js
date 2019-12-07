@@ -1,19 +1,16 @@
-'use strict';
+
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
-import ListItem from '@material-ui/core/ListItem'
+import ListItem from '@material-ui/core/ListItem';
 import moment from 'moment';
 
 export default class ChatMessage extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
-    const {Message, Sender, Sent} = this.props.message;
-    
+    const { Message, Sender, Sent } = this.props.message;
+
     const sentTime = moment(Sent).format('HH:mm:ss');
 
     return (
@@ -35,6 +32,10 @@ export default class ChatMessage extends Component {
           </CardContent>
         </Card>
       </ListItem>
-    )
+    );
   }
 }
+
+ChatMessage.propTypes = {
+  message: PropTypes.object.isRequired,
+};

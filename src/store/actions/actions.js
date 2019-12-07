@@ -1,99 +1,99 @@
 import store from '../store';
 
-export const setToken = (id_token) => {
+export const setToken = (IDToken) => {
   store.dispatch({
     type: 'SET_TOKEN',
-    id_token : id_token,
-  })
-}
+    IDToken,
+  });
+};
 
 export const addChatMessage = (message) => {
   store.dispatch({
     type: 'ADD_CHAT_MESSAGE',
-    message: message,
-  })
-}
+    message,
+  });
+};
 
 export const setChatMessages = (messages) => {
   store.dispatch({
     type: 'SET_CHAT_MESSAGES',
-    messages
-  })  
-}
+    messages,
+  });
+};
 
 export const setAvailableCharacters = (characters) => {
   store.dispatch({
     type: 'SET_AVAILABLE_CHARACTERS',
-    characters
-  })
-}
+    characters,
+  });
+};
 
 export const setAccountDetails = (details) => {
   store.dispatch({
     type: 'SET_ACCOUNT_DETAILS',
-    details
-  })
-}
+    details,
+  });
+};
 
 export const updateCharacter = (character) => {
   store.dispatch({
     type: 'UPDATE_CHARACTER',
-    character
-  })
-}
+    character,
+  });
+};
 
 export const setCharacterInfo = (info) => {
   store.dispatch({
     type: 'SET_CHARACTER_INFO',
-    info
-  })
-}
+    info,
+  });
+};
 
 export const setCharacters = (characters) => {
   store.dispatch({
     type: 'SET_CHARACTERS',
-    characters
-  })
-}
+    characters,
+  });
+};
 
 export const setPlayers = (players) => {
   store.dispatch({
     type: 'SET_PLAYERS',
-    players
-  })
-}
+    players,
+  });
+};
 
 export const setGM = (isGM) => {
   store.dispatch({
     type: 'SET_GM',
-    isGM
-  })
-}
+    isGM,
+  });
+};
 
 export const setSpectator = (isSpectator) => {
   store.dispatch({
     type: 'SET_SPECTATOR',
     isSpectator,
-  })
-}
+  });
+};
 
 export const setNotepads = (notePads) => {
   store.dispatch({
     type: 'SET_NOTEPADS',
     notePads,
-  })
-}
+  });
+};
 
 export const addNotepad = (notepad) => {
   store.dispatch({
     type: 'ADD_NOTEPAD',
     notepad,
-  })
-}
+  });
+};
 
 export const updateNotepad = (notepad) => {
   store.dispatch({
     type: 'UPDATE_NOTEPAD',
     notepad,
-  })
-}
+  });
+};

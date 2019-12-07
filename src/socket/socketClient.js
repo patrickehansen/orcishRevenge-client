@@ -2,14 +2,14 @@ import socketIO from 'socket.io-client';
 import moment from 'moment';
 import config from '../../config';
 import store from '../store/store';
-import {addChatMessage} from '../store/actions/actions';
+import { addChatMessage } from '../store/actions/actions';
 
 
 class SocketClient {
   constructor(options) {
-    const socket = socketIO(options.socketAddress || config.server)
+    const socket = socketIO(options.socketAddress || config.server);
     this.socket = socket;
-    
+
     socket.on('connect', this.onConnect);
     socket.on('disconnect', this.onDisconnect);
     socket.on('chat', this.handleChatMessage);
@@ -20,11 +20,11 @@ class SocketClient {
   }
 
   onConnect = () => {
-    console.log('Socket connection established.')
-    const idToken = store.getState().account.id_token;
+    console.log('Socket connection established.');
+    const idToken = store.getState().account.IDToken;
     this.socket.emit('register', {
-      token: idToken
-    })
+      token: idToken,
+    });
   }
 
   onDisconnect = (reason) => {
@@ -39,8 +39,8 @@ class SocketClient {
   SendChatMessage = (message) => {
     this.socket.emit('chat', {
       message,
-      sent: moment()
-    })
+      sent: moment(),
+    });
   }
 }
 

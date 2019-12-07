@@ -1,21 +1,22 @@
-'use strict';
+
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import Modal from '@material-ui/core/Modal';
 import TextField from '@material-ui/core/TextField';
 import Container from '@material-ui/core/Container';
 import Avatar from '@material-ui/core/Avatar';
 
-import {withStyles, mergeClasses} from '@material-ui/styles';
+import { withStyles } from '@material-ui/styles';
 
-import {HorizontalFlex} from '../../primitives/layout';
+import { HorizontalFlex } from '../../primitives/layout';
 
-import {styles} from '../../style/styles';
+import styles from '../../style/styles';
 import StatsAssigner from './statsAssigner';
 import AvatarSelector from './avatarSelector';
 import PhysicalCharacteristics from './physicalCharacteristics';
 
 
-import Button from '../../primitives/button';
+import { ContainedButton as Button } from '../../primitives/button';
 import CreateCharacter from '../../../requests/character/createCharacter';
 import RPlikes from './RPlikes';
 
@@ -39,49 +40,49 @@ class CharacterCreator extends Component {
         SkinColor: 'Charcoal',
         HairColor: 'Black',
         Build: 'Muscular',
-        Height: `5'10"`,
+        Height: '5\'10"',
         Weight: '240',
         Age: '19',
       },
       remainingPoints: 24,
       avatarURL: null,
       avatarSelecting: false,
-    }
+    };
   }
 
   increment = (stat) => {
-    let {stats} = this.state;
+    const { stats } = this.state;
 
     stats[stat] += 1;
 
     this.setState({
       stats,
       remainingPoints: this.state.remainingPoints - 1,
-    })
+    });
   }
 
   decrement = (stat) => {
-    let {stats} = this.state;
+    const { stats } = this.state;
 
     stats[stat] -= 1;
 
     this.setState({
       stats,
       remainingPoints: this.state.remainingPoints + 1,
-    })
+    });
   }
 
   changePhysical = (change) => {
-    const {physical} = this.state;
+    const { physical } = this.state;
 
     physical[change.Key] = change.Value;
 
     this.setState({
-      physical
-    })
+      physical,
+    });
   }
 
-  cancel = (e) => {
+  cancel = () => {
     this.props.onClose();
   }
 
@@ -94,36 +95,36 @@ class CharacterCreator extends Component {
     values.Likes = [];
 
     ['Like', 'Dislike', 'Vice'].forEach((label) => {
-      for (let i = 0; i <= 2; i++) {
-        let title = e.target.elements[`${label}${i}`].value;
-        let description = e.target.elements[`${label}Desc${i}`].value;
+      for (let i = 0; i <= 2; i += 1) {
+        const title = e.target.elements[`${label}${i}`].value;
+        const description = e.target.elements[`${label}Desc${i}`].value;
 
-        values.Likes.push({Title: title, Description: description, Label: label})
+        values.Likes.push({ Title: title, Description: description, Label: label });
       }
-    })
-    
-    const success = await CreateCharacter(values).catch(error => {
+    });
+
+    const success = await CreateCharacter(values).catch((error) => {
       console.error('Error creating character', error);
       this.setState({
-        error
-      })
-    })
+        error,
+      });
+    });
 
     if (success) {
       this.props.onClose();
     }
   }
 
-  openAvatarChooser = (e) => {
+  openAvatarChooser = () => {
     this.setState({
-      avatarSelecting : true
-    })
+      avatarSelecting: true,
+    });
   }
 
-  closeAvatarChooser = (e) => {
+  closeAvatarChooser = () => {
     this.setState({
-      avatarSelecting : false
-    })
+      avatarSelecting: false,
+    });
   }
 
   setAvatar = (e) => {
@@ -131,34 +132,34 @@ class CharacterCreator extends Component {
 
     this.setState({
       avatarURL: e.target.elements.avatarURL.value,
-      avatarSelecting: false
-    })
+      avatarSelecting: false,
+    });
   }
 
   render() {
-    const {classes} = this.props;
+    const { classes } = this.props;
 
     return (
-      <Modal 
+      <Modal
         open={this.props.open}
-        onClose={this.cancel} 
+        onClose={this.cancel}
         className='board-root'
       >
         <Container className={`characterCreator ${classes.characterCreator}`}>
           <form className={classes.characterCreationForm} id='creatorContainer' onSubmit={this.submit}>
             <Container className={classes.characterHeader}>
               <Container className={classes.characterBasicInfo}>
-                <Avatar 
+                <Avatar
                   className={classes.avatarPlaceholder}
-                  src={this.state.avatarURL} 
+                  src={this.state.avatarURL}
                   onClick={this.openAvatarChooser}
                 />
-                <TextField 
+                <TextField
                   id='characterName'
                   label='Name'
                   className={`${classes.textField} ${classes.characterName}`}
-                  style={{marginTop: '0.5rem', width: '75%'}}
-                  inputProps={{style: {fontSize: '1.8rem'}}}
+                  style={{ marginTop: '0.5rem', width: '75%' }}
+                  inputProps={{ style: { fontSize: '1.8rem' } }}
                   margin='none'
                   name='Name'
                   variant='outlined'
@@ -167,7 +168,7 @@ class CharacterCreator extends Component {
                   required
                 />
               </Container>
-              <Container style={{float: 'right', width: '20rem'}}>
+              <Container style={{ float: 'right', width: '20rem' }}>
                 <Button
                   className={'cancelBtn'}
                   onClick={this.cancel}
@@ -183,8 +184,10 @@ class CharacterCreator extends Component {
               </Container>
             </Container>
             <HorizontalFlex className={classes.noMargin}>
-              <Container className={classes.fixed} style={{margin: 0, padding: 0, order: 0, width: '20rem'}}>
-                <StatsAssigner 
+              <Container className={classes.fixed} style={{
+                margin: 0, padding: 0, order: 0, width: '20rem',
+              }}>
+                <StatsAssigner
                   increment={this.increment}
                   decrement={this.decrement}
                   stats={this.state.stats}
@@ -192,28 +195,36 @@ class CharacterCreator extends Component {
                   context={'creator'}
                 />
               </Container>
-              <Container className={classes.fixed} style={{marginLeft: '1rem', padding: 0, order: 1, width: '18rem'}}>
+              <Container className={classes.fixed} style={{
+                marginLeft: '1rem', padding: 0, order: 1, width: '18rem',
+              }}>
                 <PhysicalCharacteristics
                   stats={this.state.physical}
                   onChange={this.changePhysical}
                 />
               </Container>
-              
-              <Container className={classes.grow} style={{marginLeft: '1rem', padding: 0, order: 2}}>
+
+              <Container className={classes.grow} style={{ marginLeft: '1rem', padding: 0, order: 2 }}>
                 <RPlikes />
               </Container>
-              
+
             </HorizontalFlex>
           </form>
-          <AvatarSelector 
+          <AvatarSelector
             open={this.state.avatarSelecting}
             hideAvatar={this.closeAvatarChooser}
             submit={this.setAvatar}
           />
         </Container>
       </Modal>
-    )
+    );
   }
 }
+
+CharacterCreator.propTypes = {
+  classes: PropTypes.object.isRequired,
+  open: PropTypes.func.isRequired,
+  onClose: PropTypes.func.isRequired,
+};
 
 export default withStyles(styles)(CharacterCreator);

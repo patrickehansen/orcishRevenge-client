@@ -1,12 +1,12 @@
-import React, {Component} from 'react';
-import {connect} from 'react-redux';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import Container from '@material-ui/core/Container';
+import { withStyles } from '@material-ui/styles';
 import TextField from '../../primitives/textField';
-import {TextButton as Button} from '../../primitives/button';
-import AppBar from '@material-ui/core/Container';
+import Button from '../../primitives/button';
 
-import {withStyles} from '@material-ui/styles';
-import {styles} from '../../style/styles';
+import styles from '../../style/styles';
 
 import Notepad from '../../util/notepad';
 
@@ -17,31 +17,31 @@ class Notes extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      selectedIndex : 0,
-    }
+      selectedIndex: 0,
+    };
   }
 
   onNoteTabClicked = (e, newValue) => {
     this.setState({
       selectedIndex: newValue,
-    })
+    });
   }
 
   onDoubleClickTab = (e) => {
-    const index = e.currentTarget.name;
+    const id = e.currentTarget.name;
 
     this.setState({
-      renaming: index
-    })
+      renaming: id,
+    });
   }
 
-  newPad = (e) => {
-    addNotepad('', 'Notes', this.props.possessedCharacter._id);
+  newPad = () => {
+    addNotepad('', 'Notes', this.props.possessedCharacter.id);
   }
 
-  componentDidUpdate(prevProps, prevState, snapshot) {
+  // componentDidUpdate(prevProps, prevState, snapshot) {
 
-  }
+  // }
 
   titleChange = (e) => {
     if (e.key === 'Enter') {
@@ -50,36 +50,36 @@ class Notes extends Component {
       renameNotepad(this.state.renaming, val);
 
       this.setState({
-        renaming: null
-      })
+        renaming: null,
+      });
     }
   }
 
   render() {
-    const {index, value, classes} = this.props;
+    const { index, value, classes } = this.props;
 
     if (index !== value) return null;
 
-    const currentPadID = this.props.notepads[this.state.selectedIndex];
+    // const currentPadID = this.props.notepads[this.state.selectedIndex];
     return (
-      <Container 
+      <Container
         id={`simple-tabpanel-${index}`}
         aria-labelledby={`simple-tab-${index}`}
       >
-        <AppBar 
+        <Container
           position="static"
-          style={{padding: 0}}
+          style={{ padding: 0 }}
         >
-          <Container 
+          <Container
             className={classes.characterTabs}
           >
             {
-              this.props.notepads.map((v,i) => {
+              this.props.notepads.map((v, i) => {
                 const pad = this.props.allNotepads[v];
 
                 if (!pad) return null;
 
-                if (this.state.renaming == i) {
+                if (Number(this.state.renaming) === v._id) {
                   return (
                     <TextField
                       key={i}
@@ -87,58 +87,63 @@ class Notes extends Component {
                       defaultValue={pad.Title}
                       onKeyDown={this.titleChange}
                     />
-                  )
-                }else{
-                  return (
+                  );
+                }
+                return (
                     <Button
-                      label={pad.Title} 
-                      id={`note-tab-${i}`} 
-                      key={i} 
-                      className={`${this.state.selectedIndex == i ? classes.tabButtonActive : classes.tabButton} ${this.state.selectedIndex == i ? classes.noteTabActive : classes.noteTab}`} 
-                      name={i} 
+                      label={pad.Title}
+                      id={`note-tab-${i}`}
+                      key={i}
+                      className={`${this.state.selectedIndex === i ? classes.tabButtonActive : classes.tabButton} ${this.state.selectedIndex === i ? classes.noteTabActive : classes.noteTab}`}
+                      name={v._id}
                       onClick={(e) => this.onNoteTabClicked(e, i)}
                       onDoubleClick={this.onDoubleClickTab}
                     >
                       {pad.Title}
                     </Button>
-                  )
-                }
+                );
               })
             }
             <Button
-              className={`${classes.tabButton} ${classes.noteTab}`} 
+              className={`${classes.tabButton} ${classes.noteTab}`}
               onClick={this.newPad}
             >
               New
             </Button>
-          </Container> 
-        </AppBar>
+          </Container>
+        </Container>
 
         {
-          this.props.notepads.map((v,i) => {
-            console.log('hey notepad', i, this.state.selectedIndex)
-            return (
-              <Notepad 
+          this.props.notepads.map((v, i) => (
+              <Notepad
                 key={i}
-                pad={v} 
-                active={i == this.state.selectedIndex}
+                pad={v}
+                active={i === this.state.selectedIndex}
               />
-            )
-          }) 
+          ))
         }
-        
-      </Container>  
-    )
+
+      </Container>
+    );
   }
 }
 
-const mapStateToProps = (state) => {
-  return {
-    possessedCharacter: state.game.possessedCharacter,
-    notepads: state.game.possessedCharacter ? state.game.possessedCharacter.Notepads || [] : [],
-    allNotepads : state.notepad.notepads,
-  }
-}
+
+Notes.propTypes = {
+  classes: PropTypes.object.isRequired,
+  possessedCharacter: PropTypes.object.isRequired,
+  index: PropTypes.number.isRequired,
+  notepads: PropTypes.array.isRequired,
+  value: PropTypes.number.isRequired,
+  allNotepads: PropTypes.array.isRequired,
+};
+
+
+const mapStateToProps = (state) => ({
+  possessedCharacter: state.game.possessedCharacter,
+  notepads: state.game.possessedCharacter ? state.game.possessedCharacter.Notepads || [] : [],
+  allNotepads: state.notepad.notepads,
+});
 
 const styled = withStyles(styles)(Notes);
 export default connect(mapStateToProps)(styled);

@@ -1,6 +1,6 @@
-'use strict';
-import React, {Component} from 'react';
 
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import Scrollbar from 'react-scrollbars-custom';
 import ChatMessage from './chatMessage';
 import EmoteMessage from './emoteMessage';
@@ -21,23 +21,26 @@ export default class ChatList extends Component {
 
   render() {
     return (
-      <Scrollbar className='chatContainer' ref={(el) => this.scrollbarRef = el}>
+      <Scrollbar className='chatContainer' ref={(el) => { this.scrollbarRef = el; }}>
         {
-          this.props.messages.map((v,i) => {
+          this.props.messages.map((v, i) => {
             switch (v.Type) {
-              case 'chat' : 
-                return <ChatMessage message={v} key={i} />
-              case 'emote' : 
-                return <EmoteMessage message={v} key={i} />
-              case 'roll' :
-                return <RollMessage message={v} key={i} />
-              default: 
+              case 'chat':
+                return <ChatMessage message={v} key={i} />;
+              case 'emote':
+                return <EmoteMessage message={v} key={i} />;
+              case 'roll':
+                return <RollMessage message={v} key={i} />;
+              default:
                 return null;
             }
           })
         }
       </Scrollbar>
-    )
+    );
   }
-  
 }
+
+ChatList.propTypes = {
+  messages: PropTypes.array.isRequired,
+};

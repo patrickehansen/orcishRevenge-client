@@ -1,18 +1,14 @@
-'use strict';
+
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import moment from 'moment';
 
 export default class DMMessage extends Component {
-  constructor(props) {
-    super(props);
-
-  }
-
   render() {
-    const {Message, Sender, Sent} = this.props.message;
+    const { Message, Sender, Sent } = this.props.message;
 
     const sentTime = moment(Sent).format('HH:mm:ss');
 
@@ -21,7 +17,7 @@ export default class DMMessage extends Component {
         <CardContent>
           <div className='header'>
             <span className='sender'>
-            {Sender} says to you: 
+            {Sender} says to you:
             </span>
             <span className='time'>
               {sentTime}
@@ -33,6 +29,10 @@ export default class DMMessage extends Component {
           </Typography>
         </CardContent>
       </Card>
-    )
+    );
   }
 }
+
+DMMessage.propTypes = {
+  message: PropTypes.object.isRequired,
+};

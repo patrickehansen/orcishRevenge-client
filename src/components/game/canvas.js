@@ -1,4 +1,4 @@
-'use strict';
+
 import React, { Component } from 'react';
 import Container from '@material-ui/core/Container';
 import { Stage } from 'react-konva';
@@ -11,21 +11,22 @@ class Canvas extends Component {
 
     this.state = {
       error: null,
-    }
+    };
   }
 
   render() {
     return (
       <Container component='div' className='canvas-root'>
-        <Stage 
+        <Stage
           width={1700}
           height={980}
           drawBorder={true}
           />
         <ErrorComponent error={this.state.error} />
       </Container>
-    )
+    );
   }
 }
 
+Canvas.propTypes = {};
 export default Canvas;

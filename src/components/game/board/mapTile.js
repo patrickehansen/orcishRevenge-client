@@ -1,5 +1,6 @@
-import React, { Component } from "react";
-import { RegularPolygon } from "react-konva";
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { RegularPolygon } from 'react-konva';
 
 const offsetConstant = 6.4641; // fucking magic. No idea where it comes from
 const size = 15;
@@ -12,19 +13,18 @@ const stdYOffset = h - 5;
 
 export default class MapTile extends Component {
   constructor(props) {
-    super(props)
+    super(props);
 
     this.state = {
       fill: undefined,
-      selected: false
-    }
+      selected: false,
+    };
   }
 
-  onClick= (e) => {
-
+  onClick= () => {
     this.setState({
-      selected: !this.state.selected
-    })
+      selected: !this.state.selected,
+    });
   }
 
   render() {
@@ -41,9 +41,8 @@ export default class MapTile extends Component {
         y={calcY}
         sides={6}
         radius={w}
-        fill={this.state.selected ? 'red': undefined}
+        fill={this.state.selected ? 'red' : undefined}
         onClick={this.onClick}
-        stroke={"black"}
         rotation={90}
         stroke={'rgba(0,0,0,0.25)'}
         strokeWidth={1}
@@ -51,3 +50,7 @@ export default class MapTile extends Component {
     );
   }
 }
+
+MapTile.propTypes = {
+  coords: PropTypes.object.isRequired,
+};

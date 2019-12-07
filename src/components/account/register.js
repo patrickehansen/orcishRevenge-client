@@ -1,30 +1,30 @@
-'use strict';
+
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Redirect } from 'react-router-dom';
-import Button from '../primitives/button';
 import TextField from '@material-ui/core/TextField';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Grid from '@material-ui/core/Grid';
 import Container from '@material-ui/core/Container';
 import Typography from '@material-ui/core/Typography';
-import {withStyles} from '@material-ui/styles';
-import {styles} from '../style/styles';
+import { withStyles } from '@material-ui/styles';
+import { Collapse, Paper } from '@material-ui/core';
+import styles from '../style/styles';
 
-import ErrorComponent from '../util/error';
 
 import register from '../../requests/account/register';
-import { Collapse, Paper } from '@material-ui/core';
+import { ContainedButton as Button } from '../primitives/button';
+import ErrorComponent from '../util/error';
 
 const IsEmailValid = (Email) => {
-  //Email regex
-  let regex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+  // Email regex
+  const regex = /^(([^<>()[]\\.,;:\s@"]+(\.[^<>()[]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
   if (Email && regex.test(String(Email).toLowerCase())) {
     return !Email.includes('@yahoo.com');
-  }else{
-    return false;
   }
-}
+  return false;
+};
 
 class Register extends Component {
   constructor(props) {
@@ -37,7 +37,7 @@ class Register extends Component {
     };
   }
 
-  submit = async e => {
+  submit = async (e) => {
     e.preventDefault();
 
     const user = e.target.elements.username.value;
@@ -47,41 +47,41 @@ class Register extends Component {
 
     if (!IsEmailValid(email)) {
       this.setState({
-        error: 'Email is not valid..'
-      })
+        error: 'Email is not valid..',
+      });
 
       return;
     }
 
     if (confirm !== pass) {
       this.setState({
-        error: 'Passwords do not match..'
-      })
+        error: 'Passwords do not match..',
+      });
 
       return;
     }
 
-    const response = await register(user, email, pass).catch(error => {
+    const response = await register(user, email, pass).catch((error) => {
       this.onError(error.message);
     });
 
     if (response) {
       this.setState({
-        redirecting: true
-      })
+        redirecting: true,
+      });
 
-      setTimeout(this.redirectToLogin, 5 * 1000)
+      setTimeout(this.redirectToLogin, 5 * 1000);
     }
   };
 
   redirectToLogin = () => {
     this.setState({
-      redirect: true
-    })
+      redirect: true,
+    });
   }
 
   render() {
-    const {classes} = this.props;
+    const { classes } = this.props;
 
     if (this.state.redirect) {
       return <Redirect to="/login" />;
@@ -143,7 +143,7 @@ class Register extends Component {
                   />
                 </Grid>
                 <Grid item xs={12}>
-                  <Button 
+                  <Button
                     className={classes.submit}
                     fullWidth
                     type="submit"
@@ -152,7 +152,7 @@ class Register extends Component {
                   </Button>
                 </Grid>
               </Grid>
-              
+
             </form>
             <Collapse in={this.state.redirecting} >
               <Paper elevation={0} className={classes.paper}>
@@ -166,5 +166,9 @@ class Register extends Component {
     );
   }
 }
+
+Register.propTypes = {
+  classes: PropTypes.object.isRequired,
+};
 
 export default withStyles(styles)(Register);

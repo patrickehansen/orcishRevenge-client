@@ -1,6 +1,7 @@
-'use strict';
-import React, {Component} from 'react';
-import {connect} from 'react-redux';
+
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import Container from '@material-ui/core/Container';
 import Modal from '@material-ui/core/Modal';
 import { DialogContent } from '@material-ui/core';
@@ -17,49 +18,49 @@ class CharacterSheetContainer extends Component {
     this.state = {
       poppedOut: false,
       modalOpen: false,
-    }
+    };
   }
 
   componentDidUpdate(prevProps, prevState) {
     if (prevState.poppedOut && !prevProps.open) {
       this.setState({
         poppedOut: false,
-      })
+      });
     }
   }
 
   popout = () => {
     this.setState({
-      poppedOut: !this.state.poppedOut
-    })
+      poppedOut: !this.state.poppedOut,
+    });
   }
 
   onPopoutClosing = () => {
     if (!this.state.poppedOut) return;
 
     this.setState({
-      poppedOut: false
-    })
+      poppedOut: false,
+    });
 
-    this.props.onClose()
+    this.props.onClose();
   }
-  
+
   render() {
     return (
       <Container>
-        <Modal        
+        <Modal
           open={this.props.open && !this.state.poppedOut}
           onClose={this.props.onClose}
         >
           <DialogContent>
-          <CharacterSheet 
+          <CharacterSheet
             character={this.props.character}
             poppedOut={this.state.poppedOut}
             onPopout={this.popout}
             onClose={this.props.onClose}
           />
           </DialogContent>
-          
+
         </Modal>
         {
           this.state.poppedOut && (
@@ -68,7 +69,7 @@ class CharacterSheetContainer extends Component {
               containerId='charPopout'
               onClosing={this.onPopoutClosing}
             >
-              <CharacterSheet 
+              <CharacterSheet
                 character={this.props.character}
                 poppedOut={this.state.poppedOut}
                 onPopout={this.popout}
@@ -78,14 +79,21 @@ class CharacterSheetContainer extends Component {
           )
         }
       </Container>
-    )
+    );
   }
 }
 
-const mapStateToProps = (state) => {
-  return {
-    character: state.game.possessedCharacter,
-  }
-}
+CharacterSheetContainer.propTypes = {
+  classes: PropTypes.object.isRequired,
+  index: PropTypes.number.isRequired,
+  value: PropTypes.number.isRequired,
+  character: PropTypes.object.isRequired,
+  open: PropTypes.func.isRequired,
+  onClose: PropTypes.func.isRequired,
+};
 
-export default connect(mapStateToProps)(CharacterSheetContainer)
+const mapStateToProps = (state) => ({
+  character: state.game.possessedCharacter,
+});
+
+export default connect(mapStateToProps)(CharacterSheetContainer);

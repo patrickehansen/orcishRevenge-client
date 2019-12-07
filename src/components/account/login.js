@@ -1,21 +1,21 @@
-'use strict';
+
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Redirect } from 'react-router-dom';
 import Grid from '@material-ui/core/Grid';
 import Container from '@material-ui/core/Container';
 import Typography from '@material-ui/core/Typography';
 
 import TextField from '@material-ui/core/TextField';
-import {styles} from '../style/styles';
 import Fingerprint from '@material-ui/icons/Fingerprint';
-import { withStyles} from '@material-ui/styles';
+import { withStyles } from '@material-ui/styles';
+import styles from '../style/styles';
 
-import Button from '../primitives/button';
+import { ContainedButton as Button } from '../primitives/button';
 
 import ErrorComponent from '../util/error';
 import auth from '../../requests/account/login';
 import { setToken } from '../../store/actions/actions';
-import store from '../../store/store';
 import config from '../../../config';
 
 class Login extends Component {
@@ -28,29 +28,29 @@ class Login extends Component {
     };
   }
 
-  loginSubmit = async e => {
+  loginSubmit = async (e) => {
     e.preventDefault();
 
-    let user = e.target.elements.username.value;
-    let pass = e.target.elements.password.value;
+    const user = e.target.elements.username.value;
+    const pass = e.target.elements.password.value;
 
     if (!user || !pass) {
       this.setState({
-        error: 'Please enter credentials..'
-      })
+        error: 'Please enter credentials..',
+      });
       return;
     }
 
-    const response = await auth(user, pass).catch(error => {
+    const response = await auth(user, pass).catch((error) => {
       this.setState({
-        error : error.message
-      })
+        error: error.message,
+      });
     });
 
-    if (response && response.id_token) {
-      let {id_token: token} = response;
+    if (response && response.IDToken) {
+      const { IDToken: token } = response;
 
-      setToken( token);
+      setToken(token);
       localStorage.setItem(config.localstorageKey, token);
 
       this.setState({ redirecting: true });
@@ -58,7 +58,7 @@ class Login extends Component {
   };
 
   render() {
-    const {classes} = this.props;
+    const { classes } = this.props;
 
     if (this.state.redirecting) {
       return <Redirect to="/" />;
@@ -98,7 +98,7 @@ class Login extends Component {
                 />
               </Grid>
               <Grid item xs={12}>
-                  <Button 
+                  <Button
                     className={classes.submit}
                     type="submit"
                     >
@@ -113,5 +113,9 @@ class Login extends Component {
     );
   }
 }
+
+Login.propTypes = {
+  classes: PropTypes.object.isRequired,
+};
 
 export default withStyles(styles)(Login);

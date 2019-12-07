@@ -1,23 +1,20 @@
-'use strict';
+
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
-import Typography from '@material-ui/core/Typography';
 import ListItem from '@material-ui/core/ListItem';
-import Die from './die';
 import moment from 'moment';
+import Die from './die';
 
 export default class RollMessage extends Component {
-  constructor(props) {
-    super(props);
-
-  }
-
   render() {
-    const {Roll, Sender, Sent} = this.props.message;
+    const { Roll, Sender, Sent } = this.props.message;
 
     const sentTime = moment(Sent).format('HH:mm:ss');
-    let {dice, sum, total, size, raw, operator, post} = Roll;
+    const {
+      dice, total, size, raw, operator, post,
+    } = Roll;
 
     return (
       <ListItem >
@@ -35,9 +32,7 @@ export default class RollMessage extends Component {
             <div className='rollheader'>
               <div className='diceContainer'>
                 {
-                  dice.map((v, i) => {
-                    return <Die roll={v} size={size} key={i}/>
-                  })
+                  dice.map((v, i) => <Die roll={v} size={size} key={i}/>)
                 }
                 {
                   post !== 0 && (
@@ -47,9 +42,7 @@ export default class RollMessage extends Component {
                     </div>
                   )
                 }
-                
               </div>
-              
             </div>
             <div className='rollResult'>
               {total}
@@ -57,6 +50,10 @@ export default class RollMessage extends Component {
           </CardContent>
         </Card>
       </ListItem>
-    )
+    );
   }
 }
+
+RollMessage.propTypes = {
+  message: PropTypes.object.isRequired,
+};

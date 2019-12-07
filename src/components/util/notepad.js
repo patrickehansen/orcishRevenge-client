@@ -1,40 +1,46 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import ReactQuill from 'react-quill';
 import Container from '@material-ui/core/Container';
 
-import {withStyles} from '@material-ui/styles';
-import {styles} from '../style/styles';
-import socket from '../../socket/socketClient';
+import { withStyles } from '@material-ui/styles';
+import styles from '../style/styles';
+// import socket from '../../socket/socketClient';
+
 
 class Notepad extends Component {
   constructor(props) {
-    super(props) 
+    super(props);
 
-    this.state = {text: ''};
-  }  
+    this.state = { text: '' };
+  }
 
   handleChange = (value) => {
-    this.setState({ text: value })
+    this.setState({ text: value });
   }
 
   render() {
     if (!this.props.active) return null;
-
-    const {classes} = this.props;
+    const { classes } = this.props;
 
     return (
-      <Container 
+      <Container
         className={classes.notepad}
       >
-        <ReactQuill 
+        <ReactQuill
           value={this.state.text}
-          onChange={this.handleChange} 
+          onChange={this.handleChange}
 
         />
       </Container>
-      
-    )
+
+    );
   }
 }
+
+Notepad.propTypes = {
+  active: PropTypes.bool.isRequired,
+  classes: PropTypes.object.isRequired,
+};
 
 export default withStyles(styles)(Notepad);

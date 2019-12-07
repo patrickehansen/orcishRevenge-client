@@ -1,20 +1,23 @@
-'use strict';
-import React, {Component} from 'react';
+
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 class MainPage extends Component {
-  constructor(props) {
-    super(props);
-
-  }
-
   render() {
-    let {children} = this.props;
+    const { children } = this.props;
     return (
-      <div className='mainView'> 
+      <div className='mainView'>
         {children && children}
       </div>
-    )
+    );
   }
-} 
+}
+
+MainPage.propTypes = {
+  children: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.node),
+    PropTypes.node,
+  ]).isRequired,
+};
 
 export default MainPage;

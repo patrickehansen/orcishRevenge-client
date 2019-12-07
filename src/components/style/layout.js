@@ -1,4 +1,4 @@
-export default (theme) => ({
+export default () => ({
   horizontalFlex: {
     display: 'flex',
     flexDirection: 'row',
@@ -16,7 +16,7 @@ export default (theme) => ({
     flexGrow: 1,
   },
   spaceBetween: {
-    justifyContent: 'space-between'
+    justifyContent: 'space-between',
   },
   noMargin: {
     margin: 0,
@@ -28,6 +28,6 @@ export default (theme) => ({
     float: 'right',
   },
   left: {
-    float: 'left'
-  }
+    float: 'left',
+  },
 });

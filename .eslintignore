@@ -1,0 +1,7 @@
+/__mocks__/*.js
+/assets/*
+/enzyme.config.js
+/license.txt
+/no.js
+/.*.js
+/**/*.spec.js

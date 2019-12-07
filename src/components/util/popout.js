@@ -1,19 +1,21 @@
-import React, {Component} from "react";
-import { create } from "jss";
-import { jssPreset, StylesProvider } from "@material-ui/styles";
-import PopoutWindow from "react-popout";
-import { CssBaseline } from "@material-ui/core";
-import {Provider} from 'react-redux';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { create } from 'jss';
+import { jssPreset, StylesProvider } from '@material-ui/styles';
+import PopoutWindow from 'react-popout';
+import { CssBaseline } from '@material-ui/core';
+import { Provider } from 'react-redux';
+
 
 import Store from '../../store/store';
 import Theme from '../../theme';
 
 export default class Popout extends Component {
   state = {
-    ready: false
+    ready: false,
   }
 
-  handleRef = ref => {
+  handleRef = (ref) => {
     const ownerDocument = ref ? ref.ownerDocument : null;
 
     if (!ownerDocument) return;
@@ -22,9 +24,9 @@ export default class Popout extends Component {
       ready: true,
       jss: create({
         ...jssPreset(),
-        insertionPoint: ownerDocument.querySelector("#demo-frame-jss")
+        insertionPoint: ownerDocument.querySelector('#demo-frame-jss'),
       }),
-      sheetsManager: new Map()
+      sheetsManager: new Map(),
     });
   }
 
@@ -62,3 +64,17 @@ export default class Popout extends Component {
     );
   }
 }
+
+Popout.propTypes = {
+  children: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.node),
+    PropTypes.node,
+  ]).isRequired,
+  title: PropTypes.string.isRequired,
+  onClosing: PropTypes.func.isRequired,
+  containerId: PropTypes.string.isRequired,
+  left: PropTypes.string,
+  top: PropTypes.string,
+  height: PropTypes.height,
+  width: PropTypes.width,
+};

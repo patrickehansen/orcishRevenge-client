@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Simplified FilledTextField Matches snapshot 1`] = `ReactWrapper {}`;
+
+exports[`Simplified FilledTextField Matches snapshot 2`] = `ReactWrapper {}`;
+
+exports[`Simplified FilledTextField Matches snapshot 3`] = `ReactWrapper {}`;
+
+exports[`Simplified TextField Matches snapshot 1`] = `ReactWrapper {}`;

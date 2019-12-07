@@ -1,10 +1,11 @@
-'use strict';
+
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import Container from '@material-ui/core/Container';
 
-import {withStyles} from '@material-ui/styles';
-import {styles} from '../../style/styles';
-import Select, {NumberSelect} from '../../primitives/select';
+import { withStyles } from '@material-ui/styles';
+import styles from '../../style/styles';
+import Select, { NumberSelect } from '../../primitives/select';
 
 const eyeColors = [
   'Brown',
@@ -39,26 +40,26 @@ const hairColors = [
 ];
 
 const heights = [
-  `5'10"`,
-  `5'11"`,
-  `6'00"`,
-  `6'01"`,
-  `6'02"`,
-  `6'03"`,
-  `6'04"`,
-  `6'05"`,
-  `6'06"`,
-  `6'07"`,
-  `6'08"`,
-  `6'09"`,
-  `6'10"`,
+  '5\'10"',
+  '5\'11"',
+  '6\'00"',
+  '6\'01"',
+  '6\'02"',
+  '6\'03"',
+  '6\'04"',
+  '6\'05"',
+  '6\'06"',
+  '6\'07"',
+  '6\'08"',
+  '6\'09"',
+  '6\'10"',
 ];
 
 
 const weight = [];
 
 for (let i = 240; i <= 400; i += 5) {
-  weight.push(String(i))
+  weight.push(String(i));
 }
 
 const maxAge = 85;
@@ -67,35 +68,30 @@ const minAge = 18;
 const maxWeight = 450;
 const minWeight = 200;
 
-const minHeight = `5'10"`;
-const maxHeight = `6'11"`;
+// const minHeight = `5'10"`;
+// const maxHeight = `6'11"`;
 
 class PhysicalCharacteristics extends Component {
-  constructor(props) {
-    super(props);
-
-  }
-
   change=(id, e) => {
-    let value = e.target.value;
+    const { value } = e.target;
     let proceed = true;
 
-    if (id === 'Age'){
+    if (id === 'Age') {
       proceed = value <= maxAge && value >= minAge;
     } else if (id === 'Weight') {
       proceed = value <= maxWeight && value >= minWeight;
     }
-    
-    if (proceed){
+
+    if (proceed) {
       this.props.onChange({
         Key: id,
-        Value: value
-      })
+        Value: value,
+      });
     }
   }
 
   render() {
-    const {classes} = this.props;
+    const { classes } = this.props;
 
     return (
       <Container className={`${classes.physicalCharacteristics}`}>
@@ -162,8 +158,14 @@ class PhysicalCharacteristics extends Component {
           options={hairColors}
         />
       </Container>
-    )
+    );
   }
 }
+
+PhysicalCharacteristics.propTypes = {
+  classes: PropTypes.object.isRequired,
+  stats: PropTypes.object.isRequired,
+  onChange: PropTypes.func.isRequired,
+};
 
 export default withStyles(styles)(PhysicalCharacteristics);

@@ -1,9 +1,10 @@
-'use strict';
+
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import Container from '@material-ui/core/Container';
-import {withStyles} from '@material-ui/styles';
+import { withStyles } from '@material-ui/styles';
 import StatAdjuster from './statAdjuster';
-import {styles} from '../../style/styles';
+import styles from '../../style/styles';
 
 const labels = {
   Strength: 'STR',
@@ -17,17 +18,12 @@ const labels = {
   Accuracy: 'ACC',
   HitPoints: 'HP',
   MagicPoints: 'MP',
-  ActionPoints: 'AP'
-}
+  ActionPoints: 'AP',
+};
 
 class StatsAssigner extends Component {
-  constructor(props) {
-    super(props);
-
-  }
-
   render() {
-    const {classes} = this.props;
+    const { classes } = this.props;
 
     return (
       <Container
@@ -37,23 +33,21 @@ class StatsAssigner extends Component {
       >
         <Container id='statsTable' className={classes.statList}>
         {
-          Object.entries(this.props.stats).map(([key, value]) => {
-            return( 
-              <StatAdjuster 
-                name={key} 
+          Object.entries(this.props.stats).map(([key, value]) => (
+              <StatAdjuster
+                name={key}
                 key={key}
                 label={labels[key]}
-                value={value} 
+                value={value}
                 increment={this.props.increment}
                 decrement={this.props.decrement}
                 canAdjust={this.props.remainingPoints > 0 || this.props.GM}
-                canIncrement={this.props.remainingPoints > 0 && (value < 20 || key === 'Strength' && value < 25)}
+                canIncrement={this.props.remainingPoints > 0 && (value < 20 || (key === 'Strength' && value < 25))}
                 canIncrementByWhole={true}
                 canIncrementByTenths={false}
                 compact={this.props.context === 'sheet'}
               />
-            )
-          })
+          ))
         }
         </Container>
         {
@@ -64,10 +58,20 @@ class StatsAssigner extends Component {
             </Container>
           )
         }
-        
+
       </Container>
-    )
+    );
   }
 }
+
+StatsAssigner.propTypes = {
+  classes: PropTypes.object.isRequired,
+  context: PropTypes.string,
+  stats: PropTypes.object.isRequired,
+  increment: PropTypes.func.isRequired,
+  decrement: PropTypes.func.isRequired,
+  remainingPoints: PropTypes.number,
+  GM: PropTypes.bool,
+};
 
 export default withStyles(styles)(StatsAssigner);

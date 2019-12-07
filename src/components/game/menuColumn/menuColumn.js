@@ -1,17 +1,17 @@
-'use strict';
-import React, {Component} from 'react';
-import {connect} from 'react-redux';
+
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import Container from '@material-ui/core/Container';
 import { withStyles } from '@material-ui/styles';
 import Badge from '@material-ui/core/Badge';
 import IconButton from '@material-ui/core/IconButton';
-import AssignIcon from '@material-ui/icons/Assignment'
+import AssignIcon from '@material-ui/icons/Assignment';
 
 import CharacterSheetContainer from '../characterSheet/characterSheetContainer';
-import Popout from '../../util/popout';
-import Button from '../../primitives/button';
-import {VerticalFlex} from '../../primitives/layout';
-import {styles} from '../../style/styles';
+import { ContainedButton as Button } from '../../primitives/button';
+import { VerticalFlex } from '../../primitives/layout';
+import styles from '../../style/styles';
 
 class MenuColumn extends Component {
   constructor(props) {
@@ -20,7 +20,7 @@ class MenuColumn extends Component {
     this.state = {
       popoutOpen: false,
       openSheet: false,
-    }
+    };
   }
 
   logout = (e) => {
@@ -31,26 +31,26 @@ class MenuColumn extends Component {
 
   handlePopoutClosing = () => {
     this.setState({
-      popoutOpen: false
+      popoutOpen: false,
     });
   };
 
   handleOpenPopout = () => {
     this.setState({
-      popoutOpen: true
+      popoutOpen: true,
     });
   };
 
-  openCharacterSheet = (e) => {
-    this.setState({openSheet: true})
-  } 
+  openCharacterSheet = () => {
+    this.setState({ openSheet: true });
+  }
 
-  closeCharacterSheet = (e) => {
-    this.setState({openSheet: false})
+  closeCharacterSheet = () => {
+    this.setState({ openSheet: false });
   }
 
   render() {
-    const {classes} = this.props;
+    const { classes } = this.props;
 
     return (
       <VerticalFlex
@@ -66,7 +66,7 @@ class MenuColumn extends Component {
           </IconButton>
         </Container>
         <Container
-          className={classes.menuColumnContainer} 
+          className={classes.menuColumnContainer}
         >
           <Button onClick={this.handleOpenPopout}>
             Open Popout
@@ -80,20 +80,22 @@ class MenuColumn extends Component {
           </Button>
         </Container>
 
-        <CharacterSheetContainer 
+        <CharacterSheetContainer
           open={this.state.openSheet}
           onClose={this.closeCharacterSheet}
         />
       </VerticalFlex>
-    )
-  }
-  
-}
-
-const mapStateToProps = (state) => {
-  return {
-
+    );
   }
 }
 
-export default connect(mapStateToProps)(withStyles(styles)(MenuColumn))
+MenuColumn.propTypes = {
+  classes: PropTypes.object.isRequired,
+  onLogout: PropTypes.func.isRequired,
+};
+
+const mapStateToProps = () => ({
+
+});
+
+export default connect(mapStateToProps)(withStyles(styles)(MenuColumn));

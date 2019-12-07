@@ -10,7 +10,7 @@ export default (theme) => ({
     height: '85%',
     margin: 'auto',
     marginTop: '5%',
-    
+
     backgroundColor: '$lightGray',
     borderRadius: '4px',
   },
@@ -31,7 +31,7 @@ export default (theme) => ({
     width: '80%',
     height: '80%',
     margin: 'auto',
-    backgroundColor: theme.palette.background.menu
+    backgroundColor: theme.palette.background.menu,
   },
   menuColumn: {
     float: 'right',
@@ -43,7 +43,7 @@ export default (theme) => ({
 
   },
   cardActive: {
-    backgroundColor : theme.palette.secondary.main
+    backgroundColor: theme.palette.secondary.main,
   },
   cardInactive: {
     backgroundColor: theme.palette.background.card,

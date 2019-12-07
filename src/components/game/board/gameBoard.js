@@ -1,12 +1,12 @@
-'use strict';
+
 import React, { Component } from 'react';
-import {connect} from 'react-redux';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import Container from '@material-ui/core/Container';
 import { Stage, Layer } from 'react-konva';
 
 import MapTile from './mapTile';
 import ErrorComponent from '../../util/error';
-
 
 
 class GameBoard extends Component {
@@ -15,34 +15,34 @@ class GameBoard extends Component {
 
     this.state = {
       error: null,
-    }
+    };
   }
 
 
   render() {
     return (
       <Container component='div' className='canvas-root'>
-        <Stage 
+        <Stage
           width={2500}
           height={980}
           drawBorder={true}
         >
           <Layer>
-            {this.props.tiles.map((v, i) => {
-              return <MapTile tile={v} key={i} />;
-            })}
+            {this.props.tiles.map((v, i) => <MapTile tile={v} key={i} />)}
           </Layer>
         </Stage>
         <ErrorComponent error={this.state.error} />
       </Container>
-    )
+    );
   }
 }
 
-const mapStateToProps = (state) => {
-  return {
-    tiles: state.map.tiles
-  }
-}
+GameBoard.propTypes = {
+  tiles: PropTypes.array.isRequired,
+};
+
+const mapStateToProps = (state) => ({
+  tiles: state.map.tiles,
+});
 
 export default connect(mapStateToProps)(GameBoard);

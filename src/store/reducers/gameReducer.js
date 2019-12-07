@@ -1,47 +1,40 @@
-import config from '../../../config';
 
 const defaultAuthenticationState = {
   characters: [],
   possessedCharacter: null,
-}
+};
 
 export default (state = defaultAuthenticationState, action) => {
-    switch (action.type) {
-      case 'SET_CHARACTERS' : 
-        return Object.assign({}, state, {
-          characters: action.characters,
-        })
-      case 'UPDATE_CHARACTER' : {
-        let updated = {};
+  switch (action.type) {
+    case 'SET_CHARACTERS':
+      return { ...state, characters: action.characters };
+    case 'UPDATE_CHARACTER': {
+      const updated = {};
 
-        let characters = [...state.characters];
-        characters.some(v => {
-          if (v._id == action.character._id) {
-            v = action.character;
-            return true;
-          }
-          return false;
-        })
-
-        updated.characters = characters;
-
-        console.log('new notepad', action)
-
-        if (state.possessedCharacter && state.possessedCharacter._id === action.character._id) {
-          updated.possessedCharacter = action.character
+      const characters = [...state.characters];
+      characters.some((v) => {
+        if (v._id === action.character._id) {
+          v = action.character; // eslint-disable-line no-param-reassign
+          return true;
         }
+        return false;
+      });
 
-        return Object.assign({}, state, updated)
+      updated.characters = characters;
+
+      console.log('new notepad', action);
+
+      if (state.possessedCharacter && state.possessedCharacter._id === action.character._id) {
+        updated.possessedCharacter = action.character;
       }
-      case 'SET_PLAYERS' : 
-        return Object.assign({}, state, {
-          players: action.players,
-        })
-      case 'SET_CHARACTER_INFO' :
-        return Object.assign({}, state, {
-          possessedCharacter: action.info,
-        })
-      default:
-    return state;
+
+      return { ...state, ...updated };
+    }
+    case 'SET_PLAYERS':
+      return { ...state, players: action.players };
+    case 'SET_CHARACTER_INFO':
+      return { ...state, possessedCharacter: action.info };
+    default:
+      return state;
   }
-}
+};

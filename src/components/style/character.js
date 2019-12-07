@@ -6,7 +6,7 @@ export default (theme) => ({
     cursor: 'pointer',
     margin: theme.spacing(1),
   },
-  characterAvatar : {
+  characterAvatar: {
     borderRadius: theme.spacing(1),
     boxShadow: theme.shadow.textShadow,
     maxWidth: '20rem',
@@ -26,7 +26,7 @@ export default (theme) => ({
     margin: 'auto',
     marginTop: '5%',
     borderRadius: theme.spacing(1),
-    padding:  theme.spacing(4),
+    padding: theme.spacing(4),
   },
 
   characterBasicInfo: {
@@ -47,28 +47,28 @@ export default (theme) => ({
   },
 
   characterName: {
-    '& label' : {
+    '& label': {
       color: theme.palette.primary.main,
       textShadow: theme.shadow.whiteText,
       paddingLeft: theme.spacing(2),
       fontSize: '1.2rem',
     },
 
-    '& div' : {
+    '& div': {
       fontWeight: 600,
       color: theme.palette.common.black,
       paddingLeft: theme.spacing(3),
       fontSize: '1.2rem',
     },
 
-    '& input' : {
+    '& input': {
       fontWeight: 600,
       color: theme.palette.common.black,
       textShadow: theme.shadow.whiteText,
       paddingLeft: theme.spacing(3),
       fontSize: '1.2rem',
       userSelect: 'none',
-    }
+    },
   },
 
   characterCreationForm: {
@@ -119,7 +119,7 @@ export default (theme) => ({
     color: theme.palette.common.white,
   },
 
-  statAdjusterCompact : {
+  statAdjusterCompact: {
     display: 'flex',
     flexDirection: 'row',
     width: '14rem',
@@ -140,20 +140,20 @@ export default (theme) => ({
   statText: {
     margin: 'auto',
     marginLeft: theme.spacing(1),
-    
+
     padding: 0,
     textAlign: 'left',
     flexGrow: 1,
   },
 
   statLabel: {
-    backgroundColor: theme.palette.primary.main, 
-    color: theme.palette.common.white, 
+    backgroundColor: theme.palette.primary.main,
+    color: theme.palette.common.white,
     fontSize: theme.spacing(5),
-    borderRadius: theme.spacing(1), 
+    borderRadius: theme.spacing(1),
     width: theme.spacing(13),
     height: theme.spacing(11),
-    textAlign: 'center', 
+    textAlign: 'center',
     marginTop: theme.spacing(1.5),
     lineHeight: theme.spacing(11),
     textShadow: theme.shadow.textShadow,
@@ -161,13 +161,13 @@ export default (theme) => ({
   },
 
   statLabelCompact: {
-    backgroundColor: theme.palette.primary.main, 
-    color: theme.palette.common.white, 
+    backgroundColor: theme.palette.primary.main,
+    color: theme.palette.common.white,
     fontSize: theme.spacing(5),
-    borderRadius: theme.spacing(1), 
+    borderRadius: theme.spacing(1),
     width: theme.spacing(13),
     height: theme.spacing(11),
-    textAlign: 'center', 
+    textAlign: 'center',
     lineHeight: theme.spacing(11),
     textShadow: theme.shadow.textShadow,
     userSelect: 'none',
@@ -176,7 +176,7 @@ export default (theme) => ({
   statValue: {
     margin: 'auto',
     float: 'right',
-    color: theme.palette.common.black, 
+    color: theme.palette.common.black,
     boxShadow: `inset 1px 1px 3px ${theme.palette.common.dark}`,
     border: 'solid 2px black',
     paddingRight: theme.spacing(1),
@@ -196,7 +196,7 @@ export default (theme) => ({
     paddingBottom: theme.spacing(3),
   },
 
-  statModifier : {
+  statModifier: {
     width: theme.spacing(6),
     height: theme.spacing(4),
     minHeight: theme.spacing(5),
@@ -213,7 +213,7 @@ export default (theme) => ({
     width: theme.spacing(4),
     height: theme.spacing(4),
     textAlign: 'center',
-    margin:'auto',
+    margin: 'auto',
     userSelect: 'none',
     fontWeight: 600,
     textShadow: theme.shadow.whiteText,
@@ -233,41 +233,41 @@ export default (theme) => ({
     textShadow: theme.shadow.whiteText,
     fontSize: '1.8rem',
     userSelect: 'none',
-    
-    '& label' : {
+
+    '& label': {
       color: theme.palette.primary.main,
       textShadow: theme.shadow.whiteText,
       paddingLeft: theme.spacing(2),
       fontSize: '1.2rem',
     },
 
-    '& div' : {
+    '& div': {
       fontWeight: 600,
       color: theme.palette.common.black,
       paddingLeft: theme.spacing(3),
       fontSize: '1.2rem',
     },
 
-    '& input' : {
+    '& input': {
       fontWeight: 600,
       color: theme.palette.common.black,
       textShadow: theme.shadow.whiteText,
       paddingLeft: theme.spacing(3),
       fontSize: '1.2rem',
       userSelect: 'none',
-    }
+    },
   },
 
-  characterCloseButton : {
-    float: 'right', 
+  characterCloseButton: {
+    float: 'right',
     borderRadius: theme.spacing(1),
     backgroundColor: theme.palette.primary.main,
-    color: theme.palette.common.white, 
+    color: theme.palette.common.white,
     maxHeight: theme.spacing(8),
     paddingTop: theme.spacing(1),
     minWidth: theme.spacing(8),
     padding: theme.spacing(1),
-    cursor: 'pointer', 
+    cursor: 'pointer',
     boxShadow: theme.shadow.textShadow,
   },
 
@@ -300,7 +300,7 @@ export default (theme) => ({
 
   physicalTraits: {
     backgroundColor: theme.palette.background.transparentGray,
-    maxWidth: '30%', 
+    maxWidth: '30%',
     marginLeft: theme.spacing(2),
   },
 
@@ -309,16 +309,16 @@ export default (theme) => ({
   },
 
   traitLabel: {
-    borderBottom: 'solid 2px black', 
-    fontSize: '1.6rem', 
-    minWidth: '6rem', 
+    borderBottom: 'solid 2px black',
+    fontSize: '1.6rem',
+    minWidth: '6rem',
     textShadow: theme.shadow.whiteText,
   },
 
   traitValue: {
-    borderBottom: 'solid 2px black', 
+    borderBottom: 'solid 2px black',
     marginLeft: theme.spacing(2),
-    fontSize: '1.6rem', 
+    fontSize: '1.6rem',
     minWidth: theme.spacing(32),
     width: theme.spacing(55),
     textShadow: theme.shadow.whiteText,
@@ -326,6 +326,6 @@ export default (theme) => ({
 
   characterSheetMain: {
     width: '100%',
-    padding:  theme.spacing(0),
+    padding: theme.spacing(0),
   },
 });

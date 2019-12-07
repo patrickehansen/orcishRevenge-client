@@ -1,13 +1,13 @@
-'use strict';
+
 import React, { Component } from 'react';
-import {connect} from 'react-redux';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 
 import Modal from '@material-ui/core/Modal';
-import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
-import {withStyles} from '@material-ui/styles';
+import { withStyles } from '@material-ui/styles';
 
-import Button from '../../primitives/button';
+import { ContainedButton as Button } from '../../primitives/button';
 
 import GetAvailableCharacters from '../../../requests/character/availableCharacters';
 import PossessCharacter from '../../../requests/character/possessCharacter';
@@ -15,10 +15,10 @@ import PossessCharacter from '../../../requests/character/possessCharacter';
 import CharacterCreator from './characterCreator';
 import CharacterCard from './characterCard';
 
-import {VerticalFlex} from '../../primitives/layout';
+import { VerticalFlex } from '../../primitives/layout';
 
 import ErrorComponent from '../../util/error';
-import {styles} from '../../style/styles';
+import styles from '../../style/styles';
 
 class CharacterSelect extends Component {
   constructor(props) {
@@ -27,7 +27,7 @@ class CharacterSelect extends Component {
     this.state = {
       error: null,
       creating: false,
-    }
+    };
   }
 
   componentDidMount() {
@@ -39,16 +39,16 @@ class CharacterSelect extends Component {
 
     this.setState({
       creating: true,
-    })
+    });
   }
 
-  closeCreator = (e) => {
+  closeCreator = () => {
     this.setState({
       creating: false,
-    })
+    });
   }
 
-  play = async (e) => {
+  play = async () => {
     await PossessCharacter(this.state.selected.id);
 
     this.props.close();
@@ -57,9 +57,9 @@ class CharacterSelect extends Component {
   characterSelected = (name, id) => {
     this.setState({
       selected: {
-        name, id
-      }
-    })
+        name, id,
+      },
+    });
   }
 
   render() {
@@ -68,20 +68,20 @@ class CharacterSelect extends Component {
       _id: 'spectator',
       Name: 'Spectator',
       Avatar: 'https://imgur.com/hxrMCCD.png',
-    })
+    });
 
     if (this.props.canBeGM) {
       characters.push({
         _id: 'gm',
         Name: 'GM',
         Avatar: 'https://imgur.com/mqii5iw.png',
-      })
+      });
     }
 
-    const {classes} = this.props;
+    const { classes } = this.props;
 
     return (
-      <Modal        
+      <Modal
         open={this.props.open}
         onClose={this.props.close}
       >
@@ -89,15 +89,15 @@ class CharacterSelect extends Component {
           <VerticalFlex className={`${classes.characterContainer} ${classes.grow} characterContainer`}>
             <Grid container spacing={2} justify='center' className={classes.grow}>
             {
-              characters.map((v,i) => {
+              characters.map((v, i) => {
                 const active = this.state.selected ? this.state.selected.name === v.Name : false;
 
                 return (
                   <Grid item key={i} >
                     <CharacterCard character={v} onSelect={this.characterSelected} active={active}/>
                   </Grid>
-                  
-                )
+
+                );
               })
             }
             </Grid>
@@ -111,31 +111,37 @@ class CharacterSelect extends Component {
               </Button>
             </div>
             }
-            
+
           </VerticalFlex>
-          
+
           <div className={`${classes.centered} `}>
-            <Button 
+            <Button
               onClick={this.createCharacter}
               id='createNewBtn'
             >Create New</Button>
           </div>
-          <CharacterCreator 
+          <CharacterCreator
             open={this.state.creating}
             onClose={this.closeCreator}
             />
           <ErrorComponent error={this.state.error} />
         </VerticalFlex>
       </Modal>
-    )
+    );
   }
 }
 
-const mapStateToProps = (state) => {
-  return {
-    availableCharacters: state.account.availableCharacters,
-    canBeGM: state.account.IsGM,
-  }
-}
+CharacterSelect.propTypes = {
+  classes: PropTypes.object.isRequired,
+  availableCharacters: PropTypes.array,
+  canBeGM: PropTypes.bool,
+  open: PropTypes.object.isRequired,
+  close: PropTypes.object.isRequired,
+};
+
+const mapStateToProps = (state) => ({
+  availableCharacters: state.account.availableCharacters,
+  canBeGM: state.account.IsGM,
+});
 
 export default connect(mapStateToProps)(withStyles(styles)(CharacterSelect));

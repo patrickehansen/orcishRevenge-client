@@ -1,7 +1,7 @@
 const defaultAuthenticationState = {
   palette: {
     primary: {
-      main: '#283593',//'#556cd6',
+      main: '#283593', // '#556cd6',
     },
     secondary: {
       main: '#004d40',
@@ -32,20 +32,18 @@ const defaultAuthenticationState = {
       transparentGray: 'rgba(189,189,189,0.5)',
     },
   },
-}
+};
 
 export default (state = defaultAuthenticationState, action) => {
-    switch (action.type) {
-      case 'SET_COLOR' : {
-        const palette = {...state.palette};
+  switch (action.type) {
+    case 'SET_COLOR': {
+      const palette = { ...state.palette };
 
-        palette[action.category][action.label] = action.color;
+      palette[action.category][action.label] = action.color;
 
-        return Object.assign({}, state, {
-          palette: palette
-        })
-      }
-      default:
-    return state;
+      return { ...state, palette };
+    }
+    default:
+      return state;
   }
-}
+};

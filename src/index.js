@@ -1,15 +1,15 @@
 import React from 'react';
 import { render } from 'react-dom';
-import {Provider} from 'react-redux';
-import Theme from './theme'
+import { Provider } from 'react-redux';
 import CssBaseline from '@material-ui/core/CssBaseline';
+import Theme from './theme';
 import App from './components/app';
 import Store from './store/store';
 import 'react-quill/dist/quill.snow.css';
 
-let root = document.createElement('div');
-root.id = "root";
-document.body.appendChild( root );
+const root = document.createElement('div');
+root.id = 'root';
+document.body.appendChild(root);
 document.title = 'Orcish Revenge';
 
 const jsx = (
@@ -22,4 +22,4 @@ const jsx = (
 );
 
 // Now we can render our application into it
-render( jsx, document.getElementById('root') );
+render(jsx, document.getElementById('root'));

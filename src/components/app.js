@@ -1,40 +1,39 @@
-'use strict';
+
+import '@babel/polyfill';
 import '../style/styles.scss';
-import "@babel/polyfill";
 import React, { Component } from 'react';
+import {
+  Router,
+  Route,
+  Switch,
+} from 'react-router-dom';
 import Home from './home';
 import Game from './game/game';
 import Main from './main';
 import Login from './account/login';
 import Register from './account/register';
-import StyleUpdater from './style/styleUpdater';
 
-import {
-Router,
-Route,
-Switch,
-} from 'react-router-dom';
 
 import history from './history';
 
 class App extends Component {
-    constructor(props) {
-      super(props);
+  constructor(props) {
+    super(props);
 
-      this.state = {
-        error: null,
-        currentPath: '',
-      }
-    }
+    this.state = {
+      error: null,
+      currentPath: '',
+    };
+  }
 
     clearError = () => {
-      this.setState({error: null});
+      this.setState({ error: null });
     }
 
     render() {
       return (
         <Router history={history}>
-          <div className='App'> 
+          <div className='App'>
             <title>Orcish Revenge</title>
 
             <Main>
@@ -48,7 +47,7 @@ class App extends Component {
             </Main>
           </div>
         </Router>
-      )
+      );
     }
 }
 

@@ -8,14 +8,14 @@ export default (theme) => ({
     textShadow: theme.shadow.whiteText,
     fontSize: theme.sizing.medium,
 
-    '& input' : {
+    '& input': {
       fontWeight: 600,
       color: theme.palette.common.black,
       textShadow: theme.shadow.whiteText,
       paddingLeft: theme.spacing(3),
       fontSize: '1.2rem',
       userSelect: 'none',
-    }
+    },
   },
 
   labelText: {
@@ -24,9 +24,9 @@ export default (theme) => ({
     paddingLeft: theme.spacing(1),
   },
 
-  // filledTextField: {},
-  // outlinedTextField : {},
-  // multiTextField: {},
+  filledTextField: {},
+  outlinedTextField: {},
+  multiTextField: {},
 
   // // Selects
 
@@ -38,7 +38,7 @@ export default (theme) => ({
 
   // option: {},
 
-  button : {
+  button: {
     cursor: 'pointer',
     textAlign: 'center',
     boxShadow: theme.shadow.boxShadow,
@@ -65,7 +65,7 @@ export default (theme) => ({
     borderBottomColor: theme.palette.primary.main,
   },
 
-  smallButton : {
+  smallButton: {
     minWidth: theme.spacing(4),
     width: theme.spacing(4),
     boxShadow: theme.shadow.textShadow,
@@ -100,8 +100,8 @@ export default (theme) => ({
       textShadow: '1px 1px 2px black',
       fontSize: '1.2rem',
       borderColor: 'black',
-      boxShadow: '2px 2px 2px black'
-    }
+      boxShadow: '2px 2px 2px black',
+    },
   },
 
   form: {
@@ -119,5 +119,5 @@ export default (theme) => ({
 
   centered: {
     margin: 'auto',
-  }
+  },
 });

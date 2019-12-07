@@ -1,37 +1,39 @@
-import React, {Component} from 'react';
-import Container from '@material-ui/core/Container';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import Typography from '@material-ui/core/Typography';
+import { withStyles } from '@material-ui/styles';
 import RPLikes from '../characterSelection/RPlikes';
 import StatAssigner from '../characterSelection/statsAssigner';
-import {HorizontalFlex} from '../../primitives/layout';
+import { HorizontalFlex } from '../../primitives/layout';
 import PhysicalTrait from './physicalTrait';
-import {withStyles} from '@material-ui/styles';
-import {styles} from '../../style/styles';
+import styles from '../../style/styles';
 
-class Stats extends Component {
+class CharacterStats extends Component {
   constructor(props) {
-    super(props)
+    super(props);
 
     this.state = {
       editable: {
 
-      }
-    }
+      },
+    };
   }
 
-  onRPChange = (e) => {
+  onRPChange = () => {
 
   }
 
   render() {
-    const {index, value, character, classes} = this.props;
+    const {
+      index, value, character, classes,
+    } = this.props;
     if (index !== value) return null;
 
     const stats = {
       Strength: character.Strength,
       Agility: character.Agility,
       Endurance: character.Endurance,
-      Reasoning: character.Reasoning ,
+      Reasoning: character.Reasoning,
       Speed: character.Speed,
       MagicAffinity: character.MagicalAffinity,
       Alertness: character.Alertness,
@@ -39,18 +41,20 @@ class Stats extends Component {
       Accuracy: character.Accuracy,
       HitPoints: character.Health,
       MagicPoints: character.MagicPoints,
-      ActionPoints: character.ActionPoints
-    }
+      ActionPoints: character.ActionPoints,
+    };
 
     return (
-      <HorizontalFlex 
+      <HorizontalFlex
         id={`simple-tabpanel-${index}`}
         className={`${classes.spaceBetween}`}
       >
-       <div style={{maxWidth: '30%', marginRight: '0.5rem'}}>
+       <div style={{ maxWidth: '30%', marginRight: '0.5rem' }}>
           <Typography
             variant='h5'
-            style={{borderBottom: 'solid 1px black', maxWidth: '4rem', marginBottom: '0.2rem', textAlign: 'center'}}
+            style={{
+              borderBottom: 'solid 1px black', maxWidth: '4rem', marginBottom: '0.2rem', textAlign: 'center',
+            }}
           >
           Stats
           </Typography>
@@ -66,7 +70,9 @@ class Stats extends Component {
         <div className={`${classes.grow}`}>
           <Typography
             variant='h5'
-            style={{borderBottom: 'solid 1px black', maxWidth: '12rem', marginBottom: '0.2rem', textAlign: 'center'}}
+            style={{
+              borderBottom: 'solid 1px black', maxWidth: '12rem', marginBottom: '0.2rem', textAlign: 'center',
+            }}
           >
             Personality Traits
           </Typography>
@@ -74,13 +80,15 @@ class Stats extends Component {
             onChange={this.onRPChange}
             character={character}
           />
-          
+
         </div>
         <div className={classes.physicalTraits}>
-          <img className='characterAvatar' src={character.Avatar} style={{maxWidth: '20rem'}}/>
+          <img className='characterAvatar' src={character.Avatar} style={{ maxWidth: '20rem' }}/>
           <Typography
             variant='h5'
-            style={{borderBottom: 'solid 1px black', maxWidth: '12rem', marginBottom: '0.2rem', textAlign: 'center'}}
+            style={{
+              borderBottom: 'solid 1px black', maxWidth: '12rem', marginBottom: '0.2rem', textAlign: 'center',
+            }}
           >
             Physical Traits
           </Typography>
@@ -92,11 +100,19 @@ class Stats extends Component {
           <PhysicalTrait label='Skin' value={character.SkinColor} />
           <PhysicalTrait label='Eyes' value={character.EyeColor} />
         </div>
-        
 
-      </HorizontalFlex>  
-    )
+
+      </HorizontalFlex>
+    );
   }
 }
 
-export default withStyles(styles)(Stats);
+CharacterStats.propTypes = {
+  classes: PropTypes.object.isRequired,
+  index: PropTypes.number.isRequired,
+  value: PropTypes.number.isRequired,
+  character: PropTypes.object.isRequired,
+};
+
+
+export default withStyles(styles)(CharacterStats);

@@ -1,16 +1,13 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import Container from '@material-ui/core/Container';
 
-class Skills extends Component {
-  constructor(props) {
-    super(props)
-  }
-
+class CharacterSkills extends Component {
   render() {
-    const {index, value} = this.props;
+    const { index, value } = this.props;
 
     return (
-      <Container role='tabpanel' 
+      <Container role='tabpanel'
         hidden={value !== index}
         id={`simple-tabpanel-${index}`}
         aria-labelledby={`simple-tab-${index}`}
@@ -18,9 +15,15 @@ class Skills extends Component {
         <div>
           Skills
         </div>
-      </Container>  
-    )
+      </Container>
+    );
   }
 }
 
-export default Skills;
+CharacterSkills.propTypes = {
+  index: PropTypes.number.isRequired,
+  value: PropTypes.number.isRequired,
+};
+
+
+export default CharacterSkills;
