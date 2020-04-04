@@ -84,11 +84,8 @@ class CharacterSheetContainer extends Component {
 }
 
 CharacterSheetContainer.propTypes = {
-  classes: PropTypes.object.isRequired,
-  index: PropTypes.number.isRequired,
-  value: PropTypes.number.isRequired,
-  character: PropTypes.object.isRequired,
-  open: PropTypes.func.isRequired,
+  character: PropTypes.object,
+  open: PropTypes.bool.isRequired,
   onClose: PropTypes.func.isRequired,
 };
 

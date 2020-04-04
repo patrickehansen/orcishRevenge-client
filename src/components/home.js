@@ -36,7 +36,7 @@ class Home extends Component {
 }
 
 Home.propTypes = {
-  classes: PropTypes.func.isRequired,
+  classes: PropTypes.object.isRequired,
   isAuthed: PropTypes.bool.isRequired,
 };
 

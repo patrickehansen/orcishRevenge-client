@@ -62,7 +62,6 @@ class AvatarSelector extends Component {
 AvatarSelector.propTypes = {
   open: PropTypes.bool.isRequired,
   submit: PropTypes.func.isRequired,
-  onClose: PropTypes.func.isRequired,
   hideAvatar: PropTypes.func.isRequired,
 };
 

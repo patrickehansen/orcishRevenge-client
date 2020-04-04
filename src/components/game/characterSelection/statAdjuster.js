@@ -152,7 +152,10 @@ class StatAdjuster extends Component {
 StatAdjuster.propTypes = {
   label: PropTypes.string.isRequired,
   modifiers: PropTypes.object,
-  value: PropTypes.number.isRequired,
+  value: PropTypes.oneOfType([
+    PropTypes.number,
+    PropTypes.object,
+  ]).isRequired,
   classes: PropTypes.object.isRequired,
   compact: PropTypes.bool,
   name: PropTypes.string.isRequired,
@@ -161,7 +164,7 @@ StatAdjuster.propTypes = {
   canIncrementByTenths: PropTypes.bool,
   increment: PropTypes.func,
   decrement: PropTypes.func,
-  canAdjust: PropTypes.bool.isRequired,
+  canAdjust: PropTypes.bool,
 };
 
 export default withStyles(styles)(StatAdjuster);

@@ -26,10 +26,12 @@ class TraitDisplay extends Component {
 
 TraitDisplay.propTypes = {
   classes: PropTypes.object.isRequired,
-  index: PropTypes.number.isRequired,
   label: PropTypes.string.isRequired,
-  value: PropTypes.number.isRequired,
-  character: PropTypes.object.isRequired,
+  value: PropTypes.oneOfType([
+    PropTypes.number,
+    PropTypes.string,
+  ]),
+  character: PropTypes.object,
 };
 
 

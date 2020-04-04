@@ -68,8 +68,8 @@ StatsAssigner.propTypes = {
   classes: PropTypes.object.isRequired,
   context: PropTypes.string,
   stats: PropTypes.object.isRequired,
-  increment: PropTypes.func.isRequired,
-  decrement: PropTypes.func.isRequired,
+  increment: PropTypes.func,
+  decrement: PropTypes.func,
   remainingPoints: PropTypes.number,
   GM: PropTypes.bool,
 };

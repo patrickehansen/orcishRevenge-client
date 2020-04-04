@@ -117,13 +117,15 @@ Game.propTypes = {
   classes: PropTypes.object.isRequired,
   availableCharacters: PropTypes.array.isRequired,
   possessedCharacter: PropTypes.object,
-  username: PropTypes.string.isRequired,
+  username: PropTypes.string,
   token: PropTypes.string.isRequired,
+  loggingOut: PropTypes.bool.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   possessedCharacter: state.game.possessedCharacter,
   availableCharacters: state.account.availableCharacters,
+  loggingOut: state.account.loggingOut,
   username: state.account.username,
   token: state.account.IDToken,
 });

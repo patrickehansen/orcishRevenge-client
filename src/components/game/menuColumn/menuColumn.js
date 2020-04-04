@@ -91,7 +91,6 @@ class MenuColumn extends Component {
 
 MenuColumn.propTypes = {
   classes: PropTypes.object.isRequired,
-  onLogout: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = () => ({

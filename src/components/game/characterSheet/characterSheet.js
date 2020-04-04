@@ -119,8 +119,6 @@ class CharacterSheet extends Component {
 
 CharacterSheet.propTypes = {
   classes: PropTypes.object.isRequired,
-  index: PropTypes.number.isRequired,
-  value: PropTypes.number.isRequired,
   character: PropTypes.object.isRequired,
   poppedOut: PropTypes.bool.isRequired,
   onClose: PropTypes.func.isRequired,

@@ -135,7 +135,7 @@ Notes.propTypes = {
   index: PropTypes.number.isRequired,
   notepads: PropTypes.array.isRequired,
   value: PropTypes.number.isRequired,
-  allNotepads: PropTypes.array.isRequired,
+  allNotepads: PropTypes.array,
 };
 
 

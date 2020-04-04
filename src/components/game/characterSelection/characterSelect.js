@@ -135,13 +135,13 @@ CharacterSelect.propTypes = {
   classes: PropTypes.object.isRequired,
   availableCharacters: PropTypes.array,
   canBeGM: PropTypes.bool,
-  open: PropTypes.object.isRequired,
-  close: PropTypes.object.isRequired,
+  open: PropTypes.bool.isRequired,
+  close: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   availableCharacters: state.account.availableCharacters,
-  canBeGM: state.account.IsGM,
+  canBeGM: state.account.isGM,
 });
 
 export default connect(mapStateToProps)(withStyles(styles)(CharacterSelect));

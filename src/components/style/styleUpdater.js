@@ -88,7 +88,7 @@ class StyleUpdater extends Component {
 StyleUpdater.propTypes = {
   classes: PropTypes.object.isRequired,
   style: PropTypes.object.isRequired,
-  onClose: PropTypes.func.isRequired,
+  onClose: PropTypes.func,
   open: PropTypes.bool.isRequired,
 };
 
