@@ -74,6 +74,9 @@
     },
     "moduleDirectories": [
       "node_modules"
+    ],
+    "setupFilesAfterEnv": [
+      "<rootDir>/enzyme.config.js"
     ]
   },
   "devDependencies": {

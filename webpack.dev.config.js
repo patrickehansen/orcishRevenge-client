@@ -6,7 +6,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const SRC_DIR = path.resolve(__dirname, 'src');
 const OUTPUT_DIR = path.resolve(__dirname, 'dist');
 
-// Any directories you will be adding code/files into, need to be added to this array so webpack will pick them up
+// Any directories we will be adding code/files into need to be added to this array so webpack will pick them up
 const defaultInclude = [SRC_DIR];
 
 module.exports = {
