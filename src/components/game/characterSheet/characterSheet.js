@@ -41,7 +41,7 @@ class CharacterSheet extends Component {
     const { character, classes } = this.props;
 
     return (
-      <Container className={classes.characterSheet}>
+      <Container className={`${classes.characterSheet} characterSheet`}>
         <HorizontalFlex >
           <Typography variant='h2' className={classes.grow} >
             {character && character.Name}

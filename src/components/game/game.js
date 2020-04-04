@@ -12,8 +12,10 @@ import getPlayers from '../../requests/game/getPlayers';
 import getNotepad from '../../requests/utility/getNotepad';
 import getAccountDetails from '../../requests/account/getAccountInfo';
 
+import MenuColumn from './menuColumn/menuColumn';
 
-import { setCharacterInfo, setToken } from '../../store/actions/actions';
+
+import { setCharacterInfo, setToken, setLoggingOut } from '../../store/actions/actions';
 
 import config from '../../../config';
 
@@ -53,18 +55,28 @@ class Game extends Component {
     }
   }
 
+  componentDidUpdate(prevProps) {
+    if (this.props.loggingOut && !prevProps.loggingOut) this.onLogout();
+  }
+
   onSendChat = (message) => {
     this.socketClient.SendChatMessage(message);
   }
 
   onLogout = () => {
+    // Remove the local storage key and set the store info to null
     localStorage.removeItem(config.localstorageKey);
     setToken(null);
     setCharacterInfo(null);
 
+    // Disconnect and clear the socket client for GC
     this.socketClient.disconnect();
     this.socketClient = null;
 
+    // Set the loggingout that sent us here so we don't double fire
+    setLoggingOut(false);
+
+    // Set state for redirection
     this.setState({
       loggedOut: true,
     });
@@ -98,12 +110,17 @@ class Game extends Component {
           maxSize={650}
           primary='second'
           >
-          <Board
-            onLogout = {this.onLogout}
-          />
-          <ChatRoll
-            onSendChat={this.onSendChat}
-          />
+          <div>
+          <Board />
+          <MenuColumn />
+          </div>
+          
+
+            <ChatRoll
+              onSendChat={this.onSendChat}
+            />
+
+          
         </SplitPane>
         <CharacterSelect open={!this.props.possessedCharacter} close={this.closeCharacterSelect}/>
         <StyleUpdater open={false} onClose={null}/>

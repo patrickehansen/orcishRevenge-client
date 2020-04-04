@@ -1,0 +1,15 @@
+.menuColumn {
+  transition: all 500ms;
+  transition-timing-function: ease-in-out;
+}
+
+.menuColumn:hover {
+  transition: all ease 300ms;
+  right: 1.5rem;
+  -webkit-transition: all 2s ease-out;
+  //                     right 2s ease-out;
+  // -moz-transition: background-color 2s ease-out;
+  // //-o-transition: background-color 2s ease-out;
+  // transition: background-color 2s ease-out;
+}
+

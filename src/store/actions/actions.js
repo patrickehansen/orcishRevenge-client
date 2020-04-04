@@ -35,6 +35,13 @@ export const setAccountDetails = (details) => {
   });
 };
 
+export const setLoggingOut = (loggingOut) => {
+  store.dispatch({
+    type: 'SET_LOGGING_OUT',
+    loggingOut,
+  })
+}
+
 export const updateCharacter = (character) => {
   store.dispatch({
     type: 'UPDATE_CHARACTER',

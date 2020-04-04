@@ -6,6 +6,8 @@ import Container from '@material-ui/core/Container';
 
 import { ContainedButton as Button } from '../primitives/button';
 
+import MenuColumn from '../game/menuColumn/menuColumn';
+
 import ChatList from './chat/chatList';
 import ErrorComponent from '../util/error';
 

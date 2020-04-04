@@ -33,12 +33,21 @@ export default (theme) => ({
     margin: 'auto',
     backgroundColor: theme.palette.background.menu,
   },
+  rightPane: {
+
+  },
   menuColumn: {
     float: 'right',
-    maxWidth: '10rem',
-    position: 'relative',
-    right: '-70px',
+    maxWidth: '2.5rem',
+    position: 'sticky',
+    right: '11.5rem',
+    transition: 'all ease-in-out 500ms',
+    '&:hover': {
+      transition:'all ease 300ms',
+      maxWidth: '4rem',
+    }
   },
+
   menuColumnContainer: {
 
   },

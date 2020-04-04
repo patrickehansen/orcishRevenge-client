@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import Container from '@material-ui/core/Container';
 
 import { withStyles } from '@material-ui/styles';
-import MenuColumn from './menuColumn/menuColumn';
+
 
 import ErrorComponent from '../util/error';
 import GameBoard from './board/gameBoard';
@@ -26,7 +26,7 @@ class Board extends Component {
     return (
       <Container component='div' className={`${classes.boardRoot} board-root`}>
         <GameBoard />
-        <MenuColumn />
+        
         <ErrorComponent error={this.state.error} />
       </Container>
     );

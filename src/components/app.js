@@ -26,29 +26,29 @@ class App extends Component {
     };
   }
 
-    clearError = () => {
-      this.setState({ error: null });
-    }
+  clearError = () => {
+    this.setState({ error: null });
+  }
 
-    render() {
-      return (
-        <Router history={history}>
-          <div className='App'>
-            <title>Orcish Revenge</title>
+  render() {
+    return (
+      <Router history={history}>
+        <div className='App'>
+          <title>Orcish Revenge</title>
 
-            <Main>
-              <Switch>
-                <Route exact path='/' component={Home} />
-                <Route path='/login' component={Login} />
-                <Route path='/register' component={Register} />
-                <Route path='/game' component={Game} />
-                <Route component={Home}/>
-              </Switch>
-            </Main>
-          </div>
-        </Router>
-      );
-    }
+          <Main>
+            <Switch>
+              <Route exact path='/' component={Home} />
+              <Route path='/login' component={Login} />
+              <Route path='/register' component={Register} />
+              <Route path='/game' component={Game} />
+              <Route component={Home}/>
+            </Switch>
+          </Main>
+        </div>
+      </Router>
+    );
+  }
 }
 
 export default App;

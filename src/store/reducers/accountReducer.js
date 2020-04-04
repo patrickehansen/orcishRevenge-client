@@ -4,6 +4,8 @@ const defaultAuthenticationState = {
   IDToken: localStorage.getItem(config.localstorageKey),
   availableCharacters: [],
   possessedCharacter: null,
+  loggingOut: false,
+  username: null,
 };
 
 // console.log(localStorage.getItem(config.localstorageKey))
@@ -22,6 +24,9 @@ const authenticationReducer = (state = defaultAuthenticationState, action) => {
     }
     case 'SET_GM': {
       return { ...state, isGM: action.isGM };
+    }
+    case 'SET_LOGGING_OUT': {
+      return { ...state, loggingOut: action.loggingOut};
     }
     default:
       return state;
