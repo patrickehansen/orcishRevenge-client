@@ -2,15 +2,11 @@ import React from 'react';
 import { createMount } from '@material-ui/core/test-utils';
 import '@babel/polyfill';
 import Provider from '../../provider';
-import { configure } from 'enzyme';
-import Adapter from 'enzyme-adapter-react-16';
 import {JssProvider} from 'react-jss';
 
 const generateClassName = (rule, styleSheet) =>
   `${styleSheet.options.classNamePrefix}-${rule.key}`;
 
-
-configure({ adapter: new Adapter() });
 
 import TextField, {FilledTextField, OutlinedTextField, MultiTextField} from './textField';
 

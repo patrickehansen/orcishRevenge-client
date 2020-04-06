@@ -6,6 +6,7 @@ import Theme from './theme';
 import App from './components/app';
 import Store from './store/store';
 import 'react-quill/dist/quill.snow.css';
+import './lib/math';
 
 const root = document.createElement('div');
 root.id = 'root';

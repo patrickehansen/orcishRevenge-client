@@ -13,6 +13,8 @@ class VerticalFlex extends Component {
       <Container
         className={`${this.props.className} ${classes.verticalFlex}`}
         id={this.props.id}
+        onMouseEnter={this.props.onMouseEnter}
+        onMouseLeave={this.props.onMouseLeave}
       >
         {this.props.children}
       </Container>

@@ -37,6 +37,7 @@ class Game extends Component {
     this.state = {
       error: null,
       loggedOut: false,
+      paneSize: 300,
     };
   }
 
@@ -94,6 +95,12 @@ class Game extends Component {
     }
   }
 
+  dragEnd = (size) => {
+    this.setState({
+      paneSize: size
+    })
+  }
+
   render() {
     if (this.state.loggedOut) {
       return <Redirect to='/' />;
@@ -109,18 +116,17 @@ class Game extends Component {
           defaultSize={300}
           maxSize={650}
           primary='second'
-          >
+          onDragFinished={this.dragEnd}
+        >
           <div>
-          <Board />
-          <MenuColumn />
-          </div>
-          
-
-            <ChatRoll
-              onSendChat={this.onSendChat}
+            <Board 
+              paneSize={this.state.paneSize}
             />
-
-          
+            <MenuColumn />
+          </div>
+          <ChatRoll
+            onSendChat={this.onSendChat}
+          />
         </SplitPane>
         <CharacterSelect open={!this.props.possessedCharacter} close={this.closeCharacterSelect}/>
         <StyleUpdater open={false} onClose={null}/>

@@ -28,7 +28,7 @@ export default class MapTile extends Component {
   }
 
   render() {
-    const { x, y } = this.props.coords;
+    const { x, y } = this.props.tile.coordinates;
 
     const isOdd = x % 2 === 1;
 
@@ -52,5 +52,5 @@ export default class MapTile extends Component {
 }
 
 MapTile.propTypes = {
-  coords: PropTypes.object.isRequired,
+  tile: PropTypes.object.isRequired,
 };

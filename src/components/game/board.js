@@ -25,7 +25,9 @@ class Board extends Component {
 
     return (
       <Container component='div' className={`${classes.boardRoot} board-root`}>
-        <GameBoard />
+        <GameBoard 
+          paneSize={this.props.paneSize}
+        />
         
         <ErrorComponent error={this.state.error} />
       </Container>
@@ -35,6 +37,7 @@ class Board extends Component {
 
 Board.propTypes = {
   classes: PropTypes.object.isRequired,
+  paneSize: PropTypes.number.isRequired,
 };
 
 export default withStyles(styles)(Board);
