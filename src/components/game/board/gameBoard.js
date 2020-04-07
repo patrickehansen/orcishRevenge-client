@@ -9,17 +9,12 @@ import { ReactReduxContext, Provider } from "react-redux";
 import WorldLayer from './layers/worldLayer';
 import PlayerLayer from './layers/playerLayer';
 
-import Token from './token';
 import ErrorComponent from '../../util/error';
 
 const scaleBy = 1.11;
 
 const maxScale = 2.3;
 const minScale = 0.15;
-
-function screenToWorld(pos) {
-  console.log('screen to world!', pos, this)
-}
 
 class GameBoard extends Component {
   constructor(props) {
@@ -129,12 +124,10 @@ class GameBoard extends Component {
 }
 
 GameBoard.propTypes = {
-  tiles: PropTypes.array.isRequired,
   paneSize: PropTypes.number.isRequired,
 };
 
 const mapStateToProps = (state) => ({
-  tiles: state.map.tiles,
 });
 
 export default connect(mapStateToProps)(GameBoard);

@@ -1,63 +1,47 @@
-// Determines how many columns and rows of tiles to generate
-const columns = 20;
-const rows = 20;
 
-// This is a placeholder tile generator to figure out how to handle map tiles
-function GenerateTiles() {
-  // Hold an array of all cells generated
-  const cells = [];
+import {defineGrid, extendHex} from 'honeycomb-grid';
 
-  // Hold a lookup array so we can look up tiles later
-  const map = [];
+// square roots are expensive. do it once.
+const root3 = Math.sqrt(3);
 
-  // Build up our tiles
-  for (let i = 0; i < columns; i++) {
-    const col = [];
-    for (let j = 0; j < rows; j++) {
-      // Base tile object with coordinates
-      const tile = {
-        coordinates : {x: i, y: j}
-      }
-
-      col[j] = tile;
-
-      cells.push(tile);
-    }
-
-    map[i] = col;
-  }
-
-  // Find the neighbors
-  cells.forEach(v => {
-    const {x, y} = v.coordinates;
-
-    // Pull the left, center and right columns
-    v.neighbors = [x > 0 ? x - 1 : undefined, x, x < columns - 1 ? x + 1 : undefined].reduce((a, c, i, s) => {
-      // If we are out of bounds, we previously defined the element as undefined
-      if (c === undefined) return a;
-
-      if (i === 1) {
-        // For the cells column, pull the one above it
-        a.push(map[c][y-1]);
-      }else{
-        // For the others, we want the same row as the cell
-        a.push(map[c][y]);
-        
-      }
-
-      // Always pull the one below
-      a.push(map[c][y+1]);
-
-      return a;
-    },[])
+// The grid generation function requires the state to do its work
+function getGrid(state) {
+  const hexRadius = state.hexRadius * state.mapScale;
+  const hex = extendHex({
+    size: hexRadius,
+    orientation: 'flat',
+    component: null, // These to be assigned by the component that receives it
+    ref: null,
+    hash: null,
   })
 
-  return cells;
+  // Calculate the actual row and column size
+  const hexWidth = hexRadius * 1.5;
+  const hexHeight = hexRadius * root3;
+
+  // Define the grid with the hex prototype
+  const Grid = defineGrid(hex);
+
+  // Calculate how many rows and columns we need and then generate them
+  return {
+    hexes: Grid.rectangle({ width: Math.floor((state.screenWidth - hexRadius)  / hexWidth), height: Math.floor((state.screenHeight - hexRadius) / hexHeight)}),
+    grid: Grid,
+  } 
 }
 
 const defaultAuthenticationState = {
-  tiles: GenerateTiles(),
+  hexRadius : 20,
+  mapScale : 1,
+  screenWidth : 1920,
+  screenHeight : 1080,
+  hexes: null,
+  grid: null
 };
+
+const grid = getGrid(defaultAuthenticationState);
+
+defaultAuthenticationState.grid = grid.grid;
+defaultAuthenticationState.hexes = grid.hexes;
 
 const mapReducer = (state = defaultAuthenticationState, action) => {
   switch (action.type) {

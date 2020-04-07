@@ -16,20 +16,14 @@ class PlayerLayer extends Component {
   }
 
   render() {
-    const width = 1920;
-    const height = 1080;
-
-    // Do we need the group?
-
     return (
       <Layer >
         {[...Array(10)].map((_, i) => (
           <Token
-            bounds={this.rect}
             key={i}
-            x={Math.random() * width}
-            y={Math.random() * height}
-            radius={25}
+            x={Math.random() * this.props.screenWidth}
+            y={Math.random() * this.props.screenHeight}
+            radius={16.5 * this.props.mapScale}
           />
         ))}
       </Layer>
@@ -41,6 +35,9 @@ PlayerLayer.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
+  mapScale: state.map.mapScale,
+  screenWidth: state.map.screenWidth,
+  screenHeight: state.map.screenHeight,
 });
 
 export default connect(mapStateToProps)(PlayerLayer);

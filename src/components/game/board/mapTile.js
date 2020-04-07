@@ -2,15 +2,6 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { RegularPolygon } from 'react-konva';
 
-const offsetConstant = 6.4641; // fucking magic. No idea where it comes from
-const size = 15;
-
-const w = size * 2;
-const h = Math.sqrt(3) * size;
-
-const stdXOffset = w;
-const stdYOffset = h - 5;
-
 export default class MapTile extends Component {
   constructor(props) {
     super(props);
@@ -19,28 +10,34 @@ export default class MapTile extends Component {
       fill: undefined,
       selected: false,
     };
+
+    this.ref = React.createRef();
+
+    this.props.grid.component = this;
+    this.props.grid.ref = this.ref;
+    this.props.grid.hash = `${this.props.grid.x}:${this.props.grid.y}`
   }
 
-  onClick= () => {
+  onClick = (e) => {
     this.setState({
       selected: !this.state.selected,
     });
   }
 
   render() {
-    const { x, y } = this.props.tile.coordinates;
+    const center = this.props.grid.toPoint();
 
-    const isOdd = x % 2 === 1;
-
-    const calcX = stdXOffset + x * w * 0.75 * 2 + 0; // (isOdd ? 16  : 40);
-    const calcY = stdYOffset + y * h * 2 + (isOdd ? h / offsetConstant : w); //
+    const xOff = this.props.grid.size.xRadius;
+    const yOff = this.props.grid.size.yRadius;
 
     return (
       <RegularPolygon
-        x={calcX}
-        y={calcY}
+        ref={this.ref}
+        x={center.x + xOff}
+        y={center.y + yOff}
+        id={this.props.grid.hash}
         sides={6}
-        radius={w}
+        radius={this.props.grid.size.xRadius}
         fill={this.state.selected ? 'red' : undefined}
         onClick={this.onClick}
         rotation={90}
@@ -52,5 +49,5 @@ export default class MapTile extends Component {
 }
 
 MapTile.propTypes = {
-  tile: PropTypes.object.isRequired,
+  grid: PropTypes.object.isRequired,
 };

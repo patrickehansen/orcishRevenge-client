@@ -3,8 +3,9 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Layer, Group, Rect } from 'react-konva';
-import { ReactReduxContext, Provider } from "react-redux";
+
 import MapTile from '../mapTile';
+
 
 class World extends Component {
   constructor(props) {
@@ -19,9 +20,6 @@ class World extends Component {
   }
 
   render() {
-    const width = 1920;
-    const height = 1080;
-
     return (
       <Layer >
         <Rect 
@@ -32,11 +30,11 @@ class World extends Component {
           stroke='black'
           fill='white'
           strokeWidth={1}
-          width={width}
-          height={height}
+          width={this.props.screenWidth}
+          height={this.props.screenHeight}
         />
           <Group>
-            {this.props.tiles.map((v, i) => <MapTile tile={v} key={i} />)}
+            {this.props.hexes.map((v, i) => <MapTile grid={v} key={i} />)}
           </Group>
       </Layer>
     );
@@ -44,11 +42,13 @@ class World extends Component {
 }
 
 World.propTypes = {
-  tiles: PropTypes.array.isRequired,
+  hexes: PropTypes.array.isRequired,
 };
 
 const mapStateToProps = (state) => ({
-  tiles: state.map.tiles,
+  hexes: state.map.hexes,
+  screenWidth: state.map.screenWidth,
+  screenHeight: state.map.screenHeight,
 });
 
 export default connect(mapStateToProps)(World);

@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
+import { connect } from 'react-redux';
 import { Group, Star, Circle, Line } from 'react-konva';
 import Hex from '../utility/hex';
-import {screenToWorld} from '../../../lib/world';
+import {screenToWorld, worldToScreen} from '../../../lib/world';
 
 class Token extends Component {
   constructor(props) {
@@ -26,11 +27,33 @@ class Token extends Component {
         scaleY: 1.1
       });
       e.target.draw();
+    }else{
+      // We're finding an offset to make the rotation a bit smoother. It's not great.
+      const pos = {
+        x: e.evt.x,
+        y: e.evt.y,
+      }
+
+      const currentPos = this.dragging.absolutePosition();
+      let currentRotation = this.dragging.rotation(); 
+  
+      if (currentRotation >= 360) currentRotation -= 360;
+      if (currentRotation < 0) currentRotation += 360;
+      
+      // Find the relative direction and convert to degrees
+      let dir = (Math.atan2(currentPos.x - pos.x,currentPos.y - pos.y) * 180 / Math.PI)
+
+      this.dragging.rotationOffset = currentRotation - dir;
     }
   };
 
   handleDragEnd = e => {
     if (!this.dragging) return;
+
+    // Find the hex that is below us and snap to it
+    const worldPos = screenToWorld(e.target.getStage(), e.target.absolutePosition());
+    const hexCoords = this.props.grid.pointToHex(worldPos.x, worldPos.y);
+    const hex = this.props.hexes.get(hexCoords);
 
     if (!this.dragging.rotating) {
       e.target.to({
@@ -40,11 +63,16 @@ class Token extends Component {
         scaleY: 1,
         shadowOffsetX: 5,
         shadowOffsetY: 5,
+        x: hex.ref.current.attrs.x ,
+        y: hex.ref.current.attrs.y ,
       });
     }else{
       // Snap to nearest 60 degrees
-      e.target.rotation(Math.round(this.dragging.rotation() / 60 ) * 60);
-      this.dragging.getStage().batchDraw();
+      e.target.to({
+        duration: 0.5,
+        easing: Konva.Easings.ElasticEaseOut,
+        rotation: Math.round(this.dragging.rotation() / 60 ) * 60,
+      })
     }
 
     this.dragging = null;
@@ -53,13 +81,14 @@ class Token extends Component {
   rotate = (pos) => {
     // Get the current position
     const currentPos = this.dragging.absolutePosition();
-    //const currentRotation = this.dragging.rotation(); I should use this at some point, but I need a better way to visualize it to debug it properly
 
     // Find the relative direction and convert to degrees
-    const dir = Math.atan2(pos.y - currentPos.y, pos.x - currentPos.x) * 180 / Math.PI;
+    const dir = ( Math.atan2(pos.y - currentPos.y, pos.x - currentPos.x) * 180 / Math.PI) + 90;
 
-    // Set the new rotation. I would like to base it off of currentRotation eventually
-    this.dragging.rotation(dir - 90);
+    // offset by the rotation offset
+    const newDir = dir + this.dragging.rotationOffset;
+
+    this.dragging.rotation(newDir);
 
     // Get the stage and batchDraw from there to update the visual effect. If we just call draw on the object it does weird black shit
     this.dragging.getStage().batchDraw();
@@ -79,8 +108,6 @@ class Token extends Component {
     // Find the bounding rectangle
     const stage = this.dragging.getStage();
     const cur = stage.find('#world')[0];
-
-    console.log(this.dragging.width(), this.dragging.height())
 
     // Get the position, size and scale of the bounding rectangle
     const absPos = cur.absolutePosition();
@@ -140,7 +167,7 @@ class Token extends Component {
         <Line
           stroke={props.color}
           strokeWidth={1}
-          points={[0,this.props.radius + 10,0,this.props.radius]}
+          points={[0,this.props.radius + 5,0,this.props.radius - 5]}
         />
         <Star
           numPoints={3}
@@ -162,4 +189,9 @@ Token.defaultProps = {
   radius: 40
 }
 
-export default Token;
+const mapStateToProps = (state) => ({
+  grid: state.map.grid,
+  hexes: state.map.hexes,
+})
+
+export default connect(mapStateToProps)(Token);
