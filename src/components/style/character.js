@@ -328,4 +328,62 @@ export default (theme) => ({
     width: '100%',
     padding: theme.spacing(0),
   },
+
+  characterSkills : {
+    padding: 0,
+    display: 'block',
+    minHeight: '38rem',
+    backgroundColor: theme.palette.background.transparentGray,
+  },
+
+  skillSection: {
+    width: '99%',
+
+    '& label' : {
+      fontSize: '1.1rem',
+    }
+  },
+
+  skillsHalf: {
+    width: '50%',
+    float: 'left',
+    minHeight: '37.8rem',
+    backgroundColor: theme.palette.background.transparentGray,
+  },
+
+  skill: {
+    justifyContent: 'space-between',
+    margin: '0.2rem',
+    padding: '0.2rem',
+  },
+
+  skillbox: {
+    backgroundColor: theme.palette.background.transparentGray,
+    flexGrow: 20,
+  },
+
+  addSkillButton : {
+    maxHeight: '1.3rem',
+    padding: 0,
+    zIndex: 1,
+    marginLeft: '10%',
+    width: '80%',
+    marginTop: '0.1rem',
+    marginBottom: '0.2rem',
+    '& span' : {
+      maxHeight: 'inherit',
+    }
+  },
+
+  skillEditor: {
+    width: '80%',
+    height: '35%',
+    marginTop: '15%',
+    backgroundColor: theme.palette.background.default
+  },
+
+  skillNotes: {
+    marginTop: '0.1rem',
+    maxHeight: '10rem',
+  }
 });

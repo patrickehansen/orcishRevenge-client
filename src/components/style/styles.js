@@ -133,4 +133,17 @@ export default (theme) => ({
   noteTabActive: {
     backgroundColor: theme.palette.common.white,
   },
+  rightFloat: {
+    float: 'right',
+  },
+  confirm: {
+    backgroundColor: theme.palette.common.white,
+    width: '25%',
+    marginTop: '25%',
+    textAlign: 'center',
+    fontSize: '2rem',
+  },
+  spaceBetween: {
+    justifyContent: 'space-between'
+  }
 });

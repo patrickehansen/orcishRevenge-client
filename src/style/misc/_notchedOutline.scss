@@ -1,0 +1,37 @@
+.notchedOutline {
+  margin: 4px;
+  padding: 0;
+  border: 0;
+  display: inline-flex;
+  flex-direction: column;
+  vertical-align: top;
+  width: 99%;
+
+  label {
+    z-index: 1;
+    line-height: 11px;
+    padding: 0;
+    background: white;
+    position: relative;
+    right: 3rem;
+    padding-left: 0.5rem;
+    transform: translate(0,0) scale(0.75);
+  }
+  .body {
+    position: relative;
+    border-radius: 4px;
+
+
+    .outline {
+      margin: 0;
+      padding: 0;
+      border: solid 1px black;
+      position: absolute;
+      top: -5px;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      border-radius: 4px
+    }
+  }
+}

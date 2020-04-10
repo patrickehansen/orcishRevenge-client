@@ -48,6 +48,38 @@ export default (theme) => ({
     }
   },
 
+  middleMenuColumn: {
+    float: 'right',
+    width: '2.5rem',
+    marginTop: '15rem',
+    marginRight: '0rem',
+    right: '11.5rem',
+    position: 'sticky',
+  },
+
+  statButtonContainer: {
+    width: '5rem',
+    position: 'relative',
+    left: '2rem',
+
+    transition: 'all ease-in-out 500ms',
+    '&:hover': {
+      transition:'all ease 300ms',
+      left: '0.5rem'
+    }
+  },
+
+  statButton: {
+    margin: '2px',
+    borderRadius: '100%',
+    minWidth: '2rem',
+    maxWidth: '2rem',
+    left: '1.5rem',
+    padding: '6px 0px',
+    backgroundColor: theme.palette.background.solidGray,
+
+  },
+
   menuColumnContainer: {
 
   },
