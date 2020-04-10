@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
@@ -6,12 +7,18 @@ import { withStyles } from '@material-ui/styles';
 import styles from '../../style/styles';
 
 class Skill extends Component {
+  requestEdit = () => {
+    console.log('requesting edit', this.props.skill);
+    this.props.onEdit(this.props.skill)
+  }
+
   render() {
     const { classes, skill } = this.props;
 
     return (
       <Paper
         className={classes.skill} 
+        onDoubleClick={this.requestEdit}
       >
       <Grid 
           container 
@@ -28,7 +35,7 @@ class Skill extends Component {
           </Grid>
 
           <Grid item xs={1}>
-          {skill.APCost && skill.MPCost+'AP'}
+          {skill.APCost && skill.APCost+'AP'}
           </Grid>
 
           
@@ -48,7 +55,7 @@ class Skill extends Component {
 }
 
 Skill.propTypes = {
-
+  skill: PropTypes.object
 };
 
 

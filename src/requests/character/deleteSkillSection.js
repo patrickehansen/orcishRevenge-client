@@ -4,13 +4,13 @@ import config from '../../../config';
 import store from '../../store/store';
 import { updateCharacter } from '../../store/actions/actions'; 
 
-const api = `${config.server}/api/character/skills/delete`;
+const api = `${config.server}/api/character/skillSection/delete`;
 
-export default async function deleteSkill(skill) {
+export default async function deleteSkillSection(section) {
   const response = await axios.post(
     api,
     {
-      ...skill,
+      ...section,
       character: store.getState().game.possessedCharacter['_id'],
     },
     {

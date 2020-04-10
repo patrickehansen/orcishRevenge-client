@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { Modal, DialogActions, DialogContent, Grid, Container } from '@material-ui/core';
 import ReactQuill from 'react-quill';
 
+import Confirm from '../../util/confirm';
 import { OutlinedTextField } from '../../primitives/textField';
 import Button from '../../primitives/button/containedButton';
 import { withStyles } from '@material-ui/styles';
@@ -61,6 +62,7 @@ class SkillEditor extends Component {
     const target = e.target;
 
     const data = {
+      '_id' : this.props.skill['_id'],
       Name: target.Name.value,
       MPCost: target.MPCost.value,
       APCost: target.APCost.value,
@@ -144,8 +146,7 @@ class SkillEditor extends Component {
               <Container className={classes.skillNotes}>
                 <ReactQuill
                   ref={this.reactQuillRef}
-                  value={skill ? skill.Notes : ''}
-                  onChange={this.handleChange}
+                  defaultValue={skill ? skill.Notes : ''}
                 />
               </Container>
             </DialogContent>
@@ -155,7 +156,7 @@ class SkillEditor extends Component {
                 <Grid item xs={5}>
                 {
                   
-                  !this.props.skill && (
+                  this.props.skill && (
                     <Button
                     color='default'
                     onClick={this.promptDelete}
@@ -188,24 +189,11 @@ class SkillEditor extends Component {
               </Grid>
             </DialogActions>
           </form>
-          <Modal
+          <Confirm
             open={this.state.deleting}
-            onClose={this.cancelDelete}
-          >
-            <Container className={classes.confirm}>
-              <DialogContent>
-                Are you sure?
-              </DialogContent>
-              <DialogActions className={classes.spaceBetween}>
-                <Button onClick={this.cancelDelete} color='default'>
-                  Cancel
-                </Button>
-                <Button onClick={this.delete} >
-                  Confirm
-                </Button>
-              </DialogActions>
-            </Container>
-          </Modal>
+            cancel={this.cancelDelete}
+            confirm={this.delete}
+          />
         </Container>
       </Modal>
     )

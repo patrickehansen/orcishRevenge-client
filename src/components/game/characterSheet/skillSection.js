@@ -3,11 +3,13 @@ import PropTypes from 'prop-types';
 
 import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
+import DeleteForever from '@material-ui/icons/DeleteForever';
 import { withStyles } from '@material-ui/styles';
 import styles from '../../style/styles';
 
-import SkillEditor from './skillEditor';
+import Confirm from '../../util/confirm';
 
+import SkillEditor from './skillEditor';
 import VerticalFlex from '../../primitives/layout/verticalFlex';
 import Skill from './skill';
 import NotchedOutline from '../../primitives/layout/notchedOutline';
@@ -23,10 +25,15 @@ class SkillSection extends Component {
     this.state = {
       editting: false,
       toEdit: null,
+      renaming : false,
+      deleting: false,
     }
   }
 
   deleteSkill = (skill) => {
+    skill.SectionID = this.props.section['_id'];
+
+    console.log(skill, this.props.section)
     deleteSkill(skill);
 
     this.closeEditor();
@@ -40,6 +47,8 @@ class SkillSection extends Component {
   }
 
   saveSkill = async (skill) => {
+    skill.SectionID = this.props.section['_id'];
+
     if (this.state.toEdit) {
       await editSkill(skill);
     }else{
@@ -59,10 +68,36 @@ class SkillSection extends Component {
   }
 
   editSkill = (skill) => {
+    console.log('hi. edit skill here', skill)
     this.setState({
       editting: true,
       toEdit: skill,
     })
+  }
+
+  rename = (name) => {
+    this.props.onRelabel({
+      ...this.props.section,
+      SectionName: name,
+    });
+  }
+
+  promptDelete = () => {
+    this.setState({
+      deleting: true,
+    })
+  }
+
+  cancelDelete = () => {
+    this.setState({
+      deleting: false,
+    })
+  }
+
+  confirmDelete = () => {
+    this.props.onDeleteSection(this.props.section);
+
+    this.cancelDelete();
   }
 
   render() {
@@ -70,13 +105,20 @@ class SkillSection extends Component {
     
     return (
       <Paper elevation={2} className={classes.skillSection}>
-        <NotchedOutline label={section.SectionName}>
+        <NotchedOutline 
+          label={section ? section.SectionName : null}
+          canRelabel={true}
+          onRelabel={this.rename}
+          onCancelRelabel={this.props.onCancelRelabel}
+        >
           <VerticalFlex>
           {
-            section.Skills.map((v,i) => (
+            section && section.Skills.map((v,i) => (
               <Skill skill={v} key={i} onEdit={this.editSkill} />
             ))
           }
+          {
+            section && 
             <Button 
               onClick={this.addSkill} 
               className={classes.addSkillButton}
@@ -85,7 +127,17 @@ class SkillSection extends Component {
             >
             +
             </Button>
+          }
           </VerticalFlex>
+          {
+            section && 
+            <Button
+              className={classes.skillSectionDelete}
+              onClick={this.promptDelete}
+            > 
+              <DeleteForever />
+            </Button>
+          }
         </NotchedOutline>
         <SkillEditor 
           open={this.state.editting}
@@ -93,6 +145,11 @@ class SkillSection extends Component {
           onClose={this.closeEditor}
           onSave={this.saveSkill}
           onDelete={this.deleteSkill}
+        />
+        <Confirm 
+          open={this.state.deleting}
+          cancel={this.cancelDelete}
+          confirm={this.confirmDelete}
         />
       </Paper>
     );
@@ -102,6 +159,5 @@ class SkillSection extends Component {
 SkillSection.propTypes = {
   section: PropTypes.object//.isRequired,
 };
-
 
 export default withStyles(styles)(SkillSection);

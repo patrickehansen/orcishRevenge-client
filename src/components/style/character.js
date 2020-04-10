@@ -355,6 +355,7 @@ export default (theme) => ({
     justifyContent: 'space-between',
     margin: '0.2rem',
     padding: '0.2rem',
+    zIndex: 2,
   },
 
   skillbox: {
@@ -385,5 +386,25 @@ export default (theme) => ({
   skillNotes: {
     marginTop: '0.1rem',
     maxHeight: '10rem',
+  },
+
+  skillSectionDelete: {
+    zIndex: 20,
+    position: 'absolute',
+    top: '-0.9rem',
+    right: '0rem',
+    maxWidth: '1.3rem',
+    minWidth: '0.3rem',
+    maxHeight: '1.9rem',
+    backgroundColor: theme.palette.error.main,
+    padding: '0.1rem',
+
+    // '& svg' : {
+    //   height: '1.2rem',
+    //   filter: 'drop-shadow(1px 1px 1px rgba(155,155,155,0.5)',
+    // },
+    '&:hover' : {
+      backgroundColor: 'red'
+    }
   }
 });

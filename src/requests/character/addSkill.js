@@ -6,12 +6,12 @@ import { updateCharacter } from '../../store/actions/actions';
 
 const api = `${config.server}/api/character/skills/create`;
 
-export default async function createSkill(skill, characterId) {
+export default async function createSkill(skill) {
   const response = await axios.put(
     api,
     {
       ...skill,
-      character: characterId,
+      character: store.getState().game.possessedCharacter['_id'],
     },
     {
       headers: { Authorization: store.getState().account.IDToken },

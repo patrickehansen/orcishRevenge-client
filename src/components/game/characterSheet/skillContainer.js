@@ -9,15 +9,49 @@ import styles from '../../style/styles';
 
 import SkillSection from './skillSection';
 
+import editSkillSection from '../../../requests/character/editSkillSection';
+import addSkillSection from '../../../requests/character/addSkillSection';
+import deleteSkillSection from '../../../requests/character/deleteSkillSection';
+
 class SkillContainer extends Component {
-  addSection = (e) => {
-    //this.props.onAdd('section', this.props.placement)
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      adding : false,
+    }
   }
 
+  addSection = (e) => {
+    this.setState({adding: true})
+  }
+
+  cancelAdd = () => {
+    this.setState({adding: false});
+  }
+
+  confirmAddition = async (section) => {
+    section.Placement = `${this.props.placement},${this.props.sections.length}`
+    console.log('addition confirmed', section)
+    await addSkillSection(section);
+  }
+
+  relabelSection = async (section) => {
+    console.log('relabel', section)
+    await editSkillSection(section);
+
+    console.log('editting skill section', this.state.adding)
+
+    if (this.state.adding) this.cancelAdd();
+  }
+
+  deleteSection = (section) => {
+    console.log('deleting section', section);
+    deleteSkillSection(section);
+  }
 
   render() {
     const { classes, sections } = this.props;
-
     
     return (
       <Grid 
@@ -30,8 +64,12 @@ class SkillContainer extends Component {
         <Grid item className={classes.skillbox}>
         {
           sections.map((v,i) => (
-            <SkillSection section={v} key={i} onAdd={this.props.onAdd}/>
+            <SkillSection section={v} key={i} onRelabel={this.relabelSection} onDeleteSection={this.deleteSection}/>
           ))
+        }
+        {
+          this.state.adding && 
+            <SkillSection section={null} onRelabel={this.confirmAddition} onCancelRelabel={this.cancelAdd}/>
         }
         </Grid>
         <Grid item>
