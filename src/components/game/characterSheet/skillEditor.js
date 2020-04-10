@@ -62,13 +62,16 @@ class SkillEditor extends Component {
     const target = e.target;
 
     const data = {
-      '_id' : this.props.skill['_id'],
       Name: target.Name.value,
       MPCost: target.MPCost.value,
       APCost: target.APCost.value,
       Damage: target.Damage.value,
       Score: target.Score.value,
       Notes: text,
+    }
+
+    if (this.props.skill) {
+      data['_id'] = this.props.skill['_id'];
     }
 
     console.log(data);
@@ -108,6 +111,7 @@ class SkillEditor extends Component {
                   <OutlinedTextField
                     id='Name'
                     label='Name'
+                    required
                     defaultValue={skill ? skill.Name : ''}
                   />
                 </Grid>
