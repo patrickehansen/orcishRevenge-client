@@ -42,6 +42,14 @@ class SocketClient {
       sent: moment(),
     });
   }
+
+  Roll = (roll, type) => {
+    this.socket.emit('roll', {
+      roll,
+      type,
+      sent: moment(),
+    });
+  }
 }
 
 export default SocketClient;

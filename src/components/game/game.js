@@ -23,10 +23,9 @@ import Board from './board';
 import CharacterSelect from './characterSelection/characterSelect';
 import ChatRoll from './chatroll';
 
+import { openSocket, closeSocket } from '../../store/actions/actions';
 import ErrorComponent from '../util/error';
-import SocketClient from '../../socket/socketClient';
 import styles from '../style/styles';
-
 import StyleUpdater from '../style/styleUpdater';
 
 
@@ -43,7 +42,7 @@ class Game extends Component {
 
   componentDidMount() {
     // console.log('Game component mounted. connecting to socket..')
-    this.socketClient = new SocketClient({});
+    openSocket();
 
     getChatHistory();
 
@@ -61,7 +60,7 @@ class Game extends Component {
   }
 
   onSendChat = (message) => {
-    this.socketClient.SendChatMessage(message);
+    this.props.socketClient.SendChatMessage(message);
   }
 
   onLogout = () => {
@@ -71,8 +70,7 @@ class Game extends Component {
     setCharacterInfo(null);
 
     // Disconnect and clear the socket client for GC
-    this.socketClient.disconnect();
-    this.socketClient = null;
+    closeSocket();
 
     // Set the loggingout that sent us here so we don't double fire
     setLoggingOut(false);
@@ -151,6 +149,7 @@ const mapStateToProps = (state) => ({
   loggingOut: state.account.loggingOut,
   username: state.account.username,
   token: state.account.IDToken,
+  socketClient: state.game.socketClient,
 });
 
 export default withStyles(styles)(connect(mapStateToProps)(Game));

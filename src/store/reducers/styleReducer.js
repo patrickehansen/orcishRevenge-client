@@ -16,7 +16,8 @@ const defaultAuthenticationState = {
       main: '#990096',
     },
     error: {
-      main: '#440e0e',
+      main: '#8a1313',
+
     },
     white: {
       main: '#d8d8d8',

@@ -1,11 +1,20 @@
+import SocketClient from '../../socket/socketClient';
 
 const defaultAuthenticationState = {
   characters: [],
   possessedCharacter: null,
+  socketClient: null,
 };
 
 export default (state = defaultAuthenticationState, action) => {
   switch (action.type) {
+    case 'CLOSE_SOCKET' : {
+      state.socketClient.disconnect();
+
+      return {...state, socketClient : null};
+    }
+    case 'OPEN_SOCKET' : 
+      return {...state, socketClient: new SocketClient({})};
     case 'SET_CHARACTERS':
       return { ...state, characters: action.characters };
     case 'UPDATE_CHARACTER': {

@@ -104,3 +104,15 @@ export const updateNotepad = (notepad) => {
     notepad,
   });
 };
+
+export const openSocket = () => {
+  store.dispatch({
+    type: 'OPEN_SOCKET'
+  })
+}
+ 
+export const closeSocket = () => {
+  store.dispatch({
+    type: 'CLOSE_SOCKET'
+  })
+}
