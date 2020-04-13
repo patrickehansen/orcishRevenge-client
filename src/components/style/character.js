@@ -351,11 +351,15 @@ export default (theme) => ({
     backgroundColor: theme.palette.background.transparentGray,
   },
 
+  skillHandle : {
+    zIndex: 20,
+  },
+
   skill: {
     justifyContent: 'space-between',
     margin: '0.2rem',
     padding: '0.2rem',
-    zIndex: 2,
+    zIndex: 20,
   },
 
   skillbox: {

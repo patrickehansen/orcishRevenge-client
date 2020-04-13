@@ -3,7 +3,11 @@ import PropTypes from 'prop-types';
 
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
+import { Droppable } from 'react-beautiful-dnd';
+
 import { withStyles } from '@material-ui/styles';
+
+
 import styles from '../../style/styles';
 
 
@@ -31,8 +35,12 @@ class SkillContainer extends Component {
   }
 
   confirmAddition = async (section) => {
-    section.Placement = `${this.props.placement},${this.props.sections.length}`
-    console.log('addition confirmed', section)
+    section.Placement = `${this.props.placement},${this.props.sections.length}`;
+    section.Skills = [];
+
+    console.log('addition confirmed', section);
+
+    this.props.onAddSection(section);
     await addSkillSection(section);
   }
 
@@ -53,6 +61,7 @@ class SkillContainer extends Component {
   render() {
     const { classes, sections } = this.props;
     
+    //console.log('container', sections)
     return (
       <Grid 
         item 
@@ -61,17 +70,39 @@ class SkillContainer extends Component {
         direction='column'
         justify='space-between'
       >
-        <Grid item className={classes.skillbox}>
-        {
-          sections.map((v,i) => (
-            <SkillSection section={v} key={i} onRelabel={this.relabelSection} onDeleteSection={this.deleteSection}/>
-          ))
-        }
-        {
-          this.state.adding && 
-            <SkillSection section={null} onRelabel={this.confirmAddition} onCancelRelabel={this.cancelAdd}/>
-        }
-        </Grid>
+        <Droppable droppableId={`skillContainer_${this.props.placement}`} type='skillSection'>
+          {(provided) => (
+            <Grid 
+              {...provided.droppableProps}
+              ref={provided.innerRef}
+              item 
+              className={classes.skillbox}
+            >
+            {
+              sections.map((v,i) => (
+                <SkillSection 
+                  section={v} 
+                  key={i} 
+                  onRelabel={this.relabelSection} 
+                  onDeleteSection={this.deleteSection}
+                  index={i}
+                />
+              ))
+            }
+            {
+              this.state.adding && 
+                <SkillSection 
+                  section={null} 
+                  onRelabel={this.confirmAddition} 
+                  onCancelRelabel={this.cancelAdd} 
+                  index={-1}
+                />
+            }
+            {provided.placeholder}
+            </Grid>
+          )}
+        
+        </Droppable>
         <Grid item>
           <Button 
             onClick={this.addSection} 

@@ -139,7 +139,7 @@ export default (theme) => ({
   confirm: {
     backgroundColor: theme.palette.common.white,
     width: '25%',
-    marginTop: '25%',
+    marginTop: '20rem',
     textAlign: 'center',
     fontSize: '2rem',
   },

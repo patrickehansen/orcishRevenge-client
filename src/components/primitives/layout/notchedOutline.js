@@ -46,7 +46,9 @@ class NotchedOutline extends Component {
     const { children, label } = this.props;
 
     return (
-      <div className='notchedOutline'>
+      <div className='notchedOutline'
+        {...this.props.dragHandleProps}
+      >
         {
           this.state.editting ? 
           <form onSubmit={this.inputSubmitted}>

@@ -15,6 +15,7 @@ class VerticalFlex extends Component {
         id={this.props.id}
         onMouseEnter={this.props.onMouseEnter}
         onMouseLeave={this.props.onMouseLeave}
+        ref={this.props.innerRef}
       >
         {this.props.children}
       </Container>

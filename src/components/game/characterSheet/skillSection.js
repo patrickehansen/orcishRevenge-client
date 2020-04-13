@@ -4,6 +4,8 @@ import PropTypes from 'prop-types';
 import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
 import DeleteForever from '@material-ui/icons/DeleteForever';
+
+import { Draggable, Droppable } from 'react-beautiful-dnd';
 import { withStyles } from '@material-ui/styles';
 import styles from '../../style/styles';
 
@@ -52,6 +54,7 @@ class SkillSection extends Component {
     if (this.state.toEdit) {
       await editSkill(skill);
     }else{
+      console.log('Adding skill', skill, this.props.section)
       await createSkill(skill);
     }
 
@@ -100,58 +103,112 @@ class SkillSection extends Component {
     this.cancelDelete();
   }
 
+  // <Droppable droppableId={section._id} type='skill'>
+  //             {(provided) => (
+  //               <VerticalFlex
+  //                 {...provided.droppableProps}
+  //                 ref={provided.innerRef}
+  //               >
+  //               {
+  //                 section && section.Skills.map((v,i) => (
+  //                   <Skill skill={v} key={i} onEdit={this.editSkill} index={i} />
+  //                 ))
+  //               }
+  //               {provided.placeholder}
+  //               </VerticalFlex>
+  //             )}
+  //             </Droppable>
+
   render() {
     const { classes, section } = this.props;
-    
+
+    let dragId = 'skillSection_';
+
+    if (section && section._sectionid) {
+      dragId += `${section._sectionid}`;
+    }
+
+    //console.log('section render', section)
+
     return (
-      <Paper elevation={2} className={classes.skillSection}>
-        <NotchedOutline 
-          label={section ? section.SectionName : null}
-          canRelabel={true}
-          onRelabel={this.rename}
-          onCancelRelabel={this.props.onCancelRelabel}
-        >
-          <VerticalFlex>
-          {
-            section && section.Skills.map((v,i) => (
-              <Skill skill={v} key={i} onEdit={this.editSkill} />
-            ))
-          }
-          {
-            section && 
-            <Button 
-              onClick={this.addSkill} 
-              className={classes.addSkillButton}
-              variant='contained'
-              color='primary'
+      <Draggable draggableId={dragId} index={this.props.index} type='skillSection'>
+        {(provided) => (
+          <div
+            ref={provided.innerRef}
+            {...provided.draggableProps}
+          >
+            <Paper 
+              elevation={2} 
+              className={classes.skillSection}
             >
-            +
-            </Button>
-          }
-          </VerticalFlex>
-          {
-            section && 
-            <Button
-              className={classes.skillSectionDelete}
-              onClick={this.promptDelete}
-            > 
-              <DeleteForever />
-            </Button>
-          }
-        </NotchedOutline>
-        <SkillEditor 
-          open={this.state.editting}
-          skill={this.state.toEdit}
-          onClose={this.closeEditor}
-          onSave={this.saveSkill}
-          onDelete={this.deleteSkill}
-        />
-        <Confirm 
-          open={this.state.deleting}
-          cancel={this.cancelDelete}
-          confirm={this.confirmDelete}
-        />
-      </Paper>
+              <NotchedOutline 
+                label={section ? section.SectionName : null}
+                canRelabel={true}
+                onRelabel={this.rename}
+                onCancelRelabel={this.props.onCancelRelabel}
+                dragHandleProps={provided.dragHandleProps}
+              >
+                <Droppable 
+                  droppableId={dragId} 
+                  type='skill'
+                  isDropDisabled={!section}
+                >
+                {(provided) => (
+                  <div
+                    {...provided.droppableProps}
+                    ref={provided.innerRef}
+                    style={{minHeight: '1rem'}}
+                  >
+                    <VerticalFlex>
+                    {
+                      section && section.Skills.map((v,i) => (
+                        <Skill skill={v} key={i} onEdit={this.editSkill} index={i} />
+                      ))
+                    }
+                    {provided.placeholder}
+                    </VerticalFlex>
+                  </div>
+                )}
+                </Droppable>
+              
+                {
+                  section && 
+                  <Button 
+                    onClick={this.addSkill} 
+                    className={classes.addSkillButton}
+                    variant='contained'
+                    color='primary'
+                  >
+                  +
+                  </Button>
+                }
+                {
+                  section && 
+                  <Button
+                    className={classes.skillSectionDelete}
+                    onClick={this.promptDelete}
+                  > 
+                    <DeleteForever />
+                  </Button>
+                }
+              </NotchedOutline>
+              <SkillEditor 
+                open={this.state.editting}
+                skill={this.state.toEdit}
+                onClose={this.closeEditor}
+                onSave={this.saveSkill}
+                onDelete={this.deleteSkill}
+              />
+              <Confirm 
+                open={this.state.deleting}
+                cancel={this.cancelDelete}
+                confirm={this.confirmDelete}
+              />
+            </Paper>
+          </div>
+          
+        )}
+      </Draggable>
     );
   }
 }

@@ -112,6 +112,7 @@ class SkillEditor extends Component {
                     id='Name'
                     label='Name'
                     required
+                    type='text'
                     defaultValue={skill ? skill.Name : ''}
                   />
                 </Grid>
@@ -120,6 +121,7 @@ class SkillEditor extends Component {
                   <OutlinedTextField
                     id='MPCost'
                     label='MPCost'
+                    type='number'
                     defaultValue={skill ? skill.MPCost : ''}
                   />
                   </Grid>
@@ -127,6 +129,7 @@ class SkillEditor extends Component {
                   <OutlinedTextField
                     id='APCost'
                     label='APCost'
+                    type='number'
                     defaultValue={skill ? skill.APCost : ''}
                   />
                   </Grid>
@@ -134,6 +137,7 @@ class SkillEditor extends Component {
                   <OutlinedTextField
                     id='Damage'
                     label='Damage'
+                    type='text'
                     defaultValue={skill ? skill.Damage : ''}
                   />
                   </Grid>
@@ -143,6 +147,7 @@ class SkillEditor extends Component {
                   <OutlinedTextField
                     id='Score'
                     label='Score'
+                    type='number'
                     defaultValue={skill ? skill.Score : ''}
                   />
                 </Grid>

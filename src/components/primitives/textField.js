@@ -57,7 +57,7 @@ export const OutlinedTextField = withStyles(styles)((props) => {
       {...myProps}
       id={props.id || 'outlined-textfield'}
       className={`${props.className} ${classes.outlinedTextField} ${classes.textField}`}
-      type="text"
+      type={props.type || "text"}
       name={props.name || props.label.toLowerCase()}
       placeholder={props.placeholder || props.label}
       variant="outlined"
