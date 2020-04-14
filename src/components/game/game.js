@@ -94,9 +94,12 @@ class Game extends Component {
   }
 
   dragEnd = (size) => {
-    this.setState({
-      paneSize: size
-    })
+    if (size) {
+      this.setState({
+        paneSize: size
+      })
+    }
+    
   }
 
   render() {
