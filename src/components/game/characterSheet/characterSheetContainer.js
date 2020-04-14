@@ -52,7 +52,7 @@ class CharacterSheetContainer extends Component {
           open={this.props.open && !this.state.poppedOut}
           onClose={this.props.onClose}
         >
-          <DialogContent>
+          <DialogContent >
           <CharacterSheet
             character={this.props.character}
             poppedOut={this.state.poppedOut}

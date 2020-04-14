@@ -31,8 +31,6 @@ export default (state = defaultAuthenticationState, action) => {
 
       updated.characters = characters;
 
-      console.log('new notepad', action);
-
       if (state.possessedCharacter && state.possessedCharacter._id === action.character._id) {
         updated.possessedCharacter = action.character;
       }
