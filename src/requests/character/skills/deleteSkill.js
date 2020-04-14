@@ -1,8 +1,8 @@
 
 import axios from 'axios';
-import config from '../../../config';
-import store from '../../store/store';
-import { updateCharacter } from '../../store/actions/actions'; 
+import config from '../../../../config';
+import store from '../../../store/store';
+import { updateCharacter } from '../../../store/actions/actions'; 
 
 const api = `${config.server}/api/character/skills/delete`;
 

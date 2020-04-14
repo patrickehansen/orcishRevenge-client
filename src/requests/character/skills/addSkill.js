@@ -1,15 +1,16 @@
+
 import axios from 'axios';
-import config from '../../../config';
-import store from '../../store/store';
-import { updateCharacter } from '../../store/actions/actions'; 
+import config from '../../../../config';
+import store from '../../../store/store';
+import { updateCharacter } from '../../../store/actions/actions'; 
 
-const api = `${config.server}/api/character/skillSection/edit`;
+const api = `${config.server}/api/character/skills/create`;
 
-export default async function editSkillSection(section) {
-  const response = await axios.post(
+export default async function createSkill(skill) {
+  const response = await axios.put(
     api,
     {
-      ...section,
+      ...skill,
       character: store.getState().game.possessedCharacter['_id'],
     },
     {

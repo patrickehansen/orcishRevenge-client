@@ -8,9 +8,9 @@ import { diff } from 'deep-diff';
 import { withStyles } from '@material-ui/styles';
 import styles from '../../style/styles';
 
-import editSkillSection from '../../../requests/character/editSkillSection';
+import editSkillSection from '../../../requests/character/skills/editSkillSection';
 
-import SkillContainer from './skillContainer';
+import SkillContainer from './skills/skillContainer';
 
 class CharacterSkills extends Component {
   constructor(props) {
@@ -42,7 +42,6 @@ class CharacterSkills extends Component {
   }
 
   onDragEnd = async (result) => {
-    //console.log('dragEnd from context', result);
     const { destination, source, draggableId, type } = result;
 
     if (!destination) return;
@@ -109,7 +108,6 @@ class CharacterSkills extends Component {
   }
   
   render() {
-    console.log('render')
     const { index, value, classes } = this.props;
     const skills = this.state.skills;
 

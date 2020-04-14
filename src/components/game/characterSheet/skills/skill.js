@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import { withStyles } from '@material-ui/styles';
-import styles from '../../style/styles';
+import styles from '../../../style/styles';
 
 import { Draggable } from 'react-beautiful-dnd';
 
@@ -18,11 +18,13 @@ class Skill extends Component {
     const { classes, skill } = this.props;
 
     //console.log(`skill, ${skill}, ${this.props.index}`)
+    const id = skill._id || skill.Nam
     return (
       <Draggable
         type='skill'
-        draggableId={skill._id || skill.Name}
+        draggableId={id}
         index={this.props.index}
+        key={id}
       >
         {(provided) => (
           <div

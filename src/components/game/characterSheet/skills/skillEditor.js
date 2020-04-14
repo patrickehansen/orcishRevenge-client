@@ -4,11 +4,11 @@ import PropTypes from 'prop-types';
 import { Modal, DialogActions, DialogContent, Grid, Container } from '@material-ui/core';
 import ReactQuill from 'react-quill';
 
-import Confirm from '../../util/confirm';
-import { OutlinedTextField } from '../../primitives/textField';
-import Button from '../../primitives/button/containedButton';
+import Confirm from '../../../util/confirm';
+import { OutlinedTextField } from '../../../primitives/textField';
+import Button from '../../../primitives/button/containedButton';
 import { withStyles } from '@material-ui/styles';
-import styles from '../../style/styles';
+import styles from '../../../style/styles';
 
 class SkillEditor extends Component {
   constructor(props) {

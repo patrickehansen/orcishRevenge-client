@@ -8,14 +8,14 @@ import { Droppable } from 'react-beautiful-dnd';
 import { withStyles } from '@material-ui/styles';
 
 
-import styles from '../../style/styles';
+import styles from '../../../style/styles';
 
 
 import SkillSection from './skillSection';
 
-import editSkillSection from '../../../requests/character/editSkillSection';
-import addSkillSection from '../../../requests/character/addSkillSection';
-import deleteSkillSection from '../../../requests/character/deleteSkillSection';
+import editSkillSection from '../../../../requests/character/skills/editSkillSection';
+import addSkillSection from '../../../../requests/character/skills/addSkillSection';
+import deleteSkillSection from '../../../../requests/character/skills/deleteSkillSection';
 
 class SkillContainer extends Component {
   constructor(props) {

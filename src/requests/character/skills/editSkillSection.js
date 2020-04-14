@@ -1,13 +1,12 @@
-
 import axios from 'axios';
-import config from '../../../config';
-import store from '../../store/store';
-import { updateCharacter } from '../../store/actions/actions'; 
+import config from '../../../../config';
+import store from '../../../store/store';
+import { updateCharacter } from '../../../store/actions/actions'; 
 
-const api = `${config.server}/api/character/skillSection/create`;
+const api = `${config.server}/api/character/skillSection/edit`;
 
-export default async function createSkillSection(section) {
-  const response = await axios.put(
+export default async function editSkillSection(section) {
+  const response = await axios.post(
     api,
     {
       ...section,

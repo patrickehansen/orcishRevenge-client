@@ -7,18 +7,18 @@ import DeleteForever from '@material-ui/icons/DeleteForever';
 
 import { Draggable, Droppable } from 'react-beautiful-dnd';
 import { withStyles } from '@material-ui/styles';
-import styles from '../../style/styles';
+import styles from '../../../style/styles';
 
-import Confirm from '../../util/confirm';
+import Confirm from '../../../util/confirm';
 
 import SkillEditor from './skillEditor';
-import VerticalFlex from '../../primitives/layout/verticalFlex';
+import VerticalFlex from '../../../primitives/layout/verticalFlex';
 import Skill from './skill';
-import NotchedOutline from '../../primitives/layout/notchedOutline';
+import NotchedOutline from '../../../primitives/layout/notchedOutline';
 
-import createSkill from '../../../requests/character/addSkill';
-import editSkill from '../../../requests/character/editSkill';
-import deleteSkill from '../../../requests/character/deleteSkill';
+import createSkill from '../../../../requests/character/skills/addSkill';
+import editSkill from '../../../../requests/character/skills/editSkill';
+import deleteSkill from '../../../../requests/character/skills/deleteSkill';
 
 class SkillSection extends Component {
   constructor(props) {

@@ -1,17 +1,16 @@
 
 import axios from 'axios';
-import config from '../../../config';
-import store from '../../store/store';
-import { updateCharacter } from '../../store/actions/actions'; 
+import config from '../../../../config';
+import store from '../../../store/store';
+import { updateCharacter } from '../../../store/actions/actions'; 
 
-const api = `${config.server}/api/character/skills/edit`;
+const api = `${config.server}/api/character/skillSection/delete`;
 
-export default async function editSkill(skill) {
+export default async function deleteSkillSection(section) {
   const response = await axios.post(
     api,
     {
-      SkillName: skill.Name,
-      Skill: skill,
+      ...section,
       character: store.getState().game.possessedCharacter['_id'],
     },
     {
