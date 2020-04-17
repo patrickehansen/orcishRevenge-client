@@ -2,13 +2,17 @@
 import axios from 'axios';
 import config from '../../../config';
 import store from '../../store/store';
+import { setCharacterInfo } from '../../store/actions/actions';
 
-const api = `${config.server}/api/notepad`;
+const api = `${config.server}/api/character/editStats`;
 
-export default async function saveNotepad(notepad) {
+export default async function editCharacterStats(newStats, characterID) {
   const response = await axios.patch(
     api,
-    notepad,
+    {
+      Stats: newStats,
+      CharacterID: characterID,
+    },
     {
       headers: { Authorization: store.getState().account.IDToken },
     },
@@ -20,5 +24,7 @@ export default async function saveNotepad(notepad) {
     }
   });
 
-  return !!response.data;
+  if (response && response.data) {
+    setCharacterInfo(response.data);
+  }
 }

@@ -74,10 +74,36 @@ class StatAdjuster extends Component {
 
     return (
       <Card className={compact ? classes.statAdjusterCompact : classes.statAdjuster}>
+  
         <CardContent className={`${classes.horizontalTextContainer} ${classes.cardContent}`}>
           <Typography variant='h6' className={compact ? classes.statLabelCompact : classes.statLabel} component='span'>
             {label}
           </Typography>
+          {(this.props.canAdjust && type === 'object') && (
+            <CardActions className={`${classes.horizontalFlex} ${classes.noPadding}`} disableSpacing={true}>
+              <VerticalFlex
+                className={`${compact ? classes.statModifierContainerCompactLeft : classes.statModifierContainerLeft}`}
+              >
+                <Button
+                  size='small'
+                  className={`${compact ? classes.statModifierCompact : classes.statModifier}`}
+                  disabled={!this.props.canIncrement}
+                  onClick={() => this.props.increment(this.props.name, 'Current')}
+                >
+                  <FaAngleUp style={iconStyle}/>
+                </Button>
+                <Button
+                  size='small'
+                  className={`${compact ? classes.statModifierCompact : classes.statModifier}`}
+                  disabled={this.props.value <= 6}
+                  onClick={() => this.props.decrement(this.props.name, 'Current')}
+                >
+                  <FaAngleDown style={iconStyle}/>
+                </Button>
+              </VerticalFlex>
+            </CardActions>
+          )
+        }
           {
             type !== 'object' ? (
               <Tooltip TransitionComponent={Zoom} title={tooltip}>
@@ -95,52 +121,28 @@ class StatAdjuster extends Component {
           }
         </CardContent>
         {
-          (this.props.canAdjust && type !== 'object') && (
+          (this.props.canAdjust) && (
             <CardActions className={`${classes.horizontalFlex} ${classes.noPadding}`} disableSpacing={true}>
-              { this.props.canIncrementByWhole && (
-                  <VerticalFlex>
-                    <Button
-                      size='small'
-                      className={classes.statModifier}
-                      disabled={!this.props.canIncrement || this.props.name === 'MagicAffinity'}
-                      onClick={() => this.props.increment(this.props.name)}
-                    >
-                      <FaAngleDoubleUp style={iconStyle} />
-                    </Button>
-                    <Button
-                      size='small'
-                      className={classes.statModifier}
-                      disabled={this.props.value <= 6 || this.props.name === 'MagicAffinity'}
-                      onClick={() => this.props.decrement(this.props.name)}
-                    >
-                      <FaAngleDoubleDown style={iconStyle}/>
-                    </Button>
-                  </VerticalFlex>
-              )
-              }
-              {
-                this.props.canIncrementByTenths && (
-                  <VerticalFlex>
-                    <Button
-                      size='small'
-                      className={classes.statModifier}
-                      disabled={!this.props.canIncrement || this.props.name === 'MagicAffinity'}
-                      onClick={() => this.props.increment(this.props.name)}
-                    >
-                      <FaAngleUp style={iconStyle}/>
-                    </Button>
-                    <Button
-                      size='small'
-                      className={classes.statModifier}
-                      disabled={this.props.value <= 6 || this.props.name === 'MagicAffinity'}
-                      onClick={() => this.props.decrement(this.props.name)}
-                    >
-                      <FaAngleDown style={iconStyle}/>
-                    </Button>
-                  </VerticalFlex>
-                )
-              }
-
+              <VerticalFlex
+                className={`${compact ? classes.statModifierContainerCompact : classes.statModifierContainer}`}
+              >
+                <Button
+                  size='small'
+                  className={`${compact ? classes.statModifierCompact : classes.statModifier}`}
+                  disabled={!this.props.canIncrement}
+                  onClick={() => this.props.increment(this.props.name, 'Total')}
+                >
+                  <FaAngleUp style={iconStyle}/>
+                </Button>
+                <Button
+                  size='small'
+                  className={`${compact ? classes.statModifierCompact : classes.statModifier}`}
+                  disabled={this.props.value <= 6}
+                  onClick={() => this.props.decrement(this.props.name, 'Total')}
+                >
+                  <FaAngleDown style={iconStyle}/>
+                </Button>
+              </VerticalFlex>
             </CardActions>
           )
         }

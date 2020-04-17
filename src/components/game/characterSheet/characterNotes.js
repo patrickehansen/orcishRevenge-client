@@ -10,7 +10,7 @@ import styles from '../../style/styles';
 
 import Notepad from '../../util/notepad';
 
-import renameNotepad from '../../../requests/utility/renameNotepad';
+import saveNotepad from '../../../requests/utility/saveNotepad';
 import addNotepad from '../../../requests/utility/addNotepad';
 
 class Notes extends Component {
@@ -18,6 +18,7 @@ class Notes extends Component {
     super(props);
     this.state = {
       selectedIndex: 0,
+      renaming: null,
     };
   }
 
@@ -28,10 +29,13 @@ class Notes extends Component {
   }
 
   onDoubleClickTab = (e) => {
-    const id = e.currentTarget.name;
+    
+    const id = e.currentTarget.id.split('-')[2];
+
+    console.log('double click detected', typeof id)
 
     this.setState({
-      renaming: id,
+      renaming: Number(id),
     });
   }
 
@@ -47,7 +51,11 @@ class Notes extends Component {
     if (e.key === 'Enter') {
       const val = e.target.value;
 
-      renameNotepad(this.state.renaming, val);
+      const pad = this.props.allNotepads[this.props.notepads[this.state.renaming]];
+
+      pad.Title = val;
+
+      saveNotepad(pad);
 
       this.setState({
         renaming: null,
@@ -55,12 +63,20 @@ class Notes extends Component {
     }
   }
 
+  cancelTitleChange = () => {
+    this.setState({
+      renaming: null
+    })
+  }
+
   render() {
     const { index, value, classes } = this.props;
 
     if (index !== value) return null;
 
-    // const currentPadID = this.props.notepads[this.state.selectedIndex];
+    //console.log(this.props.allNotepads, this.props.notepads);
+    //const currentPadID = this.props.notepads[this.state.selectedIndex];
+    //console.log(this.state.renaming, this.props.notepads)
     return (
       <Container
         id={`simple-tabpanel-${index}`}
@@ -79,13 +95,15 @@ class Notes extends Component {
 
                 if (!pad) return null;
 
-                if (Number(this.state.renaming) === v._id) {
+                if (this.state.renaming === i) {
+                  console.log('renaming id', this.state.renaming, v._id)
                   return (
                     <TextField
                       key={i}
                       label={'Title'}
                       defaultValue={pad.Title}
-                      onKeyDown={this.titleChange}
+                      onKeyUp={this.titleChange}
+                      onBlur={this.cancelTitleChange}
                     />
                   );
                 }
@@ -117,7 +135,7 @@ class Notes extends Component {
           this.props.notepads.map((v, i) => (
               <Notepad
                 key={i}
-                pad={v}
+                pad={this.props.allNotepads[v]}
                 active={i === this.state.selectedIndex}
               />
           ))

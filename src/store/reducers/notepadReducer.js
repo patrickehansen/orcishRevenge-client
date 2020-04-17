@@ -7,7 +7,7 @@ export default (state = defaultAuthenticationState, action) => {
     case 'ADD_NOTEPAD': {
       const { notepad } = action;
       const notepads = { ...state.notepads };
-      notepads[notepad._id] = notepad;
+      notepads[notepad._notepadid] = notepad;
 
       return { ...state, notepads };
     }
@@ -15,7 +15,7 @@ export default (state = defaultAuthenticationState, action) => {
     case 'UPDATE_NOTEPAD': {
       const { notepad } = action;
       const notepads = { ...state.notepads };
-      notepads[notepad._id] = notepad;
+      notepads[notepad._notepadid] = notepad;
 
       return { ...state, notepads };
     }

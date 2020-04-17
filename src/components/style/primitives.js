@@ -114,7 +114,8 @@ export default (theme) => ({
 
   notepad: {
     backgroundColor: theme.palette.common.white,
-    height: '38rem',
+    height: '37rem',
+    maxHeight: '37rem',
   },
 
   centered: {

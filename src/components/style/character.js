@@ -203,6 +203,26 @@ export default (theme) => ({
     minWidth: 0,
   },
 
+  statModifierCompactContainer : {
+
+  },
+
+  statModifierCompact: {
+    width: theme.spacing(5),
+    height: theme.spacing(3),
+    minHeight: theme.spacing(4),
+    minWidth: 0,
+    margin: theme.spacing(0.5),
+  },
+
+  statModifierCompactContainerCompact : {
+    
+  },
+
+  statModifierContainerCompactLeft : {
+    marginLeft: '1.8rem',
+  },
+
   remainingPoints: {
     fontSize: '1.5rem',
     padding: theme.spacing(2),

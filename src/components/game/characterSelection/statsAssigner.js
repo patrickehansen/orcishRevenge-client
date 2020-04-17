@@ -34,19 +34,19 @@ class StatsAssigner extends Component {
         <Container id='statsTable' className={classes.statList}>
         {
           Object.entries(this.props.stats).map(([key, value]) => (
-              <StatAdjuster
-                name={key}
-                key={key}
-                label={labels[key]}
-                value={value}
-                increment={this.props.increment}
-                decrement={this.props.decrement}
-                canAdjust={this.props.remainingPoints > 0 || this.props.GM}
-                canIncrement={this.props.remainingPoints > 0 && (value < 20 || (key === 'Strength' && value < 25))}
-                canIncrementByWhole={true}
-                canIncrementByTenths={false}
-                compact={this.props.context === 'sheet'}
-              />
+            <StatAdjuster
+              name={key}
+              key={key}
+              label={labels[key]}
+              value={value}
+              increment={this.props.increment}
+              decrement={this.props.decrement}
+              canAdjust={this.props.remainingPoints > 0 || this.props.context === 'sheet' || this.props.GM}
+              canIncrement={this.props.remainingPoints > 0 || this.props.context === 'sheet' || this.props.GM}
+              canIncrementByWhole={this.props.context === 'creator'}
+              canIncrementByTenths={this.props.context === 'sheet'}
+              compact={this.props.context === 'sheet'}
+            />
           ))
         }
         </Container>
