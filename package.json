@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "webpack-dev-server --hot --host 0.0.0.0 --config=./webpack.dev.config.js",
+    "devMain" : "webpack-dev-server --hot --host 0.0.0.0 --config=./webpack.dev.config.js",
+    "devPopped" : "webpack-dev-server --hot --host 0.0.0.0 --config=./webpack.dev.popped.config.js",
+    "dev": "concurrently 'npm:devMain' 'npm:devPopped'",
     "build": "webpack --config webpack.build.config.js",
     "pretest": "eslint .",
     "pretest:fix": "eslint --fix .",

@@ -10,7 +10,7 @@ const OUTPUT_DIR = path.resolve(__dirname, 'dist');
 const defaultInclude = [SRC_DIR];
 
 module.exports = {
-  entry: ['@babel/polyfill',`${SRC_DIR}/main/index.js`],
+  entry: ['@babel/polyfill',`${SRC_DIR}/popped/index.js`],
   mode: 'development',
   output: {
     path: OUTPUT_DIR,
@@ -90,7 +90,7 @@ module.exports = {
       chunks: false,
       children: false,
     },
-    port: 9000,
+    port: 9001,
     historyApiFallback: true,
   },
 };
