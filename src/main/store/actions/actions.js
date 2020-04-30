@@ -116,3 +116,11 @@ export const closeSocket = () => {
     type: 'CLOSE_SOCKET'
   })
 }
+
+export const setPopped = (key, value) => {
+  store.dispatch({
+    type: 'SET_POPPED',
+    key,
+    value,
+  })
+}

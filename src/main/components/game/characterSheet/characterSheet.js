@@ -39,6 +39,17 @@ class CharacterSheet extends Component {
     });
   }
 
+  popIn = () => {
+    console.log('popping in')
+    const {socketClient} = this.props;
+
+    console.log('socketClient', socketClient);
+
+    if (socketClient && socketClient.popIn) {
+      socketClient.popIn();
+    }
+  }
+
   render() {
     const { character, classes } = this.props;
     console.log('character sheet render', character)
@@ -55,7 +66,7 @@ class CharacterSheet extends Component {
           {
             this.props.poppedOut
               ? <Container className={classes.popoutIcon}>
-              <FlipToBack style={{ cursor: 'pointer' }} onClick={this.props.onPopout}/>
+              <FlipToBack style={{ cursor: 'pointer' }} onClick={this.popIn}/>
             </Container>
               : <Container className={classes.popoutIcon}>
               <FlipToFront style={{ cursor: 'pointer' }} onClick={this.props.onPopout}/>
@@ -131,13 +142,14 @@ CharacterSheet.defaultProps = {
 CharacterSheet.propTypes = {
   classes: PropTypes.object.isRequired,
   character: PropTypes.object,
-  poppedOut: PropTypes.bool,
+  poppedOut: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
   onClose: PropTypes.func,
   onPopout: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   character: state.game.possessedCharacter,
+  socketClient: state.socketClient || state.game.socketClient,
 })
 
 export default connect(mapStateToProps)(withStyles(styles)(CharacterSheet));

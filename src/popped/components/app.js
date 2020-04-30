@@ -1,6 +1,6 @@
 
 import '@babel/polyfill';
-//import '../style/styles.scss';
+import '../style/styles.scss';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import {
@@ -16,19 +16,28 @@ import GMMenu from '../../main/components/game/gm/gmMenu';
 
 import Main from './main';
 
+import {setPathname} from '../store/actions';
+
 import history from './history';
 
 class App extends Component {
   constructor(props) {
     super(props);
+  }
 
-    this.state = {
-      currentPath: '',
-    };
+  componentDidMount() {
+    setPathname(history.location.pathname)
+  }
+
+  componentDidUpdate() {
+    setPathname(history.location.pathname)
+  }
+
+  componentWillUnmount() {
+    this.props.socketClient.disconnect();
   }
 
   render() {
-    console.log('hey here in app render', this.props.state)
     return (
       <Router history={history}>
         <div className='App'>
@@ -49,8 +58,8 @@ class App extends Component {
   }
 }
 
-const mapStateToProps = (state) => (
-  
-  {state: state})
+const mapStateToProps = (state) => ({
+  socketClient: state.socketClient
+})
 
 export default connect(mapStateToProps)(App);

@@ -15,7 +15,8 @@ import { ContainedButton as Button } from '../../primitives/button';
 import { VerticalFlex } from '../../primitives/layout';
 import styles from '../../style/styles';
 
-import { setLoggingOut } from '../../../store/actions/actions';
+import { setLoggingOut, setPopped } from '../../../store/actions/actions';
+import config from '../../../../../config';
 import socketClient from '../../../socket/socketClient';
 
 const stats = ['END', 'STR', 'AGI', 'RSN', 'SPD', 'MAG', 'ALT', 'MEL', 'ACC'];
@@ -39,6 +40,7 @@ class MenuColumn extends Component {
   }
 
   handlePopoutClosing = () => {
+    setPopped('character', false)
     this.setState({
       popoutOpen: false,
       openSheet: false,
@@ -46,18 +48,17 @@ class MenuColumn extends Component {
   };
 
   handleOpenPopout = () => {
-    this.setState({
-      popoutOpen: true,
-      openSheet: true,
-    });
+    setPopped('character', 'popped');
+    window.open(config.popperURL + '/character', '', 'width=1120,height=770,left=400,top=200');
   };
 
   openCharacterSheet = () => {
-    this.setState({ openSheet: true });
+    setPopped('character', 'open');
+    
   }
 
   closeCharacterSheet = () => {
-    this.setState({ openSheet: false });
+    setPopped('character', false)
   }
 
   onMouseEnter = (e) => {

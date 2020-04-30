@@ -42,6 +42,7 @@ const defaultAuthenticationState = {
       transparentGray: 'rgba(189,189,189,0.5)',
     },
   }},
+  pathname: '/',
 };
 
 export default (state = defaultAuthenticationState, action) => {
@@ -59,6 +60,12 @@ export default (state = defaultAuthenticationState, action) => {
         account: {
           isGM: action.data.isGM,
         }
+      }
+    }
+    case 'SET_PATHNAME': {
+      return {
+        ...state,
+        pathname: action.pathname
       }
     }
     default:

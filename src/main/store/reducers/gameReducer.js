@@ -1,11 +1,15 @@
 import SocketClient from '../../socket/socketClient';
-import SocketServer from '../../socket/socketServer';
 
 const defaultAuthenticationState = {
   characters: [],
   possessedCharacter: null,
   socketClient: null,
-  socketServer: null,
+  popped: {
+    'character' : false,
+    'gm' : false,
+    'groupNotes': false,
+    'groupInventory': false,
+  }
 };
 
 export default (state = defaultAuthenticationState, action) => {
@@ -19,7 +23,6 @@ export default (state = defaultAuthenticationState, action) => {
       return {
         ...state, 
         socketClient: new SocketClient({}),
-        socketServer: new SocketServer({}),
       };
     case 'SET_CHARACTERS':
       return { ...state, characters: action.characters };
@@ -47,6 +50,14 @@ export default (state = defaultAuthenticationState, action) => {
       return { ...state, players: action.players };
     case 'SET_CHARACTER_INFO':
       return { ...state, possessedCharacter: action.info };
+    case 'SET_POPPED' :
+      const current = {...state.popped};
+      current[action.key] = action.value;
+
+      return {
+        ...state,
+        popped : current,
+      }
     default:
       return state;
   }

@@ -84,7 +84,7 @@ class CharacterStats extends Component {
   }
 
   save = () => {
-    console.log('here in save', this.state.changed)
+    //console.log('here in save', this.state.changed)
     if (this.state.changed) {
       editCharacterStats(this.state.stats, this.props.character._id);
       editCharacterRP(this.state.rpChanges, this.props.character._id);

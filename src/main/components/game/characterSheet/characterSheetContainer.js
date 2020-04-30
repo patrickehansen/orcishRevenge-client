@@ -1,15 +1,15 @@
 
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import Container from '@material-ui/core/Container';
 import Modal from '@material-ui/core/Modal';
-import { DialogContent } from '@material-ui/core';import { DragDropContext } from 'react-beautiful-dnd';
-
-import Popout from '../../util/popout';
+import { DialogContent } from '@material-ui/core';
+import config from '../../../../../config';
 
 import CharacterSheet from './characterSheet';
 
+import { setPopped } from '../../../store/actions/actions';
 
 class CharacterSheetContainer extends Component {
   constructor(props) {
@@ -30,7 +30,10 @@ class CharacterSheetContainer extends Component {
   }
 
   popout = () => {
-    window.open('http://localhost:9001', '', 'width=600,height=400,left=200,top=200');
+    console.log('heyo popout, csc')
+    window.open(config.popperURL + '/character', '', 'width=1120,height=770,left=400,top=200');
+    
+    setPopped('character', 'popped')
   }
 
   onPopoutClosing = () => {
@@ -47,34 +50,18 @@ class CharacterSheetContainer extends Component {
     return (
       <Container>
         <Modal
-          open={this.props.open && !this.state.poppedOut}
+          open={this.props.popped === 'open'}
           onClose={this.props.onClose}
         >
           <DialogContent >
             <CharacterSheet
               character={this.props.character}
-              poppedOut={this.state.poppedOut}
+              poppedOut={false}
               onPopout={this.popout}
               onClose={this.props.onClose}
             />
           </DialogContent>
         </Modal>
-        {
-          this.state.poppedOut && (
-            <Popout
-              title={this.props.character ? this.props.character.Name : ''}
-              containerId='charPopout'
-              onClosing={this.onPopoutClosing}
-            >
-              <CharacterSheet
-                character={this.props.character}
-                poppedOut={this.state.poppedOut}
-                onPopout={this.popout}
-                onClose={this.props.onClose}
-              />
-            </Popout>
-          )
-        }
       </Container>
     );
   }
@@ -85,4 +72,8 @@ CharacterSheetContainer.propTypes = {
   onClose: PropTypes.func.isRequired,
 };
 
-export default CharacterSheetContainer;
+const mapStateToProps = (state) => ({
+  popped: state.game.popped.character
+})
+
+export default connect(mapStateToProps)(CharacterSheetContainer);
